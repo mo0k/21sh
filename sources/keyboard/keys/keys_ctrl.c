@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 15:59:33 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/14 22:28:52 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/14 22:37:41 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int 	key_ctrl_y(char **line, int *pos, char **strcpy)
 {
 	(void)line;
 	(void)pos;
+	//INVERSER CAD modfier *line avec *strcpy puis afficher et repositionner cursor
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 	if (!strcpy || !*strcpy)
 		return (1);
