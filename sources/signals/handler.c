@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:00:48 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/06 23:38:47 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/14 16:48:57 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@ static void			winsize_changed(void)
 	tmp = stock_data(NULL);
 	ioctl(isatty(STDOUT_FILENO), TIOCGWINSZ, &ws);
 	init_winsize(&(tmp->winsize), ws.ws_row, ws.ws_col);
+}
+void				handler_paste(int sig)
+{
+	t_editline *line;
+
+	(void)sig;
+	line = &stock_data(NULL)->editline;
+	key_ctrl_y(line->temp, &line->pos, &line->strcpy);
 }
 
 void				handler_signals(int sig)

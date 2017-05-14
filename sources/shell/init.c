@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 15:35:09 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/07 20:26:30 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/11 23:12:12 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@ void	init(t_shell *stock)
 	init_line(&stock->editline);
 	init_winsize(&(stock->winsize), tgetnum("li"), tgetnum("co"));
 	init_history(&stock->history);
+	stock->prompt = getcwd(NULL, CWD);
 }

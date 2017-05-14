@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:01:02 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/06 23:40:22 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/14 16:48:11 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 
 void		catch_signals(void);
 void		handler_signals(int sig);
+void		handler_paste(int sig);
 
 #endif

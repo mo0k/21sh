@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:07:38 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/07 22:57:27 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/11 23:19:14 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_shell
 	t_term		termios;
 	t_win		winsize;
 	t_history	history;
+	char		*prompt;
 }				t_shell;
 
 # define CWD 255
@@ -44,7 +45,7 @@ void		init(t_shell *stock);
 t_shell		*stock_data(t_shell *elem);
 void	print_stock(t_shell *stock);
 
-int			prompt(void);
+int			prompt(char **ptr);
 int			delchar(char **str, int pos);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:05:08 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/07 22:55:38 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/14 11:14:57 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int 	delchar(char **str, int pos)
 
 	if (!str || !*str)
 	{
-		printf("return 0\n");
+		//printf("return 0\n");
 		return (0);
 	}
 	len = ft_strlen(*str);
@@ -46,7 +46,7 @@ int 	delchar(char **str, int pos)
 	new[len] = 0;
 	if (pos > len)
 	{
-		printf("return 0\n");
+		//printf("return 0\n");
 		return (0);
 	}
 	//printf("DEBUG:%s\t%s\n", *str, (*str) + pos + 1);
@@ -71,7 +71,7 @@ int	main(int ac, char **av)
 	catch_signals();
 	stock_data(&shell);
 	print_stock(&shell);
-	prompt();
+	prompt(&shell.prompt);
 	//
 	//ft_lstiter(shell.history, &print_history_elem);
 	//

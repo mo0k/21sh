@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 10:28:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/07 23:13:14 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/13 11:33:43 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int 	move_up(t_list **history, t_editline *editline)
 		//	printf("PAR LA\n");
 			if (editline->pos > 0)
 				tputs(tgoto(tgetstr("LE", NULL), 0, editline->pos), AFFCNT, &my_putchar);
-			tputs(tgetstr("ce", NULL), AFFCNT, &my_putchar);
+			tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 			ft_putstr(((t_history_elem*)((*history)->content))->value);
 			//free(editline->line);
 			//editline->line = ft_strdup(((t_history*)(current->content))->value);
@@ -51,7 +51,7 @@ static int 	move_down(t_list **history, t_editline *editline)
 		*history = (*history)->next;
 		if (editline->pos > 0)
 			tputs(tgoto(tgetstr("LE", NULL), 0, editline->pos), AFFCNT, &my_putchar);
-		tputs(tgetstr("ce", NULL), AFFCNT, &my_putchar);
+		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 		ft_putstr(((t_history_elem*)((*history)->content))->value);
 		//free(*editline->temp);
 			//*editline->temp = ft_strdup(((t_history*)(current->content))->value);
@@ -95,12 +95,12 @@ static int 	move_down(t_list **history, t_editline *editline)
 
 int 		move_history(t_list **history, int *state, enum e_move move, t_editline *editline)
 {
-	printf("PAR LAAAAAAAA\n");
+	//printf("PAR LAAAAAAAA\n");
 	if (!history || !*history || !editline)
 	{
 		if (!*history)
 			ft_putchar(7);
-		printf("return (0);\n");
+	//	printf("return (0);\n");
 		return (0);
 	}
 	/*if (!current)
@@ -121,7 +121,7 @@ int 		move_history(t_list **history, int *state, enum e_move move, t_editline *e
 	{
 		if (editline->pos > 0)
 				tputs(tgoto(tgetstr("LE", NULL), 0, editline->pos), AFFCNT, &my_putchar);
-			tputs(tgetstr("ce", NULL), AFFCNT, &my_putchar);
+			tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 			//printf("pos:%d\n", editline->pos);
 			//ft_putstr(((t_history*)((current)->content))->value);
 			ft_putstr(((t_history_elem*)((*history)->content))->value);
