@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_arrow.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 22:49:54 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/13 11:39:33 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/15 14:24:11 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,21 @@ int 	key_arrow_right(int *pos, char *line)
 
 	return (1);
 }
+
 int 	key_arrow_left(int *pos)
 {
 	tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
 	(*pos)--;
 	return (1);
 }
+
 int 	key_arrow_home(int *pos)
 {
 	tputs(tgoto(tgetstr("LE", NULL), 1, *pos), AFFCNT, &my_putchar);
 	*pos = 0;
 	return (1);
 }
+
 int 	key_arrow_end(char *line, int *pos)
 {
 	if (!line)

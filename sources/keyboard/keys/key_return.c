@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_return.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/15 10:48:14 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/15 15:07:29 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,17 @@ int 	key_return(char **line, t_history *history)
 		t_list			*new;
 		t_history_elem	*content;
 		t_history_elem	elem;
+		int				state;
 
+		state = 0;
 		if (!line || !*line || !history)
 			return (0);
 		init_elem_history(&elem, *line, 1, 0);
+		if (!history->history_root)
+			state = 1;
 		ft_lstadd_end(&history->history_root, (new = ft_lstnew(&elem, sizeof(t_history_elem))));
+		if (state)
+			history->history_cur = history->history_root;
 		if (history->ret)
 		{
 			content = ((t_history_elem*)((history->history_cur)->content));
@@ -41,6 +47,7 @@ int 	key_return(char **line, t_history *history)
 
 
 		ft_lstiter(history->history_root, &print_history_elem);
+		//print_stock(stock_data(NULL));
 		//////////////////////////////////////////////////////////////
 		///
 		///				TEST BUILT-IN

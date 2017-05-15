@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/11 22:52:09 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/15 15:29:20 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		addnchar(char **astr, char c, int pos)
 	//printf("!! DEBUG !! str:%s\n", str);
 	free(*astr);
 	*astr = str;
-	tputs(tgetstr("ce", NULL), AFFCNT, &my_putchar);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 	ft_putstr(str+ ++pos);
 	tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(str + pos)), AFFCNT, &my_putchar);
 
@@ -41,7 +41,9 @@ void	add_key(char c, t_history *history, t_editline *editline)
 		//int		state;
 		t_history_elem	*content;
 
+		//tputs(tgetstr("im", NULL), AFFCNT, &my_putchar);
 		my_putchar(c);
+		//tputs(tgetstr("ei", NULL), AFFCNT, &my_putchar);
 		if (!history->ret && !editline->line)
 		{
 			editline->line = ft_strnew(1);
@@ -50,12 +52,13 @@ void	add_key(char c, t_history *history, t_editline *editline)
 		}
 		else
 		{
-			content = ((t_history_elem*)((history->history_cur)->content));
+			if (history->history_cur)
+			{
+				content = ((t_history_elem*)((history->history_cur)->content));
+				content->flag_modif = 1;
+			}
 			(editline->pos == (int)ft_strlen(*editline->temp)) ?
 			ft_addchar(editline->temp, c) : addnchar(editline->temp, c, editline->pos);
-
-			//(*(*editline->temp + editline->pos) = c);
-			content->flag_modif = 1;
 		}
 		editline->pos++;
 }

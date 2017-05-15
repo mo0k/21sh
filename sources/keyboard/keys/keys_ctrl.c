@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_ctrl.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 15:59:33 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/15 11:12:34 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/15 15:15:53 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 
 int 	key_ctrl_y(char **line, int *pos, char **strcpy, t_history *history)
 {
-	(void)line;
-	(void)pos;
 	char *ptr_start;
 	char *ptr_end;
-	//INVERSER CAD modfier *line avec *strcpy puis afficher et repositionner cursor
-	//printf("par la\n");
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 	if (!strcpy || !*strcpy || !line)
 		return (1);
 	if (*pos == 0)
 	{
-	//printf("par la\n");
 		if (!*line)
 		{
 			*line = ft_strdup(*strcpy);
@@ -60,11 +55,10 @@ int 	key_ctrl_y(char **line, int *pos, char **strcpy, t_history *history)
 			free(ptr_end);
 			return (1);
 		}
+		free(ptr_start);
+		free(ptr_end);
 		ft_putstr(*strcpy);
 		*pos += ft_strlen(*strcpy);
-
-		//printf("\n%s\n", *line);
-		//tputs(tgoto(tgetstr("LE", NULL), 1, *pos), AFFCNT, &my_putchar);
 	}
 		if (history->ret)
 			((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;

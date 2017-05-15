@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:32 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/15 11:13:13 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/15 15:20:45 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <keyboard.h>
+
 static 	int is_alt_keys(char *buff, char *line, int *pos)
 {
 	if (!buff)
@@ -49,7 +50,7 @@ static 	int is_arrow_keys(char *buff, char *line, int *pos, t_history *history, 
 		{
 			if (editline->pos > 0)
 				tputs(tgoto(tgetstr("LE", NULL), 0, editline->pos), AFFCNT, &my_putchar);
-			tputs(tgetstr("ce", NULL), AFFCNT, &my_putchar);
+			tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 			if (editline->temp == &editline->line)
 				ft_putchar(7);
 			editline->temp = &editline->line;
@@ -113,7 +114,7 @@ static int 	is_dels_keys(char *buff, char **line, int *pos, t_history *history)
 		if (ft_strlen(*line) > ((stock_data(NULL)->winsize).col - ft_strlen(stock_data(NULL)->prompt)) > 0)
 		{
 			
-			tputs(tgetstr("ce", NULL), AFFCNT, &my_putchar);
+			tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 			ft_putstr(*line + *pos);
 			tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(*line + *pos)), AFFCNT, &my_putchar);
 			return (1);
@@ -171,5 +172,7 @@ void	keyboard_handler(char *buff, t_editline *editline)
 		prompt(&stock_data(NULL)->prompt);
 	}
 	else if (ft_isprint(buff[0]))
+	{
 		add_key(buff[0], &stock_data(NULL)->history, editline);
+	}
 }
