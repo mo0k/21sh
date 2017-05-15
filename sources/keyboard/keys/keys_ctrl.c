@@ -6,35 +6,73 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 15:59:33 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/14 22:37:41 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/15 11:12:34 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <keyboard.h>
 
-int 	key_ctrl_y(char **line, int *pos, char **strcpy)
+int 	key_ctrl_y(char **line, int *pos, char **strcpy, t_history *history)
 {
 	(void)line;
 	(void)pos;
+	char *ptr_start;
+	char *ptr_end;
 	//INVERSER CAD modfier *line avec *strcpy puis afficher et repositionner cursor
+	//printf("par la\n");
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
-	if (!strcpy || !*strcpy)
+	if (!strcpy || !*strcpy || !line)
 		return (1);
-	ft_putstr(*strcpy);
-	if (line && *line)
-		ft_putstr(*line);
-	if (*(*line) != 0)
-		tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(*line)), AFFCNT, &my_putchar);
-	if (*(*line) == 0)
+	if (*pos == 0)
 	{
-		free(*line);
-		*line = ft_strdup(*strcpy);
+	//printf("par la\n");
+		if (!*line)
+		{
+			*line = ft_strdup(*strcpy);
+		}
+		else
+		{
+			ptr_end = ft_strdup(*line);
+			free(*line);
+			if (!(*line = ft_strjoin(*strcpy, ptr_end)))
+			{
+				free(ptr_end);
+				return (1);
+			}
+			free(ptr_end);
+		}
+		ft_putstr(*line);
+		*pos = ft_strlen(*line);
 	}
+	else
+	{
+		if (!(ptr_start = ft_strsub(*line, 0, *pos)))
+			return (1);
+		if (!(ptr_end = ft_strdup(*line + *pos)))
+		{
+			free(ptr_start);
+			return (1);
+		}
+		free(*line);
+		if (!(*line = ft_str3join(ptr_start, *strcpy, ptr_end)))
+		{
+			free(ptr_start);
+			free(ptr_end);
+			return (1);
+		}
+		ft_putstr(*strcpy);
+		*pos += ft_strlen(*strcpy);
+
+		//printf("\n%s\n", *line);
+		//tputs(tgoto(tgetstr("LE", NULL), 1, *pos), AFFCNT, &my_putchar);
+	}
+		if (history->ret)
+			((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 
 	return (1);
 }
 
-int 	key_ctrl_u(char **line, int *pos, char **strcpy)
+int 	key_ctrl_u(char **line, int *pos, char **strcpy, t_history *history)
 {
 	char *temp;
 
@@ -59,6 +97,8 @@ int 	key_ctrl_u(char **line, int *pos, char **strcpy)
 	if (*pos)
 		tputs(tgoto(tgetstr("LE", NULL), 1, *pos), AFFCNT, &my_putchar);
 	*pos = 0;
+	if (history->ret)
+		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 	return (1);
 }
 

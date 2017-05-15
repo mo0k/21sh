@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:32 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/14 16:40:47 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/15 11:13:13 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,12 +132,12 @@ static int 	is_dels_keys(char *buff, char **line, int *pos, t_history *history)
 
 static int is_ctrl_keys(char *buff, char **line, int *pos, char **strcpy)
 {
-	if (!buff || !*line)
+	if (!buff || !line)
 		return (0);
-	if (IS_K_CTRL_Y(buff))
-		return (key_ctrl_y(line, pos, strcpy));
+	if (IS_K_CTRL_I(buff))
+		return (key_ctrl_y(line, pos, strcpy, &stock_data(NULL)->history));
 	else if (IS_K_CTRL_U(buff))
-		return (key_ctrl_u(line, pos, strcpy));
+		return (key_ctrl_u(line, pos, strcpy, &stock_data(NULL)->history));
 	else if (IS_K_CTRL_K(buff))
 		return (key_ctrl_k(line, pos, strcpy));
 	else if (IS_K_CTRL_W(buff))

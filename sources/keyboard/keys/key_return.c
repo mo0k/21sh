@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/07 22:54:38 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/15 10:48:14 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int 	key_return(char **line, t_history *history)
 			history->history_cur = new;
 			if (content->flag_modif == 1)
 			{
+				printf("PAR LAAAAAA\n");
 				content->flag_modif = 0;
 				free(content->value);
 				content->value = ft_strdup(content->save);

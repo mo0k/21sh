@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:06 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/14 16:40:12 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/15 11:13:31 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define IS_K_SUPPR(x) ((IS_K_SPEC(x)) && x[2] == 51 && x[3] == 126) ? 1 : 0
 # define IS_K_DELETE(x) (x[0] == 127 && x[1] == 0 && x[2] == 0) ? 1 : 0
 # define IS_K_RETURN(x) (x[0] == 10 && x[1] == 0 && x[2] == 0) ? 1 : 0
-# define IS_K_CTRL_Y(x) (x[0] == 10 && x[1] == 0 && x[2] == 0) ? 1 : 0
+# define IS_K_CTRL_I(x) (x[0] == 9 && x[1] == 0 && x[2] == 0) ? 1 : 0
 # define IS_K_CTRL_U(x) (x[0] == 21 && x[1] == 0 && x[2] == 0) ? 1 : 0
 # define IS_K_CTRL_K(x) (x[0] == 11 && x[1] == 0 && x[2] == 0) ? 1 : 0
 # define IS_K_CTRL_W(x) (x[0] == 23 && x[1] == 0 && x[2] == 0) ? 1 : 0
@@ -47,8 +47,8 @@ int 	key_alt_up(int *pos, char *line);
 int 	key_alt_down(int *pos, char *line);
 int 	key_alt_right(int *pos, char *line);
 int 	key_alt_left(int *pos, char *line);
-int 	key_ctrl_y(char **line, int *pos, char **strcpy);
-int 	key_ctrl_u(char **line, int *pos, char **strcpy);
+int 	key_ctrl_y(char **line, int *pos, char **strcpy, t_history *history);
+int 	key_ctrl_u(char **line, int *pos, char **strcpy, t_history *history);
 int 	key_ctrl_k(char **line, int *pos, char **strcpy);
 int 	key_ctrl_w(char **line, int *pos, char **strcpy);
 

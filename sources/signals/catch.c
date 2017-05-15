@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:00:48 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/14 16:46:25 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/15 09:56:56 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ void		catch_signals(void)
 		if (sig == SIGWINCH || sig == SIGCONT)
 			signal(sig, &handler_signals);
 		else if (sig == SIGTSTP)
-			signal(sig, &handler_paste);
+			signal(sig, SIG_IGN);
 	}
 }
