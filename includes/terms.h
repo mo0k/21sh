@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:30:52 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/12 22:37:30 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/17 04:58:44 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <term.h>
 # include <termios.h>
 # include <error.h>
+
+# define ERR_GETENV "Environnement TERM no define"
+# define ERR_TGETENT_NOFOUND "The terminfo database could not be found"
+# define ERR_TGETENT_NOENTRY "There is no such entry for TERM value"
+# define ERR_TCGETATTR "Impossible to copy the parameters associated with the terminal referenced"
+# define ERR_WINSIZE "Terminal width is too small"
 
 typedef struct	termios t_termios;
 

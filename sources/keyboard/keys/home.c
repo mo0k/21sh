@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   home.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 19:54:01 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/17 04:58:59 by jmoucade         ###   ########.fr       */
+/*   Created: 2017/05/16 22:01:16 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/05/16 22:15:22 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include <keyboard.h>
 
-
-
-void		ft_fatal(char *error);
-void		ft_error(char *error);
-
-#endif
+int 	k_home(int *pos)
+{
+	tputs(tgoto(tgetstr("LE", NULL), 1, *pos), AFFCNT, &my_putchar);
+	*pos = 0;
+	return (1);
+}

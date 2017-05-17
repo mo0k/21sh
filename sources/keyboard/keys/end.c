@@ -1,43 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys_arrow.c                                       :+:      :+:    :+:   */
+/*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/04 22:49:54 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/15 14:24:11 by jmoucade         ###   ########.fr       */
+/*   Created: 2017/05/16 22:01:19 by jmoucade          #+#    #+#             */
+/*   Updated: 2017/05/16 22:10:49 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <keyboard.h>
 
-int 	key_arrow_right(int *pos, char *line)
-{
-	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
-	ft_putstr(line + *pos);
-	(*pos)++;
-	if (*(line + *pos) != 0)
-		tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos)), AFFCNT, &my_putchar);
-
-	return (1);
-}
-
-int 	key_arrow_left(int *pos)
-{
-	tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
-	(*pos)--;
-	return (1);
-}
-
-int 	key_arrow_home(int *pos)
-{
-	tputs(tgoto(tgetstr("LE", NULL), 1, *pos), AFFCNT, &my_putchar);
-	*pos = 0;
-	return (1);
-}
-
-int 	key_arrow_end(char *line, int *pos)
+int 	k_end(char *line, int *pos)
 {
 	if (!line)
 		return (0);

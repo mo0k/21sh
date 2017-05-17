@@ -6,7 +6,7 @@
 #    By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/05/15 14:53:33 by jmoucade         ###   ########.fr        #
+#    Updated: 2017/05/17 05:23:40 by jmoucade         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,20 +28,27 @@ INC =	$(INC_PATH)/ft_21sh.h			\
 
 SRC_PATH = sources
 
-SRC =	$(SRC_PATH)/21sh.c			\
-		$(SRC_PATH)/usage.c			\
-		$(SRC_PATH)/prompt.c			\
+SRC =	$(SRC_PATH)/shell/21sh.c			\
+		$(SRC_PATH)/shell/usage.c			\
 		$(SRC_PATH)/shell/init.c			\
+		$(SRC_PATH)/shell/error.c			\
+		$(SRC_PATH)/shell/prompt.c			\
 		$(SRC_PATH)/shell/stock.c			\
 		$(SRC_PATH)/keyboard/handler.c	\
 		$(SRC_PATH)/keyboard/termios.c	\
 		$(SRC_PATH)/keyboard/editline.c			\
 		$(SRC_PATH)/keyboard/add_key.c			\
-		$(SRC_PATH)/keyboard/keys/keys_arrow.c	\
-		$(SRC_PATH)/keyboard/keys/keys_del.c	\
-		$(SRC_PATH)/keyboard/keys/key_return.c	\
-		$(SRC_PATH)/keyboard/keys/keys_alt.c	\
-		$(SRC_PATH)/keyboard/keys/keys_ctrl.c	\
+		$(SRC_PATH)/keyboard/is_key.c			\
+		$(SRC_PATH)/keyboard/keys/arrow.c	\
+		$(SRC_PATH)/keyboard/keys/home.c	\
+		$(SRC_PATH)/keyboard/keys/end.c	\
+		$(SRC_PATH)/keyboard/keys/del.c	\
+		$(SRC_PATH)/keyboard/keys/return.c	\
+		$(SRC_PATH)/keyboard/keys/alt.c	\
+		$(SRC_PATH)/keyboard/keys/ctrl/ctrl_k.c	\
+		$(SRC_PATH)/keyboard/keys/ctrl/ctrl_u.c	\
+		$(SRC_PATH)/keyboard/keys/ctrl/ctrl_w.c	\
+		$(SRC_PATH)/keyboard/keys/ctrl/ctrl_y.c	\
 		$(SRC_PATH)/history/init.c			\
 		$(SRC_PATH)/history/move.c			\
 		$(SRC_PATH)/history/delete.c			\
@@ -50,7 +57,6 @@ SRC =	$(SRC_PATH)/21sh.c			\
 		$(SRC_PATH)/history/load.c			\
 		$(SRC_PATH)/signals/catch.c \
 		$(SRC_PATH)/signals/handler.c \
-		$(SRC_PATH)/error.c
 
 OSRC = $(SRC:.c=.o)
 
@@ -64,7 +70,7 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(OSRC) $(INC)
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses #-g3 -fsanitize=address -fno-omit-frame-pointer
+	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses -g3 -fsanitize=address -fno-omit-frame-pointer
 	@echo "$(OK_COLOR)$@ compiled.$(NO_COLOR)"
 
 $(LIB):

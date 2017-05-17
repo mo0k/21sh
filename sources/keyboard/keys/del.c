@@ -1,40 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys_del.c                                         :+:      :+:    :+:   */
+/*   del.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:11 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/12 18:51:11 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/17 05:42:35 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <keyboard.h>
 
-int	key_delete(char **line, int *pos, t_history *history)
+int	k_delete(char **line, int *pos, t_history *history)
 {
-	
 	tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
-	tputs(tgetstr("dc", NULL), AFFCNT, &my_putchar);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 	(*pos)--;
 	delchar(line, *pos);
-	if (history->ret && history->history_cur)
+	if (*line && *(*line + *pos) != 0)
 	{
-		//*line = ((t_history_elem*)(((stock_data(NULL)->history).history_cur)->content))->value;
-		((t_history_elem*)(history->history_cur->content))->flag_modif = 1;
+		ft_putstr(*line + *pos);
+		tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(*line + *pos)), AFFCNT, &my_putchar);
 	}
+	if (history->ret && history->history_cur)
+		((t_history_elem*)(history->history_cur->content))->flag_modif = 1;
 	return (1);
 }
 
-int	key_suppr(char **line, int *pos, t_history *history)
+int	k_suppr(char **line, int pos, t_history *history, int len_prompt)
 {
-	tputs(tgetstr("dc", NULL), AFFCNT, &my_putchar);
-	delchar(line, *pos);
-	if (history->ret && history->history_cur)
+	if (ft_strlen(*line) > (stock_data(NULL)->winsize).col - len_prompt > 0)
 	{
-		//*line = ((t_history_elem*)(((stock_data(NULL)->history).history_cur)->content))->value;
-		((t_history_elem*)(history->history_cur->content))->flag_modif = 1;
+		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+		ft_putstr(*line + pos);
+		tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(*line + pos)), AFFCNT, &my_putchar);
+		return (1);
 	}
+	tputs(tgetstr("dc", NULL), AFFCNT, &my_putchar);
+	delchar(line, pos);
+	if (history->ret && history->history_cur)
+		((t_history_elem*)(history->history_cur->content))->flag_modif = 1;
 	return (1);
 }

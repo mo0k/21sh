@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_return.c                                       :+:      :+:    :+:   */
+/*   return.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/15 15:07:29 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/17 04:50:00 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <keyboard.h>
 
-int 	key_return(char **line, t_history *history)
+int 	k_return(char **line, t_history *history)
 {
 		t_list			*new;
 		t_history_elem	*content;
@@ -34,7 +34,6 @@ int 	key_return(char **line, t_history *history)
 			history->history_cur = new;
 			if (content->flag_modif == 1)
 			{
-				printf("PAR LAAAAAA\n");
 				content->flag_modif = 0;
 				free(content->value);
 				content->value = ft_strdup(content->save);

@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   arrow.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/28 19:54:01 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/17 04:58:59 by jmoucade         ###   ########.fr       */
+/*   Created: 2017/05/04 22:49:54 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/05/16 22:11:17 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include <keyboard.h>
 
+int 	k_arrow_right(int *pos, char *line)
+{
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+	ft_putstr(line + *pos);
+	(*pos)++;
+	if (*(line + *pos) != 0)
+		tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos)), AFFCNT, &my_putchar);
 
+	return (1);
+}
 
-void		ft_fatal(char *error);
-void		ft_error(char *error);
-
-#endif
+int 	k_arrow_left(int *pos)
+{
+	tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
+	(*pos)--;
+	return (1);
+}

@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/15 15:29:20 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/17 06:25:38 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	add_key(char c, t_history *history, t_editline *editline)
 		t_history_elem	*content;
 
 		//tputs(tgetstr("im", NULL), AFFCNT, &my_putchar);
+
 		my_putchar(c);
 		//tputs(tgetstr("ei", NULL), AFFCNT, &my_putchar);
 		if (!history->ret && !editline->line)
@@ -61,4 +62,9 @@ void	add_key(char c, t_history *history, t_editline *editline)
 			ft_addchar(editline->temp, c) : addnchar(editline->temp, c, editline->pos);
 		}
 		editline->pos++;
+		if ((editline->pos + (int)ft_strlen(stock_data(NULL)->prompt) + 3) % (stock_data(NULL)->winsize).col== 0)
+		{
+			my_putchar(' ');
+			tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
+			}
 }

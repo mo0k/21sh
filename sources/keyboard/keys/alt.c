@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys_alt.c                                         :+:      :+:    :+:   */
+/*   alt.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/13 16:25:23 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/14 10:51:13 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/16 22:11:26 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <keyboard.h>
 
 
-int 	key_alt_up(int *pos, char *line)
+int 	k_alt_up(int *pos, char *line)
 {
 	int len_prompt = (int)ft_strlen(stock_data(NULL)->prompt) + 3;
 	int cols = (int)(stock_data(NULL)->winsize).col;
@@ -37,7 +37,7 @@ int 	key_alt_up(int *pos, char *line)
 	return (1);
 }
 
-int 	key_alt_down(int *pos, char *line)
+int 	k_alt_down(int *pos, char *line)
 {
 	int len_prompt = (int)ft_strlen(stock_data(NULL)->prompt) + 3;
 	int cols = (int)(stock_data(NULL)->winsize).col;
@@ -63,7 +63,7 @@ int 	key_alt_down(int *pos, char *line)
 	return (1);
 }
 
-int 	key_alt_right(int *pos, char *line) // A CHANGER FIN DE CHAQUE MOT ET PAS DEBUT MOT SUIVANT 
+int 	k_alt_right(int *pos, char *line) // A CHANGER FIN DE CHAQUE MOT ET PAS DEBUT MOT SUIVANT 
 {
 	char	*ptr;
 	int		state;
@@ -92,7 +92,7 @@ int 	key_alt_right(int *pos, char *line) // A CHANGER FIN DE CHAQUE MOT ET PAS D
 	return (1);
 }
 
-int 	key_alt_left(int *pos, char *line)
+int 	k_alt_left(int *pos, char *line)
 {
 	char *ptr;
 	int state;
