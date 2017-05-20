@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   catch.c                                            :+:      :+:    :+:   */
+/*   backward_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/21 18:00:48 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/19 23:31:08 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/05/19 23:46:18 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signals.h>
+#include <readline.h>
 
-void		catch_signals(void)
+int 	backward_char(int *pos)
 {
-	int sig;
-
-	sig = 0;
-	while (++sig < 32)
+	if (*pos > 0)
 	{
-		if (sig == SIGWINCH || sig == SIGTSTP || sig == SIGCONT)
-			signal(sig, &handler_signals);
-		//else if ()
-			//signal(sig, SIG_IGN);
+		tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
+		(*pos)--;
 	}
+	return (1);
 }

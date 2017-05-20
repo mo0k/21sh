@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+         #
+#    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/05/17 05:23:40 by jmoucade         ###   ########.fr        #
+#    Updated: 2017/05/20 12:29:07 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,44 +19,60 @@ CFLAGS = -Wall -Wextra -Werror
 INC_PATH = includes
 
 INC =	$(INC_PATH)/ft_21sh.h			\
-		$(INC_PATH)/terms.h				\
-		$(INC_PATH)/editline.h				\
 		$(INC_PATH)/error.h				\
+		$(INC_PATH)/readline.h				\
+		$(INC_PATH)/keys.h				\
+		$(INC_PATH)/terms.h				\
 		$(INC_PATH)/history.h				\
-		$(INC_PATH)/keyboard.h				\
 		$(INC_PATH)/signals.h
 
 SRC_PATH = sources
 
-SRC =	$(SRC_PATH)/shell/21sh.c			\
-		$(SRC_PATH)/shell/usage.c			\
-		$(SRC_PATH)/shell/init.c			\
-		$(SRC_PATH)/shell/error.c			\
-		$(SRC_PATH)/shell/prompt.c			\
-		$(SRC_PATH)/shell/stock.c			\
-		$(SRC_PATH)/keyboard/handler.c	\
-		$(SRC_PATH)/keyboard/termios.c	\
-		$(SRC_PATH)/keyboard/editline.c			\
-		$(SRC_PATH)/keyboard/add_key.c			\
-		$(SRC_PATH)/keyboard/is_key.c			\
-		$(SRC_PATH)/keyboard/keys/arrow.c	\
-		$(SRC_PATH)/keyboard/keys/home.c	\
-		$(SRC_PATH)/keyboard/keys/end.c	\
-		$(SRC_PATH)/keyboard/keys/del.c	\
-		$(SRC_PATH)/keyboard/keys/return.c	\
-		$(SRC_PATH)/keyboard/keys/alt.c	\
-		$(SRC_PATH)/keyboard/keys/ctrl/ctrl_k.c	\
-		$(SRC_PATH)/keyboard/keys/ctrl/ctrl_u.c	\
-		$(SRC_PATH)/keyboard/keys/ctrl/ctrl_w.c	\
-		$(SRC_PATH)/keyboard/keys/ctrl/ctrl_y.c	\
-		$(SRC_PATH)/history/init.c			\
-		$(SRC_PATH)/history/move.c			\
-		$(SRC_PATH)/history/delete.c			\
-		$(SRC_PATH)/history/print.c			\
-		$(SRC_PATH)/history/save.c			\
-		$(SRC_PATH)/history/load.c			\
-		$(SRC_PATH)/signals/catch.c \
-		$(SRC_PATH)/signals/handler.c \
+SRC =	$(SRC_PATH)/shell/21sh.c								\
+		$(SRC_PATH)/shell/usage.c								\
+		$(SRC_PATH)/shell/init.c								\
+		$(SRC_PATH)/shell/error.c								\
+		$(SRC_PATH)/shell/prompt.c								\
+		$(SRC_PATH)/shell/stock.c								\
+		$(SRC_PATH)/shell/winsize.c								\
+		$(SRC_PATH)/readline/handler.c							\
+		$(SRC_PATH)/readline/readline.c							\
+		$(SRC_PATH)/readline/add_key.c							\
+		$(SRC_PATH)/readline/termios/init_config.c				\
+		$(SRC_PATH)/readline/termios/restore_config.c			\
+		$(SRC_PATH)/readline/termios/ft_cfmakeraw.c				\
+		$(SRC_PATH)/readline/termios/my_putchar.c				\
+		$(SRC_PATH)/readline/keys/ctrl/backward_char.c			\
+		$(SRC_PATH)/readline/keys/ctrl/backward_delete_char.c	\
+		$(SRC_PATH)/readline/keys/ctrl/beginning_of_line.c		\
+		$(SRC_PATH)/readline/keys/ctrl/clear_screen.c			\
+		$(SRC_PATH)/readline/keys/ctrl/delete_char.c			\
+		$(SRC_PATH)/readline/keys/ctrl/end_of_line.c			\
+		$(SRC_PATH)/readline/keys/ctrl/forward_char.c			\
+		$(SRC_PATH)/readline/keys/ctrl/kill_line.c				\
+		$(SRC_PATH)/readline/keys/ctrl/next_history.c			\
+		$(SRC_PATH)/readline/keys/ctrl/paste.c					\
+		$(SRC_PATH)/readline/keys/ctrl/previous_history.c		\
+		$(SRC_PATH)/readline/keys/ctrl/search_history.c			\
+		$(SRC_PATH)/readline/keys/ctrl/unix_line_discard.c		\
+		$(SRC_PATH)/readline/keys/ctrl/unix_word_rubout.c		\
+		$(SRC_PATH)/readline/keys/meta/backward_word.c			\
+		$(SRC_PATH)/readline/keys/meta/capitalize_word.c		\
+		$(SRC_PATH)/readline/keys/meta/downcase_word.c			\
+		$(SRC_PATH)/readline/keys/meta/forward_word.c			\
+		$(SRC_PATH)/readline/keys/meta/kill_word.c				\
+		$(SRC_PATH)/readline/keys/meta/upcase_word.c			\
+		$(SRC_PATH)/readline/keys/others/line_down.c			\
+		$(SRC_PATH)/readline/keys/others/line_up.c				\
+		$(SRC_PATH)/readline/keys/others/return.c				\
+		$(SRC_PATH)/history/init.c								\
+		$(SRC_PATH)/history/move.c								\
+		$(SRC_PATH)/history/delete.c							\
+		$(SRC_PATH)/history/print.c								\
+		$(SRC_PATH)/history/save.c								\
+		$(SRC_PATH)/history/load.c								\
+		$(SRC_PATH)/signals/catch.c 							\
+		$(SRC_PATH)/signals/handler.c
 
 OSRC = $(SRC:.c=.o)
 
@@ -70,7 +86,7 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(OSRC) $(INC)
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses -g3 -fsanitize=address -fno-omit-frame-pointer
+	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses #-g3 -fsanitize=address -fno-omit-frame-pointer
 	@echo "$(OK_COLOR)$@ compiled.$(NO_COLOR)"
 
 $(LIB):

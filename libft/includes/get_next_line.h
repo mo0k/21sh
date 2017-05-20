@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 06:38:24 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/30 15:07:42 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/19 23:27:24 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define ERROR 		-1
 # define END_OF_FILE 0
-# define END_OF_LINE 1
+# define EOL 1
 
 # define BUFF_SIZE 256
 

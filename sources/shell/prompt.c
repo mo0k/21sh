@@ -6,20 +6,20 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 15:14:11 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/05/12 23:28:57 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/20 11:27:07 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_21sh.h>
 
-int			prompt(char **str)
+int			prompt(char *str)
 {
 	//char	*currentdir;
 
 	//currentdir = getcwd(NULL, CWD);
-	if (*str)
+	if (str)
 	{
-		ft_putstrcolor(*str, PROMPT_COLOR);
+		ft_putstrcolor(str, PROMPT_COLOR);
 		ft_putstrcolor(" > ", SYMBOL_COLOR);
 	}
 	else

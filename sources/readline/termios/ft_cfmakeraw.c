@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   catch.c                                            :+:      :+:    :+:   */
+/*   ft_cfmakeraw.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/21 18:00:48 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/19 23:31:08 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/02/21 18:30:40 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/05/19 18:50:51 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signals.h>
+#include <terms.h>
 
-void		catch_signals(void)
+void	ft_cfmakeraw(t_termios *conf)
 {
-	int sig;
-
-	sig = 0;
-	while (++sig < 32)
-	{
-		if (sig == SIGWINCH || sig == SIGTSTP || sig == SIGCONT)
-			signal(sig, &handler_signals);
-		//else if ()
-			//signal(sig, SIG_IGN);
-	}
+	if (!conf)
+		return ;
+	conf->c_iflag &= ~(IMAXBEL | IGNBRK | BRKINT | PARMRK | ISTRIP |
+			INLCR | IGNCR | ICRNL | IXON);
+	conf->c_lflag &= ~(ECHO | ECHONL | ICANON | ISIG | IEXTEN);
+	conf->c_cflag &= ~(CSIZE | PARENB);
+	conf->c_cflag |= CS8;
+	conf->c_cc[VMIN] = 1;
+	conf->c_cc[VTIME] = 0;
 }

@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 19:54:01 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/17 04:58:59 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/19 22:42:33 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
-
-
 
 void		ft_fatal(char *error);
 void		ft_error(char *error);

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 15:35:09 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/11 23:12:12 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/19 23:24:40 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init(t_shell *stock)
 {
-	init_term(&((stock->termios).new), &((stock->termios).origin));
+	init_config(&((stock->termios).new), &((stock->termios).origin));
 	init_line(&stock->editline);
 	init_winsize(&(stock->winsize), tgetnum("li"), tgetnum("co"));
 	init_history(&stock->history);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 10:28:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/17 05:02:07 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/18 16:15:58 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			load_history(t_list **history)
 		return (0);
 	if ((fd = open("/Users/jmoucade/.21sh_history", O_RDONLY)) == -1)
 	{
-		ft_error("to load 21sh_history");
+		ft_error("to load history");
 		return (0);
 	}
 

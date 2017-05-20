@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   catch.c                                            :+:      :+:    :+:   */
+/*   restore_config.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/21 18:00:48 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/19 23:31:08 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/02/21 18:30:40 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/05/19 18:54:28 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signals.h>
+#include <terms.h>
 
-void		catch_signals(void)
+int			restore_config(t_termios *origin)
 {
-	int sig;
-
-	sig = 0;
-	while (++sig < 32)
-	{
-		if (sig == SIGWINCH || sig == SIGTSTP || sig == SIGCONT)
-			signal(sig, &handler_signals);
-		//else if ()
-			//signal(sig, SIG_IGN);
-	}
+	if (tcsetattr(0, TCSADRAIN, origin) == -1)
+		exit(EXIT_FAILURE);
+	return (1);
 }

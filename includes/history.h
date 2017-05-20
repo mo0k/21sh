@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   history.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 10:28:31 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/16 15:51:10 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/19 22:59:27 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ enum e_move
 	down,
 };
 
+# include <readline.h>
 # include <ft_21sh.h>
 
 void	init_history(t_history *history);

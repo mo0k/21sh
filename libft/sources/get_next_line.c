@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/26 06:38:16 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/01/30 15:07:43 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/19 23:27:06 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int			is_endline(t_file *f, char **line, int ret)
 		if (!(f->data = ft_strdup(tmp)))
 			return (ERROR);
 		free(tmp);
-		return (END_OF_LINE);
+		return (EOL);
 	}
 	else if (ret == 0 && (int)ft_strlen(f->data) == 0)
 		f->eof = 1;
@@ -65,7 +65,7 @@ static int			is_endline(t_file *f, char **line, int ret)
 		if (!(*line = ft_strdup(f->data)))
 			return (ERROR);
 		(f->eof = 1) ? free(f->data) : NULL;
-		return (END_OF_LINE);
+		return (EOL);
 	}
 	return (0);
 }
@@ -90,8 +90,8 @@ static int			read_line(t_file *f, char **line, char *buff)
 			if (!ft_stracat(&f->data, buff))
 				return (ERROR);
 		}
-		if ((endline = is_endline(f, line, ret)) == END_OF_LINE)
-			return (END_OF_LINE);
+		if ((endline = is_endline(f, line, ret)) == EOL)
+			return (EOL);
 		else if (endline == ERROR)
 			return (ERROR);
 	}
@@ -112,8 +112,8 @@ int					get_next_line(const int fd, char **line)
 		return (ERROR);
 	ret = read_line(tmp, line, buff);
 	free(buff);
-	if (ret == END_OF_LINE)
-		return (END_OF_LINE);
+	if (ret == EOL)
+		return (EOL);
 	else if (ret == ERROR)
 		return (ERROR);
 	else

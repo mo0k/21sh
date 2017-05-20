@@ -1,40 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.h                                         :+:      :+:    :+:   */
+/*   keys.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:06 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/17 05:51:24 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/20 16:00:57 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef KEYBOARD_HANDLER
 # define KEYBOARD_HANDLER
 
-# define IS_K_SPEC(x) (x[0] == 27 && x[1] == 91) ? 1 : 0
-# define IS_K_ARROW_RIGHT(x) ((IS_K_SPEC(x)) && x[2] == 67) ? 1 : 0
-# define IS_K_ARROW_LEFT(x) ((IS_K_SPEC(x)) && x[2] == 68) ? 1 : 0
-# define IS_K_ARROW_UP(x) ((IS_K_SPEC(x)) && x[2] == 65) ? 1 : 0
-# define IS_K_ARROW_DOWN(x) ((IS_K_SPEC(x)) && x[2] == 66) ? 1 : 0
-# define IS_K_HOME(x) ((IS_K_SPEC(x)) && x[2] == 72) ? 1 : 0
-# define IS_K_END(x) ((IS_K_SPEC(x)) && x[2] == 70) ? 1 : 0
-# define IS_K_SUPPR(x) ((IS_K_SPEC(x)) && x[2] == 51 && x[3] == 126) ? 1 : 0
-# define IS_K_DELETE(x) (x[0] == 127 && x[1] == 0 && x[2] == 0) ? 1 : 0
-# define IS_K_RETURN(x) (x[0] == 10 && x[1] == 0 && x[2] == 0) ? 1 : 0
-# define IS_K_CTRL_Y(x) (x[0] == 0 && x[1] == 0 && x[2] == 0) ? 1 : 0
-# define IS_K_CTRL_U(x) (x[0] == 21 && x[1] == 0 && x[2] == 0) ? 1 : 0
-# define IS_K_CTRL_K(x) (x[0] == 11 && x[1] == 0 && x[2] == 0) ? 1 : 0
-# define IS_K_CTRL_W(x) (x[0] == 23 && x[1] == 0 && x[2] == 0) ? 1 : 0
-# define IS_K_ALT_UP(x) (x[0] == 27 && x[1] == 27 && x[2] == 91 && x[3] == 65) ? 1 : 0
-# define IS_K_ALT_DOWN(x) (x[0] == 27 && x[1] == 27 && x[2] == 91 && x[3] == 66) ? 1 : 0
-# define IS_K_ALT_RIGHT(x) (x[0] == 27 && x[1] == 27 && x[2] == 91 && x[3] == 67) ? 1 : 0
-# define IS_K_ALT_LEFT(x) (x[0] == 27 && x[1] == 27 && x[2] == 91 && x[3] == 68) ? 1 : 0
 
-# include <ft_21sh.h>
+# define KILL_LINE				11 //C-k
+# define UNIX_LINE_DISCARD		21 // C-u
+# define UNIX_WORD_RUBOUT		23 // C-w
+# define PASTE					25 // C-y
+# define DELETE_CHAR			4 // C-d
+# define BEGINNING_OF_LINE		1 // C-a
+# define END_OF_LINE			5 // C-e
+# define FORWARD_CHAR			6 // C-f
+# define BACKWARD_CHAR			2 // C-b
+# define CLEAR_SCREEN			12 // C-l
+# define PREVIOUS_HISTORY		16  //C-p
+# define NEXT_HISTORY			14 // C-n
+# define SEARCH_HISTORY			18  //C-r
 
+# define META_KEY				27 // ESC
+# define KILL_WORD				100 // M-d
+# define FORWARD_WORD			102 // M-f
+# define BACKWARD_WORD			98 // M-b
+# define UPCASE_WORD			117 // M-u
+# define DOWNCASE_WORD			108 // M-l
+# define CAPITALIZE_WORD		99  //M-c
+
+# define LINE_UP				1096489755
+# define LINE_DOWN				1113266971
+# define K_ALT_RIGHT			1130044187
+# define K_ALT_LEFT				1146821403
+# define K_ARROW_RIGHT			4414235
+# define K_ARROW_LEFT			4479771
+# define K_ARROW_UP				4283163
+# define K_ARROW_DOWN			4348699
+# define K_HOME					4741915
+# define K_END					4610843
+# define K_BACKSPACE			2117294875
+# define K_DELETE				127
+
+# define K_RETURN				13
+
+
+//# include <ft_21sh.h>
+/*
 void	keyboard_handler(char *buff, t_editline *editline);
+
+
 void	add_key(char c, t_history *history, t_editline *editline);
 int 	is_alt_keys(char *buff, char *line, int *pos);
 int 	is_arrow_keys(char *buff, t_editline *editline, t_history *history);
@@ -46,7 +68,7 @@ int 	k_arrow_left(int *pos);
 int 	k_home(int *pos);
 int 	k_end(char *line, int *pos);
 int 	k_delete(char **line, int *pos, t_history *history);
-int 	k_suppr(char **line, int pos, t_history *history, int len_prompt);
+int 	k_backspace(char **line, int pos, t_history *history, int len_prompt);
 int 	k_return(char **line, t_history *history);
 int 	k_alt_up(int *pos, char *line);
 int 	k_alt_down(int *pos, char *line);
@@ -56,6 +78,6 @@ int 	k_ctrl_y(t_editline *editline, t_history *history);
 int 	k_ctrl_u(t_editline *editline, t_history *history);
 int 	k_ctrl_k(t_editline *editline, t_history *history);
 int 	k_ctrl_w(t_editline *editline, t_history *history);
-
+*/
 
 #endif

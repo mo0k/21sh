@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terms.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:30:52 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/17 04:58:44 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/05/19 23:13:27 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,6 @@
 
 typedef struct	termios t_termios;
 
-typedef unsigned int t_uint;
-
-typedef struct s_win
-{
-	t_uint		col;
-	t_uint		row;
-	t_uint		cursor_pos;
-}				t_win;
-
 typedef struct	s_term
 {
 	t_termios	*new;
@@ -47,10 +38,9 @@ typedef struct	s_term
 
 #include <ft_21sh.h>
 
-void		init_term(t_termios **new, t_termios **origin);
-int			init_config_term(t_termios *new, t_termios *origin);
-int			restore_config_term(void);
+void		init_config(t_termios **new, t_termios **origin);
+void		ft_cfmakeraw(t_termios *conf);
+int			restore_config(t_termios *origin);
 int			my_putchar(int c);
-void		init_winsize(t_win *winsize, t_uint row, t_uint col);
 
 #endif
