@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/31 15:14:11 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/05/20 11:27:07 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/24 15:51:50 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,13 @@ int			prompt(char *str)
 	if (str)
 	{
 		ft_putstrcolor(str, PROMPT_COLOR);
-		ft_putstrcolor(" > ", SYMBOL_COLOR);
+		ft_putstrcolor(SYMBOL, SYMBOL_COLOR);
 	}
 	else
+	{
+		//str = ft_strdup(PROMPT);
 		ft_putstr(C_PROMPT);
+	}
 	//free(currentdir);
 	return (1);
 }

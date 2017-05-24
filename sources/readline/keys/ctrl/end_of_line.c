@@ -6,14 +6,21 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/20 15:05:48 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/24 22:57:49 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int 	end_of_line(char *line, int *pos)
+int 	end_of_line(t_editline *editline, int len_prompt, int col)
 {
+	char	*line;
+	int		*pos;
+
+	if (!editline)
+		return 0;
+	line = *editline->temp;
+	pos = &editline->pos;
 	if (!line)
 		return (0);
 	if (*pos < (int)ft_strlen(line))
@@ -22,15 +29,8 @@ int 	end_of_line(char *line, int *pos)
 			tputs(tgoto(tgetstr("LE", NULL), 1, *pos), AFFCNT, &my_putchar);
 		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 		ft_putstr(line);
-		//tputs(tgoto(tgetstr("RI", NULL), 1, ft_strlen(line) - *pos), AFFCNT, &my_putchar);
 		*pos = ft_strlen(line);
-		//printf("pos:%d, cols:%d\n", *pos, (int)(stock_data(NULL)->winsize).col);
-		if ((*pos + (int)ft_strlen(stock_data(NULL)->prompt) + 3) % (int)(stock_data(NULL)->winsize).col == 0)
-			{
-				//printf("par la\n");
-				my_putchar(' ');
-				tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
-			}
+		padding_limit(*pos, len_prompt, col);
 	}
 	return (1);
 }

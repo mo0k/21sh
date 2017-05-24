@@ -6,37 +6,51 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:30:58 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/05/20 13:35:18 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 01:14:08 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int 	unix_line_discard(t_editline *editline, t_history *history)
+static	void do_front(t_editline *r)
+{
+	if (r->pos)
+		tputs(tgoto(tgetstr("LE", NULL), 1, r->pos), AFFCNT, &my_putchar);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+	ft_putstr(*r->temp);
+	r->pos = ft_strlen(*r->temp);
+	if (r->pos)
+		tputs(tgoto(tgetstr("LE", NULL), 1, r->pos), AFFCNT, &my_putchar);
+	r->pos = 0;
+}
+
+static	int do_back(t_editline *r)
 {
 	char *temp;
 
-	if (editline->strcpy)
-		free(editline->strcpy);
-	if (!(editline->strcpy = ft_strsub(*editline->temp, 0, editline->pos)))
+	if (r->strcpy)
+		free(r->strcpy);
+	if (!(r->strcpy = ft_strsub(*r->temp, 0, r->pos)))
 		return (0);
-	if (editline->pos)
-		tputs(tgoto(tgetstr("LE", NULL), 1, editline->pos), AFFCNT, &my_putchar);
-	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
-	ft_putstr(*editline->temp + editline->pos);
-	if (!(temp = ft_strdup(*editline->temp + editline->pos)))
+	if (!(temp = ft_strdup(*r->temp + r->pos)))
 		return (0);
-	free(*editline->temp);
-	if (!(*editline->temp = ft_strdup(temp)))
+	free(*r->temp);
+	if (!(*r->temp = ft_strdup(temp)))
 	{
 		free(temp);
 		return (0);
 	}
 	free(temp);
-	editline->pos = ft_strlen(*editline->temp);
-	if (editline->pos)
-		tputs(tgoto(tgetstr("LE", NULL), 1, editline->pos), AFFCNT, &my_putchar);
-	editline->pos = 0;
+	return (1);
+}
+
+int 	unix_line_discard(t_editline *editline, t_history *history)
+{
+	if (!editline || !history)
+		return (0);
+	if (!do_back(editline))
+		return (0);
+	do_front(editline);
 	if (history->ret && history->history_cur)
 		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 	editline->cut = key_u;

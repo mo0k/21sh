@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:05:08 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/20 11:29:23 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 00:52:02 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 	catch_signals();
 	stock_data(&shell);
 	print_stock(&shell);
-	prompt(shell.prompt);
+	prompt(shell.prompt.val);
 	//
 	//ft_lstiter(shell.history, &print_history_elem);
 	//
@@ -61,7 +61,7 @@ int	main(int ac, char **av)
 	{
 	chr = 0;
 		if (read(0, &chr, sizeof(int)) > 0)
-			readline_handler(chr, &shell.editline, &shell.history);
+			readline_handler(chr, &shell);
 		//return (chr);
 		//ft_memset(buff, 0, 4);
 		//if (read(STDIN_FILENO, &buff, 4) > 0)

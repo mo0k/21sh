@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/19 22:35:01 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/24 22:53:55 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int 	k_return(char **line, t_history *history)
 				free(content->value);
 				content->value = ft_strdup(content->save);
 			}
-			history->in = 1;
+			history->in = 0;
 			history->ret = 0;
 		}
 

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:30:52 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/19 23:13:27 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/24 16:38:17 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,13 @@
 # include <term.h>
 # include <termios.h>
 # include <error.h>
+# include <ft_21sh.h>
 
 # define ERR_GETENV "Environnement TERM no define"
 # define ERR_TGETENT_NOFOUND "The terminfo database could not be found"
 # define ERR_TGETENT_NOENTRY "There is no such entry for TERM value"
 # define ERR_TCGETATTR "Impossible to copy the parameters associated with the terminal referenced"
 # define ERR_WINSIZE "Terminal width is too small"
-
-typedef struct	termios t_termios;
-
-typedef struct	s_term
-{
-	t_termios	*new;
-	t_termios	*origin;
-}				t_term;
-
-#include <ft_21sh.h>
 
 void		init_config(t_termios **new, t_termios **origin);
 void		ft_cfmakeraw(t_termios *conf);

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:31:06 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/05/20 12:04:42 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 01:10:58 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int 	kill_line(t_editline *editline, t_history *history)
 	char *temp;
 	int len;
 
+	if (!editline || !history)
+		return (0);
 	len = ft_strlen(*editline->temp);
 	if (editline->strcpy)
 		free(editline->strcpy);

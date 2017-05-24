@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:07:38 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/20 11:26:59 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/24 16:38:35 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,20 @@
 # include <sys/ioctl.h>
 # include <libft.h>
 # include <get_next_line.h>
+# include <ft_types.h>
 # include <error.h>
 # include <signals.h>
 # include <history.h>
 # include <readline.h>
 # include <terms.h>
-//# include <keyboard.h>
-
-typedef unsigned int t_uint;
-
-typedef struct s_win
-{
-	t_uint		col;
-	t_uint		row;
-}				t_win;
-
-typedef struct	s_shell
-{
-	t_editline	editline;
-	t_term		termios;
-	t_win		winsize;
-	t_history	history;
-	char		*prompt;
-}				t_shell;
 
 # define CWD 255
-# define PROMPT "21sh_>"
+# define PROMPT "21sh"
+# define SYMBOL "_$ "
+# define LEN_SYMBOL 3
 # define PROMPT_COLOR C_GREEN
 # define SYMBOL_COLOR C_CYAN
-# define C_PROMPT PROMPT_COLOR PROMPT"_$> "C_DFL
+# define C_PROMPT PROMPT_COLOR PROMPT SYMBOL_COLOR SYMBOL C_DFL C_DFL
 
 void		usage(int ac, char **av);
 void		init(t_shell *stock);

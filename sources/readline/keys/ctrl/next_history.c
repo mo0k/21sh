@@ -6,26 +6,34 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/20 13:34:34 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 01:12:30 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int 	next_history(t_editline *editline, t_history *h)
+int 	next_history(t_shell *sh)
 {
-	if (!h || editline)
+	t_editline	*r;
+	t_history	*h;
+
+	if (!sh)
 		return (0);
-	if (!(h->ret = move_history(&h->history_cur, &h->in, down, editline)))
+	r = &sh->editline;
+	h = &sh->history;
+	if (!h || !r)
+		return (0);
+	if (!(h->ret = move_history(sh, down)))
 	{
-		if (editline->pos > 0)
-			tputs(tgoto(tgetstr("LE", NULL), 0, editline->pos),AFFCNT, &my_putchar);
+		if (r->pos > 0)
+			tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putchar);
 		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
-		if (editline->temp == &editline->line)
+		if (r->temp == &r->line)
 			ft_putchar(7);
-		editline->temp = &editline->line;
-		ft_putstr(*editline->temp);
-		editline->pos = ft_strlen(*editline->temp);
+		r->temp = &r->line;
+		ft_putstr(*r->temp);
+		r->pos = ft_strlen(*r->temp);
+		padding_limit(r->pos, sh->prompt.len, sh->win.col);
 	}
 	return (1);
 }

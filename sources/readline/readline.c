@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:44:06 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/19 23:10:55 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 00:24:17 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,11 @@ void	reset_line(char **line, int *pos)
 	*pos = 0;
 }
 
+void	padding_limit(int pos, int len_prompt, int col)
+{
+	 if ((pos + len_prompt) % col == 0)
+	{
+		my_putchar(' ');
+		tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
+	}
+}

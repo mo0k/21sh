@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 22:32:34 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/20 15:13:14 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 01:50:11 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int 	line_up(char *line, int *pos)
 {
-	int len_prompt = (int)ft_strlen(stock_data(NULL)->prompt) + 3;
-	int cols = (int)(stock_data(NULL)->winsize).col;
+	if (!line)
+		return (0);
+	int len_prompt = stock_data(NULL)->prompt.len;
+	int cols = stock_data(NULL)->win.col;
 	(void)line;
 
 	if (len_prompt + *pos > cols - 1)
@@ -29,7 +31,7 @@ int 	line_up(char *line, int *pos)
 		else
 		{
 			//printf("par ici\n");
-			if ((*pos + (int)ft_strlen(stock_data(NULL)->prompt) + 3) % (int)(stock_data(NULL)->winsize).col == 0)
+			if ((*pos + stock_data(NULL)->prompt.len) % stock_data(NULL)->win.col == 0)
 			{
 				tputs(tgetstr("up", NULL), AFFCNT, &my_putchar);
 				tputs(tgoto(tgetstr("RI", NULL), 1, len_prompt), AFFCNT, &my_putchar);

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/20 14:42:01 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 01:49:12 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,14 @@
 static void		addnchar(char **astr, char c, int pos)
 {
 	char *str;
-	//printf("!! DEBUG !! 1\n");
+
 	if (!astr || !*astr || pos < 0)
 		return ;
-	//printf("!! DEBUG !! 2\n");
 	if (!(str = ft_strnew(ft_strlen(*astr) + 1)))
 		return ;
-	//printf("!! DEBUG !! 3\n");
 	str = ft_strncpy(str, *astr, pos);
-	//printf("!! DEBUG !! str:%s\n", str);
 	str[pos] = c;
-	//printf("!! DEBUG !! str:%s\n", str);
 	str = ft_strcat(str, (*astr) + pos);
-	//printf("!! DEBUG !! str:%s\n", str);
 	free(*astr);
 	*astr = str;
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
@@ -36,35 +31,28 @@ static void		addnchar(char **astr, char c, int pos)
 
 }
 
-void	add_key(char c, t_history *history, t_editline *editline)
+void	add_key(char c, t_shell *sh)
 {
-		//int		state;
-		t_history_elem	*content;
+		t_history 		*h;
+		t_editline		*r;
 
-		//tputs(tgetstr("im", NULL), AFFCNT, &my_putchar);
-
+		if (!sh)
+			return ;
+		h = &sh->history;
+		r = &sh->editline;
 		my_putchar(c);
-		//tputs(tgetstr("ei", NULL), AFFCNT, &my_putchar);
-		if (!history->ret && !editline->line)
+		if (!h->ret && !r->line)
 		{
-			editline->line = ft_strnew(1);
-			(*(editline->line) = c);
-			//state = 0;
+			r->line = ft_strnew(1);
+			(*(r->line) = c);
 		}
 		else
 		{
-			if (history->history_cur)
-			{
-				content = ((t_history_elem*)((history->history_cur)->content));
-				content->flag_modif = 1;
-			}
-			(editline->pos == (int)ft_strlen(*editline->temp)) ?
-			ft_addchar(editline->temp, c) : addnchar(editline->temp, c, editline->pos);
+			if (h->history_cur && h->ret)
+				((t_history_elem*)(h->history_cur->content))->flag_modif = 1;
+			(r->pos == (int)ft_strlen(*r->temp)) ?
+			ft_addchar(r->temp, c) : addnchar(r->temp, c, r->pos);
 		}
-		editline->pos++;
-		if ((editline->pos + (int)ft_strlen(stock_data(NULL)->prompt) + 3) % (stock_data(NULL)->winsize).col == 0)
-		{
-			my_putchar(' ');
-			tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
-		}
+		r->pos++;
+		padding_limit(r->pos, sh->prompt.len, sh->win.col);
 }

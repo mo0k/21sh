@@ -6,24 +6,26 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/20 16:05:23 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 01:09:55 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int	do_clear_screen(void)
+int	do_clear(t_editline *editline, char *prompt_val, int prompt_len, int col)
 {
+	int shift;
+
+	if (!editline)
+		return (0);
 	tputs(tgetstr("cl", NULL), AFFCNT, &my_putchar);
-	prompt(stock_data(NULL)->prompt);
-	ft_putstr(*(stock_data(NULL)->editline).temp);
-	if ((int)ft_strlen(*(stock_data(NULL)->editline).temp) > (stock_data(NULL)->editline).pos)
-		tputs(tgoto(tgetstr("LE", NULL), 1, (int)ft_strlen(*(stock_data(NULL)->editline).temp) - (stock_data(NULL)->editline).pos), AFFCNT, &my_putchar);
-		if (((stock_data(NULL)->editline).pos + (int)ft_strlen(stock_data(NULL)->prompt) + 3) % (int)(stock_data(NULL)->winsize).col == 0)
-			{
-				my_putchar(' ');
-				tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
-			}
-	
+	prompt(prompt_val);
+	ft_putstr(*editline->temp);
+	if ((int)ft_strlen(*editline->temp) > editline->pos)
+	{
+		shift = (int)ft_strlen(*editline->temp) - editline->pos;
+		tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putchar);
+	}
+	padding_limit(editline->pos, prompt_len, col);
 	return (1);
 }
