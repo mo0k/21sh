@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/05/24 15:34:48 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/05/30 23:15:54 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,11 @@ INC_PATH = includes
 
 INC =	$(INC_PATH)/ft_21sh.h			\
 		$(INC_PATH)/error.h				\
-		$(INC_PATH)/readline.h				\
+		$(INC_PATH)/readline.h			\
 		$(INC_PATH)/keys.h				\
 		$(INC_PATH)/terms.h				\
-		$(INC_PATH)/history.h				\
+		$(INC_PATH)/history.h			\
+		$(INC_PATH)/tokenizer.h			\
 		$(INC_PATH)/signals.h
 
 SRC_PATH = sources
@@ -71,6 +72,16 @@ SRC =	$(SRC_PATH)/shell/21sh.c								\
 		$(SRC_PATH)/history/print.c								\
 		$(SRC_PATH)/history/save.c								\
 		$(SRC_PATH)/history/load.c								\
+		$(SRC_PATH)/tokenizer/tokenizer.c						\
+		$(SRC_PATH)/tokenizer/init.c							\
+		$(SRC_PATH)/tokenizer/delete.c							\
+		$(SRC_PATH)/tokenizer/print.c							\
+		$(SRC_PATH)/tokenizer/tokens/token.c					\
+		$(SRC_PATH)/tokenizer/tokens/init.c						\
+		$(SRC_PATH)/tokenizer/tokens/delete.c					\
+		$(SRC_PATH)/tokenizer/tokens/types/word.c				\
+		$(SRC_PATH)/tokenizer/tokens/types/io_number.c			\
+		$(SRC_PATH)/tokenizer/tokens/types/redirect.c			\
 		$(SRC_PATH)/signals/catch.c 							\
 		$(SRC_PATH)/signals/handler.c
 
@@ -86,7 +97,7 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(OSRC) $(INC)
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses -g3 -fsanitize=address -fno-omit-frame-pointer
+	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses #-g3 -fsanitize=address -fno-omit-frame-pointer
 	@echo "$(OK_COLOR)$@ compiled.$(NO_COLOR)"
 
 $(LIB):
