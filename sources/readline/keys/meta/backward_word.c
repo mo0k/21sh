@@ -6,18 +6,24 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 01:32:16 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:21:52 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int 	backward_word(char *line, int *pos)
+int 	backward_word(t_readline *readline)
 {
+	char *line;
+	int *pos;
 	char *ptr;
 	int state;
 	int shift;
 //A CHECK !line
+	if (!readline)
+		return (0);
+	line = *readline->temp;
+	pos = &readline->pos;
 	state = 0;
 	if (!*pos || !line)
 		return (0);

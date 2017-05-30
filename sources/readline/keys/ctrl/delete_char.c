@@ -6,13 +6,13 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/24 17:39:04 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:22:06 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int	delete_char(t_editline *e, t_history *history, int len_prompt, int col)
+int	delete_char(t_readline *e, t_history *history)
 {
 	// BROKEN
 	//
@@ -28,7 +28,7 @@ int	delete_char(t_editline *e, t_history *history, int len_prompt, int col)
 	line = e->temp;
 	pos = e->pos;
 	len_line = ft_strlen(*line);
-	if (len_line + col - len_prompt > 0)
+	if (len_line + e->win.col - e->prompt.len > 0)
 	{
 		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 		ft_putstr(*line + pos);

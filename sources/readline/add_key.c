@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 01:49:12 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/26 15:27:32 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void		addnchar(char **astr, char c, int pos)
 {
-	char *str;
+	char	*str;
+	int		shift;
 
 	if (!astr || !*astr || pos < 0)
 		return ;
@@ -27,19 +28,20 @@ static void		addnchar(char **astr, char c, int pos)
 	*astr = str;
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 	ft_putstr(str+ ++pos);
-	tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(str + pos)), AFFCNT, &my_putchar);
+	shift = ft_strlen(str+pos);
+	tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putchar);
 
 }
 
-void	add_key(char c, t_shell *sh)
+int		add_key(char c, t_readline *r, t_history *h)
 {
-		t_history 		*h;
-		t_editline		*r;
+		//t_history 		*h;
+		//t_readline		*r;
 
-		if (!sh)
-			return ;
-		h = &sh->history;
-		r = &sh->editline;
+		if (!h || !r)
+			return (0);
+		//h = &sh->history;
+		//r = &sh->readline;
 		my_putchar(c);
 		if (!h->ret && !r->line)
 		{
@@ -54,5 +56,6 @@ void	add_key(char c, t_shell *sh)
 			ft_addchar(r->temp, c) : addnchar(r->temp, c, r->pos);
 		}
 		r->pos++;
-		padding_limit(r->pos, sh->prompt.len, sh->win.col);
+		padding_limit(r->pos, r->prompt.len, r->win.col);
+		return (1);
 }

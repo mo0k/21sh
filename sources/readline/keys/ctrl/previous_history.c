@@ -6,21 +6,21 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/24 22:23:15 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:21:57 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int 	previous_history(t_shell *sh)
+int 	previous_history(t_readline *readline, t_history *history)
 {
-	t_editline	*editline;
-	t_history	*h;
+	//t_readline	*readline;
+	//t_history	*h;
 
-	if (!sh)
+	if (!readline || !history)
 		return (0);
-	editline = &sh->editline;
-	h = &sh->history;
+	//readline = &sh->readline;
+	//h = &sh->history;
 
-	return ((h->ret = move_history(sh, up)));
+	return ((history->ret = move_history(readline, history, up)));
 }

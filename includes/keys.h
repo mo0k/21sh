@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:06 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/20 16:00:57 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 22:42:44 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # define UNIX_WORD_RUBOUT		23 // C-w
 # define PASTE					25 // C-y
 # define DELETE_CHAR			4 // C-d
-# define BEGINNING_OF_LINE		1 // C-a
+# define BEGIN_OF_LINE			1 // C-a
+# define BACK_DELETE_CHAR		8 // C-h
 # define END_OF_LINE			5 // C-e
 # define FORWARD_CHAR			6 // C-f
 # define BACKWARD_CHAR			2 // C-b
@@ -54,15 +55,15 @@
 
 //# include <ft_21sh.h>
 /*
-void	keyboard_handler(char *buff, t_editline *editline);
+void	keyboard_handler(char *buff, t_readline *readline);
 
 
-void	add_key(char c, t_history *history, t_editline *editline);
+void	add_key(char c, t_history *history, t_readline *readline);
 int 	is_alt_keys(char *buff, char *line, int *pos);
-int 	is_arrow_keys(char *buff, t_editline *editline, t_history *history);
+int 	is_arrow_keys(char *buff, t_readline *readline, t_history *history);
 int 	is_home_or_end_keys(char *buff, char *line, int *pos);
 int 	is_dels_keys(char *buff, char **line, int *pos, t_history *history);
-int 	is_ctrl_keys(char *buff, t_editline *editline, t_history *history);
+int 	is_ctrl_keys(char *buff, t_readline *readline, t_history *history);
 int 	k_arrow_right(int *pos, char *line);
 int 	k_arrow_left(int *pos);
 int 	k_home(int *pos);
@@ -74,10 +75,10 @@ int 	k_alt_up(int *pos, char *line);
 int 	k_alt_down(int *pos, char *line);
 int 	k_alt_right(int *pos, char *line);
 int 	k_alt_left(int *pos, char *line);
-int 	k_ctrl_y(t_editline *editline, t_history *history);
-int 	k_ctrl_u(t_editline *editline, t_history *history);
-int 	k_ctrl_k(t_editline *editline, t_history *history);
-int 	k_ctrl_w(t_editline *editline, t_history *history);
+int 	k_ctrl_y(t_readline *readline, t_history *history);
+int 	k_ctrl_u(t_readline *readline, t_history *history);
+int 	k_ctrl_k(t_readline *readline, t_history *history);
+int 	k_ctrl_w(t_readline *readline, t_history *history);
 */
 
 #endif

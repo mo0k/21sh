@@ -6,20 +6,26 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 01:39:32 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:21:51 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int	capitalize_word(char *line, int *pos)
+int	capitalize_word(t_readline *readline, t_history *history)
 {
 	//Majuscules sur curseur et lecture jusqu.a fin du mot pour enlever Majuscules
 	char *ptr;
 	int state;
 	int first_char;
 	int shift;
+	char *line;
+	int *pos;
 
+	if (!readline || !history)
+		return (0);
+	line = *readline->temp;
+	pos = &readline->pos;
 	first_char = 0;
 	if (!line)
 		return (0);
@@ -46,6 +52,8 @@ int	capitalize_word(char *line, int *pos)
 				shift = ft_strlen(line + *pos) - ((ptr) - (line + *pos));
 				tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putchar);
 			}
+			if (history->ret && history->history_cur)
+				((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 			return (1);
 		}
 		ptr++;
@@ -60,6 +68,8 @@ int	capitalize_word(char *line, int *pos)
 			shift = ft_strlen(line + *pos) - ((ptr) - (line + *pos));
 			tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putchar);
 		}
+		if (history->ret && history->history_cur)
+			((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 	}
 	return (1);
 }

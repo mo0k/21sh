@@ -6,21 +6,21 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/24 22:57:49 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:22:05 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int 	end_of_line(t_editline *editline, int len_prompt, int col)
+int 	end_of_line(t_readline *readline)
 {
 	char	*line;
 	int		*pos;
 
-	if (!editline)
+	if (!readline)
 		return 0;
-	line = *editline->temp;
-	pos = &editline->pos;
+	line = *readline->temp;
+	pos = &readline->pos;
 	if (!line)
 		return (0);
 	if (*pos < (int)ft_strlen(line))
@@ -30,7 +30,7 @@ int 	end_of_line(t_editline *editline, int len_prompt, int col)
 		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 		ft_putstr(line);
 		*pos = ft_strlen(line);
-		padding_limit(*pos, len_prompt, col);
+		padding_limit(*pos, readline->prompt.len, readline->win.col);
 	}
 	return (1);
 }

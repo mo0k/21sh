@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:05:08 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 00:52:02 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/30 21:43:11 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,30 @@ int	main(int ac, char **av)
 	(void)av;
 	//char 	buff[4];
 	t_shell		shell;
+	int			chr;
+	int			r;
 
+	r = 2;
 	init(&shell);
 	catch_signals();
 	stock_data(&shell);
 	print_stock(&shell);
-	prompt(shell.prompt.val);
 	//
 	//ft_lstiter(shell.history, &print_history_elem);
 	//
-	int				chr;
 	while (42)
 	{
-	chr = 0;
+		chr = 0;
+		if (r == 2)
+			prompt(shell.readline.prompt.val);
 		if (read(0, &chr, sizeof(int)) > 0)
-			readline_handler(chr, &shell);
-		//return (chr);
-		//ft_memset(buff, 0, 4);
-		//if (read(STDIN_FILENO, &buff, 4) > 0)
-			//keyboard_handler(chr, &shell.editline);
+			if ((r = readline_handler(chr, &shell.readline, &shell.history)) == 2)
+			{
+				printf("PAR LA\n");
+				tokenizer(&shell.tokenizer, ((t_history_elem*)(shell.history.history_cur->content))->value);
+
+				delete_tokens(&shell.tokenizer.token);
+			}
 	}
 	return (0);
 }

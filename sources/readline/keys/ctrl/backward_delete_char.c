@@ -6,16 +6,22 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:11 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 01:08:46 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:22:10 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int	backward_delete_char(char **line, int *pos, t_history *history)
+int	backward_delete_char(t_readline *readline, t_history *history)
 {
-	int shift;
+	int		shift;
+	char	**line;
+	int 	*pos;
 
+	if (!history || !readline)
+		return (0);
+	line = readline->temp;
+	pos = &readline->pos;
 	if (*pos <= 0 || !line || !*line || !history)
 		return (0);
 	tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);

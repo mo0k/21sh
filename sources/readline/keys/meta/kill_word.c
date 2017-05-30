@@ -6,13 +6,13 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 01:36:02 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:21:50 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int	kill_word(t_editline *editline, t_history *history)
+int	kill_word(t_readline *readline, t_history *history)
 {
  	char	**aptr;
  	char	*ptr1;
@@ -21,15 +21,15 @@ int	kill_word(t_editline *editline, t_history *history)
  	int		end;
  	int		state;
 
-	if (!editline || !history)
+	if (!readline || !history)
 		return (0);
-	if (editline->strcpy)
+	if (readline->strcpy)
 	{
- 	 	free(editline->strcpy);
- 	 	editline->strcpy = NULL;
+ 	 	free(readline->strcpy);
+ 	 	readline->strcpy = NULL;
 	}
- 	aptr = editline->temp;
- 	pos = editline->pos;
+ 	aptr = readline->temp;
+ 	pos = readline->pos;
  	end = 0;
  	state = 0;
  	if (pos == (int)ft_strlen(*aptr))
@@ -42,7 +42,7 @@ int	kill_word(t_editline *editline, t_history *history)
 			state = 1;
 		end++;
 	}
-	if (!(editline->strcpy = ft_strsub(*aptr, pos, end)))
+	if (!(readline->strcpy = ft_strsub(*aptr, pos, end)))
 		return (1);
 	if (!*(*aptr + pos + end))
 	{
@@ -55,7 +55,7 @@ int	kill_word(t_editline *editline, t_history *history)
 	{
 		if (!(ptr1 = ft_strsub(*aptr, 0, pos)))
 			return (0);
-		if (!(ptr2 = ft_strdup(*aptr + pos + (int)ft_strlen(editline->strcpy))))
+		if (!(ptr2 = ft_strdup(*aptr + pos + (int)ft_strlen(readline->strcpy))))
 		{
 			free(ptr1);
 			return (0);

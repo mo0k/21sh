@@ -6,17 +6,23 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/24 17:43:08 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:21:51 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int	upcase_word(char *line, int *pos)
+int	upcase_word(t_readline *readline, t_history *history)
 {
 	char *ptr;
 	int state;
+ 	char *line;
+	int *pos;
 
+	if (!readline || !history)
+		return (0);
+	line = *readline->temp;
+	pos = &readline->pos;
 	if (!line)
 		return (0);
 	state = 0;

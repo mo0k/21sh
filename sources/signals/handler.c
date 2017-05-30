@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:00:48 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 00:53:33 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:05:31 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void			winsize_changed(void)
 {
-	t_shell			*tmp;
+	t_readline			*tmp;
 	struct winsize	ws;
 
-	tmp = stock_data(NULL);
+	tmp = &stock_data(NULL)->readline;
 	ioctl(isatty(STDOUT_FILENO), TIOCGWINSZ, &ws);
 	init_winsize(&(tmp->win), ws.ws_row, ws.ws_col);
 }

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:07:38 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/24 16:38:35 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/26 15:17:02 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <ft_types.h>
 # include <error.h>
 # include <signals.h>
+# include <tokenizer.h>
 # include <history.h>
 # include <readline.h>
 # include <terms.h>

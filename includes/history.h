@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 10:28:31 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/24 21:59:00 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:28:31 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	print_history_elem(t_list *elem);
 void	del_history_elem(void *content, size_t size);
 int 	save_history(t_list *history);
 int		load_history(t_list **history);
-int 	move_history(t_shell *shell, enum e_move move);
-//int 	move_up(t_list **history, t_editline *editline);
-//int 	move_down(t_list **history, t_editline *editline);
+int 	move_history(t_readline *readline, t_history *h, enum e_move move);
+//int 	move_up(t_list **history, t_readline *readline);
+//int 	move_down(t_list **history, t_readline *readline);
 
 
 #endif

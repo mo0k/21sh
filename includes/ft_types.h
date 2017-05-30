@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 16:33:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/24 23:25:54 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/30 22:29:17 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,37 @@
 
 typedef unsigned int t_uint;
 
-typedef struct s_win
+typedef struct	s_delimiter
 {
-	t_uint		col;
-	t_uint		row;
-}				t_win;
+	char		*begin;
+	char	 	*end;
+}				t_delimiter;
 
-typedef struct s_prompt
+typedef enum	s_types
+{
+				word,
+				less,
+				dless,
+				great,
+				dgreat,
+				lessand,
+				greatand,
+				pipes,
+				separator,
+				io_number
+}				t_types;
+
+typedef struct	s_token_elem
 {
 	char		*val;
-	size_t		len;
-}				t_prompt;
+	t_types 	type;
+}				t_token_elem;
+
+typedef struct s_tokenizer
+{
+	t_list		*token;
+	t_delimiter	delimiter;
+}				t_tokenizer;
 
 typedef struct	s_history_elem
 {
@@ -58,22 +78,35 @@ enum			e_cut
 				key_w
 };
 
-typedef struct	s_editline
+typedef struct s_win
+{
+	t_uint		col;
+	t_uint		row;
+}				t_win;
+
+typedef struct s_prompt
+{
+	char		*val;
+	size_t		len;
+}				t_prompt;
+
+typedef struct	s_readline
 {
 	char		*line;
 	char		**temp;
 	char		*strcpy;
+	t_prompt	prompt;
+	t_win		win;
 	int 		pos;
 	enum e_cut	cut;
-}				t_editline;
+}				t_readline;
 
 typedef struct	s_shell
 {
-	t_editline	editline;
+	t_readline	readline;
 	t_term		termios;
-	t_win		win;
 	t_history	history;
-	t_prompt	prompt;
+	t_tokenizer	tokenizer;
 }				t_shell;
 
 

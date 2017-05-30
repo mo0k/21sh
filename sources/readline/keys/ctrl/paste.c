@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 15:59:33 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 01:13:18 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:21:59 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	check_go_left(char **alst, int pos, int len_line, enum e_cut cut)
 		return (0);
 }
 
-int 	paste(t_editline *e, t_history *history)
+int 	paste(t_readline *e, t_history *history)
 {
 	int save_position;
 
@@ -91,7 +91,7 @@ int 	paste(t_editline *e, t_history *history)
 	e->cut = 0;
 	if (history->ret && history->history_cur)
 		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
-	padding_limit(e->pos, stock_data(NULL)->prompt.len, stock_data(NULL)->win.col);
+	padding_limit(e->pos, e->prompt.len, e->win.col);
 	return (1);
 }
 

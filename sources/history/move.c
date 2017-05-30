@@ -6,32 +6,32 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 10:28:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/24 22:56:56 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:04:36 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <history.h>
 
-static int	do_move(t_list *h, t_editline *editline, int len_prompt, int col)
+static int	do_move(t_list *h, t_readline *r)
 {
-	if (editline->pos > 0)
-		tputs(tgoto(tgetstr("LE", NULL), 0, editline->pos), AFFCNT, &my_putchar);
+	if (r->pos > 0)
+		tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putchar);
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 	ft_putstr(((t_history_elem*)((h)->content))->value);
-	editline->temp = &((t_history_elem*)((h)->content))->value;
-	(editline->pos) = ft_strlen(*editline->temp);
-	padding_limit(editline->pos, len_prompt, col);
+	r->temp = &((t_history_elem*)((h)->content))->value;
+	(r->pos) = ft_strlen(*r->temp);
+	padding_limit(r->pos, r->prompt.len, r->win.col);
 	return (1);
 }
 
-static int 	move_up(t_list **h, t_editline *editline, int len_prompt, int col)
+static int 	move_up(t_list **h, t_readline *readline)
 {
-	if (!h ||!*h || !editline)
+	if (!h ||!*h || !readline)
 		return (0); 
 	if ((*h)->prev)
 	{
 		*h = (*h)->prev;
-		return (do_move(*h, editline, len_prompt, col));
+		return (do_move(*h, readline));
 	}
 	else
 	{
@@ -40,23 +40,23 @@ static int 	move_up(t_list **h, t_editline *editline, int len_prompt, int col)
 	}
 }
 
-static int 	move_down(t_list **h, t_editline *editline, int len_prompt, int col)
+static int 	move_down(t_list **h, t_readline *readline)
 {
-	if (!h || !*h || !editline)
+	if (!h || !*h || !readline)
 		return (0);
 	if (*h && (*h)->next)
 	{
 		*h = (*h)->next;
-		return (do_move(*h, editline, len_prompt, col));
+		return (do_move(*h, readline));
 
 	}
 	else
 		return (0);
 }
 
-static		int check_var(t_list **alst, t_editline *editline, int *flag_in)
+static		int check_var(t_list **alst, t_readline *readline, int *flag_in)
 {
-	if (!alst || !*alst || !editline || !flag_in)
+	if (!alst || !*alst || !readline || !flag_in)
 	{
 		if (!*alst)
 			ft_putchar(7);
@@ -70,27 +70,26 @@ static		int check_var(t_list **alst, t_editline *editline, int *flag_in)
 	}
 	return (1);
 }
-int 		move_history(t_shell *sh, enum e_move move)
+int 		move_history(t_readline *readline, t_history *h, enum e_move move)
 {
 	t_list		**cur;
 	int			*history_in;
-	t_editline	*editline;
+	//t_readline	*readline;
 
-	if (!sh)
+	if (!h || !readline)
 		return (0);
-	cur = &sh->history.history_cur;
-	history_in = &sh->history.in;
-	editline = &sh->editline;
-	if (!check_var(cur, editline, history_in))
+	cur = &h->history_cur;
+	history_in = &h->in;
+	//readline = &sh->readline;
+	if (!check_var(cur, readline, history_in))
 		return (0);
 	if (*history_in == 1 && move == up && (*history_in = 2))
-		do_move(*cur, editline, sh->prompt.len, sh->win.col);
+		do_move(*cur, readline);
 	else if (move == up)
-		return (move_up(cur, editline, sh->prompt.len, sh->win.col));
+		return (move_up(cur, readline));
 	else if (move == down)
 	{
-
-		int ret = move_down(cur, editline, sh->prompt.len, sh->win.col);
+		int ret = move_down(cur, readline);
 		(!ret) ? (*history_in = 1) : 1;
 		return (ret);
 	}

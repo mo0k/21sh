@@ -6,70 +6,70 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:30:52 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/05/25 01:29:10 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:21:53 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int 	unix_word_rubout(t_editline *editline, t_history *history) //voir paste error & error this fct
+int 	unix_word_rubout(t_readline *readline, t_history *history) //voir paste error & error this fct
 {
 	int start;
 	int	state;
 	char *temp;
 	char *ptr1;
 	char *ptr2;
-	if (!editline || !history)
+	if (!readline || !history)
 		return (0);
-	if (!editline->pos || !*editline->temp)
+	if (!readline->pos || !*readline->temp)
 	{
 		ft_putchar(7);
 		return (0);
 	}
-	if (editline->strcpy)
+	if (readline->strcpy)
  	{
- 		free(editline->strcpy);
- 		editline->strcpy = NULL;
+ 		free(readline->strcpy);
+ 		readline->strcpy = NULL;
 	}
  	state = 0;
-	start = editline->pos;
+	start = readline->pos;
 	//find_start
 	while (start)
 	{
-		if ((*(*editline->temp + start) == ' ' || *(*editline->temp + start) == '\t') && state)
+		if ((*(*readline->temp + start) == ' ' || *(*readline->temp + start) == '\t') && state)
 		{
 			//state = 2;
 			start++;
 			break;
 		}
-		else if ((*(*editline->temp + start) != ' ' || *(*editline->temp + start) != '\t'))
+		else if ((*(*readline->temp + start) != ' ' || *(*readline->temp + start) != '\t'))
 		{
 			state = 1;
 		}
 		start--;
 	}
 	//do_back
-	if (!(editline->strcpy = ft_strsub(*editline->temp, start, editline->pos - start)))
+	if (!(readline->strcpy = ft_strsub(*readline->temp, start, readline->pos - start)))
 		return (1);
 
-	if (!(editline->pos -= (int)ft_strlen(editline->strcpy)))
+	if (!(readline->pos -= (int)ft_strlen(readline->strcpy)))
 	{
-		if (!(temp = ft_strdup(*editline->temp + (int)ft_strlen(editline->strcpy))))
+		if (!(temp = ft_strdup(*readline->temp + (int)ft_strlen(readline->strcpy))))
 			return (0);
-		free(*editline->temp);
-		*editline->temp = temp;
+		free(*readline->temp);
+		*readline->temp = temp;
 	}
 	else
 	{
-		if (!(ptr1 = ft_strsub(*editline->temp, 0, editline->pos)))
+		if (!(ptr1 = ft_strsub(*readline->temp, 0, readline->pos)))
 			return (0);
-		if (!(ptr2 = ft_strdup(*editline->temp + editline->pos + (int)ft_strlen(editline->strcpy))))
+		if (!(ptr2 = ft_strdup(*readline->temp + readline->pos + (int)ft_strlen(readline->strcpy))))
 		{
 			free(ptr1);
 			return (0);
 		}
-		free(*editline->temp);
-		if (!(*editline->temp = ft_strjoin(ptr1, ptr2)))
+		free(*readline->temp);
+		if (!(*readline->temp = ft_strjoin(ptr1, ptr2)))
 		{
 			free(ptr1);
 			free(ptr2);
@@ -79,10 +79,10 @@ int 	unix_word_rubout(t_editline *editline, t_history *history) //voir paste err
 		free(ptr2);
 	}
 	//do_front
-	tputs(tgoto(tgetstr("LE", NULL), 1, editline->pos + (int)ft_strlen(editline->strcpy)), AFFCNT, &my_putchar);
+	tputs(tgoto(tgetstr("LE", NULL), 1, readline->pos + (int)ft_strlen(readline->strcpy)), AFFCNT, &my_putchar);
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
-	padding_limit(editline->pos, stock_data(NULL)->prompt.len, stock_data(NULL)->win.col);
-	editline->cut = key_w;
+	padding_limit(readline->pos, readline->prompt.len, readline->win.col);
+	readline->cut = key_w;
 	if (history->ret && history->history_cur)
 		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 	return (1);

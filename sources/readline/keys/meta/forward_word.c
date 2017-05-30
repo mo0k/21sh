@@ -6,17 +6,23 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/24 22:25:45 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:21:49 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int 	forward_word(char *line, int *pos)
+int 	forward_word(t_readline *readline)
 {
 	char	*ptr;
 	int		state;
+	char 	*line;
+	int		*pos;
 
+	if (!readline)
+		return 0;
+	line = *readline->temp;
+	pos = &readline->pos;
 	if (!line)
 		return (0);
 	state = 0;
@@ -40,6 +46,6 @@ int 	forward_word(char *line, int *pos)
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 	ft_putstr(line + *pos);
 	*pos += ptr - (line + *pos);
-	padding_limit(*pos, stock_data(NULL)->prompt.len, stock_data(NULL)->win.col);
+	padding_limit(*pos, readline->prompt.len, readline->win.col);
 	return (1);
 }

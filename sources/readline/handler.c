@@ -6,110 +6,98 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:32 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 01:43:24 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/26 15:34:17 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-static int		ctrl_keys(int key, t_shell *sh)
+static int		ctrl_keys(int key, t_readline *e, t_history *h)
 {
-	t_editline	*e;
-	t_history 	*h;
-	t_prompt 	*p;
-	int r;
+	int x;
 
-	e = &sh->editline;
-	h = &sh->history;
-	p = &sh->prompt;
-	r = 0;
-	(key == 11 && !r) ? kill_line(e, h) && (r = 1): 0;
-	(key == 21 && !r) ? unix_line_discard(e, h) && (r = 1): 0;
-	(key == 23 && !r) ? unix_word_rubout(e, h) && (r = 1): 0;
-	(key == 25 && !r) ? paste(e, h) && (r = 1): 0;
-	(key == 4 && !r) ? delete_char(e, h, p->len, sh->win.col) && (r = 1) : 0;
-	(key == 8 && !r) ? backward_delete_char(e->temp, &e->pos, h) && (r = 1) : 0;
-	(key == 1 && !r) ? beginning_of_line(&e->pos) && (r = 1) : 0;
-	(key == 5 && !r) ? end_of_line(e, p->len, sh->win.col) && (r = 1) : 0;
-	(key == 6 && !r) ? forward_char(e, p->len, sh->win.col) && (r = 1) : 0;
-	(key == 2 && !r) ? backward_char(&e->pos) && (r = 1) : 0;
-	(key == 12 && !r) ? do_clear(e, p->val, p->len, sh->win.col) && (r = 1) : 0;
-	(key == 16 && !r) ? previous_history(sh) && (r = 1) : 0;
-	(key == 14 && !r) ? next_history(sh) && (r = 1) : 0;
-	(key == 18 && !r) ? search_history() && (r = 1) : 0;
-	return (r);
+	x = 0;
+	(key == KILL_LINE && !x) ? kill_line(e, h) && (x = 1): 0;
+	(key == UNIX_LINE_DISCARD && !x) ? unix_line_discard(e, h) && (x = 1): 0;
+	(key == UNIX_WORD_RUBOUT && !x) ? unix_word_rubout(e, h) && (x = 1): 0;
+	(key == PASTE && !x) ? paste(e, h) && (x = 1): 0;
+	(key == DELETE_CHAR && !x) ? delete_char(e, h) && (x = 1) : 0;
+	(key == BACK_DELETE_CHAR && !x) ? backward_delete_char(e, h) && (x = 1) : 0;
+	(key == BEGIN_OF_LINE && !x) ? beginning_of_line(&e->pos) && (x = 1) : 0;
+	(key == END_OF_LINE && !x) ? end_of_line(e) && (x = 1) : 0;
+	(key == FORWARD_CHAR && !x) ? forward_char(e) && (x = 1) : 0;
+	(key == BACKWARD_CHAR && !x) ? backward_char(&e->pos) && (x = 1) : 0;
+	(key == CLEAR_SCREEN && !x) ? do_clear(e) && (x = 1) : 0;
+	(key == PREVIOUS_HISTORY && !x) ? previous_history(e, h) && (x = 1) : 0;
+	(key == NEXT_HISTORY && !x) ? next_history(e, h) && (x = 1) : 0;
+	(key == SEARCH_HISTORY && !x) ? search_history() && (x = 1) : 0;
+	return (x);
 }
 
-static void		do_meta_key(t_editline *editline, t_history *history)
+static int		do_meta_key(t_readline *r, t_history *h)
 {
 	int meta;
-	int r;
+	int x;
 
-	r = 0;
+	x = 0;
 	meta = 0;
 	if (read(0, &meta, sizeof(int)) > 0)
 	{
-		(meta == BACKWARD_WORD && !r) ? backward_word(*editline->temp, &editline->pos) && (r = 1): 0;
-		(meta == CAPITALIZE_WORD && !r) ? capitalize_word(*editline->temp, &editline->pos) && (r = 1): 0;
-		(meta == DOWNCASE_WORD && !r) ? downcase_word(*editline->temp, &editline->pos) && (r = 1): 0;
-		(meta == FORWARD_WORD && !r) ? forward_word(*editline->temp, &editline->pos) && (r = 1): 0;
-		(meta == KILL_WORD && !r) ? kill_word(editline, history) && (r = 1) : 0;
-		(meta == UPCASE_WORD && !r) ? upcase_word(*editline->temp, &editline->pos) && (r = 1) : 0;
+		(meta == BACKWARD_WORD && !x) ? backward_word(r) && (x = 1): 0;
+		(meta == CAPITALIZE_WORD && !x) ? capitalize_word(r, h) && (x = 1): 0;
+		(meta == DOWNCASE_WORD && !x) ? downcase_word(r, h) && (x = 1): 0;
+		(meta == FORWARD_WORD && !x) ? forward_word(r) && (x = 1): 0;
+		(meta == KILL_WORD && !x) ? kill_word(r, h) && (x = 1) : 0;
+		(meta == UPCASE_WORD && !x) ? upcase_word(r, h) && (x = 1) : 0;
 	}
+	return ((x) ? 1 : 0);
 }
 
-static int		others_keys(int key, t_editline *editline, t_history *history)
+static int		others_keys(int key, t_readline *r, t_history *h)
 {
-	(void)key;
-	(void)editline;
-	(void)history;
-	int r;
+	int x;
 
-	r = 0;
-	(key == LINE_UP && !r) ? line_up(*editline->temp, &editline->pos) && (r = 1): 0;
-	(key == LINE_DOWN && !r) ? line_down(*editline->temp, &editline->pos) && (r = 1): 0;
-	(key == K_ALT_RIGHT && !r) ? forward_word(*editline->temp, &editline->pos) && (r = 1): 0;
-	(key == K_ALT_RIGHT && !r)	? backward_word(*editline->temp, &editline->pos) && (r = 1): 0;
-	(key == K_ARROW_RIGHT && !r) ? forward_char(editline, stock_data(NULL)->prompt.len, stock_data(NULL)->win.col) && (r = 1) : 0;
-	(key == K_ARROW_LEFT && !r) ? backward_char(&editline->pos) && (r = 1) : 0;
-	(key == K_ARROW_UP && !r) ? previous_history(stock_data(NULL)) && (r = 1) : 0;
-	(key == K_ARROW_DOWN && !r) ? next_history(stock_data(NULL)) && (r = 1) : 0;
-	(key == K_HOME && !r) ? beginning_of_line(&editline->pos) && (r = 1) : 0;
-	(key == K_END && !r) ? end_of_line(editline, stock_data(NULL)->prompt.len, stock_data(NULL)->win.col) && (r = 1) : 0;
-	(key == K_BACKSPACE && !r) ? delete_char(editline, history, stock_data(NULL)->prompt.len, stock_data(NULL)->win.col) && (r = 1) : 0;
-	(key == K_DELETE && !r) ? backward_delete_char(editline->temp, &editline->pos, history) && (r = 1) : 0;
+	x = 0;
+	(key == LINE_UP && !x) ? line_up(r) && (x = 1): 0;
+	(key == LINE_DOWN && !x) ? line_down(r) && (x = 1): 0;
+	(key == K_ALT_RIGHT && !x) ? forward_word(r) && (x = 1): 0;
+	(key == K_ALT_RIGHT && !x)	? backward_word(r) && (x = 1): 0;
+	(key == K_ARROW_RIGHT && !x) ? forward_char(r) && (x = 1) : 0;
+	(key == K_ARROW_LEFT && !x) ? backward_char(&r->pos) && (x = 1) : 0;
+	(key == K_ARROW_UP && !x) ? previous_history(r, h) && (x = 1) : 0;
+	(key == K_ARROW_DOWN && !x) ? next_history(r, h) && (x = 1) : 0;
+	(key == K_HOME && !x) ? beginning_of_line(&r->pos) && (x = 1) : 0;
+	(key == K_END && !x) ? end_of_line(r) && (x = 1) : 0;
+	(key == K_BACKSPACE && !x) ? delete_char(r, h) && (x = 1) : 0;
+	(key == K_DELETE && !x) ? backward_delete_char(r, h) && (x = 1) : 0;
 	//printf("r:%d\n", r);
-	return (r);
+	return (x);
 }
 
-void	readline_handler(int key, t_shell *shell)
+int	readline_handler(int key, t_readline *readline, t_history *h)
 {
-	t_history *history;
-	t_editline *editline;
-
-	if (!shell)
-		return ;
-	history = &shell->history;
-	editline = &shell->editline;
-	//printf("%d\n", key);
-	if ((history->ret || key == PREVIOUS_HISTORY ||
-		(history->ret && key == NEXT_HISTORY)) && history->history_cur)
-		editline->temp = &(((t_history_elem*)(history->history_cur->content))->value);
+	if (!readline || !h)
+		return (0);
+	if ((h->ret || key == PREVIOUS_HISTORY ||
+		(h->ret && key == NEXT_HISTORY)) && h->history_cur)
+		readline->temp = &(((t_history_elem*)(h->history_cur->content))->value);
 	else
-		editline->temp = &editline->line;
-	if (key == META_KEY)
-		do_meta_key(editline, history);
-	else if(ctrl_keys(key, shell))
-		return ;
-	else if(others_keys(key, editline, history))
-		return ;
+		readline->temp = &readline->line;
+	if (key == META_KEY && do_meta_key(readline, h))
+		return (1);
+	else if(ctrl_keys(key, readline, h))
+		return (1);
+	else if(others_keys(key, readline, h))
+		return (1);
 	else if (key == K_RETURN)
 	{
-		printf("\n%p:line:%s\tpos:%d\n", *editline->temp ,*editline->temp, editline->pos);
-		k_return(editline->temp, history);
-		reset_line(&editline->line, &editline->pos);
-		prompt(stock_data(NULL)->prompt.val);
+		printf("\n%p:line:%s\tpos:%d\n", *readline->temp ,*readline->temp, readline->pos);
+		k_return(readline->temp, h);
+		reset_line(&readline->line, &readline->pos);
+		//prompt(readline->prompt.val);
+		return (2);
 	}
-	else if (ft_isprint(key))
-		add_key(key, shell);
+	else if (ft_isprint(key) && add_key(key, readline, h))
+		return (1);
+	return (0);
 }

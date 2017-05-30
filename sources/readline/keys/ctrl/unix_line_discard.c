@@ -6,13 +6,13 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:30:58 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/05/25 01:14:08 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/25 23:21:54 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-static	void do_front(t_editline *r)
+static	void do_front(t_readline *r)
 {
 	if (r->pos)
 		tputs(tgoto(tgetstr("LE", NULL), 1, r->pos), AFFCNT, &my_putchar);
@@ -24,7 +24,7 @@ static	void do_front(t_editline *r)
 	r->pos = 0;
 }
 
-static	int do_back(t_editline *r)
+static	int do_back(t_readline *r)
 {
 	char *temp;
 
@@ -44,15 +44,15 @@ static	int do_back(t_editline *r)
 	return (1);
 }
 
-int 	unix_line_discard(t_editline *editline, t_history *history)
+int 	unix_line_discard(t_readline *readline, t_history *history)
 {
-	if (!editline || !history)
+	if (!readline || !history)
 		return (0);
-	if (!do_back(editline))
+	if (!do_back(readline))
 		return (0);
-	do_front(editline);
+	do_front(readline);
 	if (history->ret && history->history_cur)
 		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
-	editline->cut = key_u;
+	readline->cut = key_u;
 	return (1);
 }
