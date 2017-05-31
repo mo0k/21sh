@@ -6,13 +6,13 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:30:40 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/19 18:52:49 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/31 18:43:09 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <terms.h>
 
-static int			init_config_term(t_termios *new, t_termios *origin)
+int			init_config_term(t_termios *new, t_termios *origin)
 {
 	char	*name;
 	int 	ret;
@@ -29,7 +29,6 @@ static int			init_config_term(t_termios *new, t_termios *origin)
 	ft_cfmakeraw(new);
 	if (tcsetattr(0, TCSADRAIN, new) == -1)
 		exit(EXIT_FAILURE);
-	tgetflag("km");
 	return (1);
 }
 

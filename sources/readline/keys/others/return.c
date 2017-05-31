@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/24 22:53:55 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/01 00:29:22 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int 	k_return(char **line, t_history *history)
 		if (!history->history_root)
 			state = 1;
 		ft_lstadd_end(&history->history_root, (new = ft_lstnew(&elem, sizeof(t_history_elem))));
+		//CHECK QUOTING BEFORE VALID LINE AFTER HISTORY
+		quoting(&((t_history_elem*)(new->content))->value);
+		//END OF CHECK
 		if (state)
 			history->history_cur = history->history_root;
 		if (history->ret)
@@ -58,6 +61,7 @@ int 	k_return(char **line, t_history *history)
 			printf("|||||||||||||||||||||||||||||||||||||||||\n");
 			ft_lstiter(history->history_root, &print_history_elem);
 			save_history(history->history_root);
+			restore_config(stock_data(NULL)->termios.origin);
 			exit(EXIT_SUCCESS);
 		}
 		else if (line && *line && !ft_strcmp(*line, "history -C"))

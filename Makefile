@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/05/30 23:15:54 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/06/01 01:03:23 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,10 +39,11 @@ SRC =	$(SRC_PATH)/shell/21sh.c								\
 		$(SRC_PATH)/readline/handler.c							\
 		$(SRC_PATH)/readline/readline.c							\
 		$(SRC_PATH)/readline/add_key.c							\
-		$(SRC_PATH)/readline/termios/init_config.c				\
-		$(SRC_PATH)/readline/termios/restore_config.c			\
+		$(SRC_PATH)/readline/quoting.c							\
+		$(SRC_PATH)/readline/termios/init.c						\
 		$(SRC_PATH)/readline/termios/ft_cfmakeraw.c				\
 		$(SRC_PATH)/readline/termios/my_putchar.c				\
+		$(SRC_PATH)/readline/termios/restore.c					\
 		$(SRC_PATH)/readline/keys/ctrl/backward_char.c			\
 		$(SRC_PATH)/readline/keys/ctrl/backward_delete_char.c	\
 		$(SRC_PATH)/readline/keys/ctrl/beginning_of_line.c		\
@@ -67,21 +68,22 @@ SRC =	$(SRC_PATH)/shell/21sh.c								\
 		$(SRC_PATH)/readline/keys/others/line_up.c				\
 		$(SRC_PATH)/readline/keys/others/return.c				\
 		$(SRC_PATH)/history/init.c								\
-		$(SRC_PATH)/history/move.c								\
 		$(SRC_PATH)/history/delete.c							\
+		$(SRC_PATH)/history/load.c								\
+		$(SRC_PATH)/history/move.c								\
 		$(SRC_PATH)/history/print.c								\
 		$(SRC_PATH)/history/save.c								\
-		$(SRC_PATH)/history/load.c								\
-		$(SRC_PATH)/tokenizer/tokenizer.c						\
-		$(SRC_PATH)/tokenizer/init.c							\
 		$(SRC_PATH)/tokenizer/delete.c							\
+		$(SRC_PATH)/tokenizer/init.c							\
 		$(SRC_PATH)/tokenizer/print.c							\
-		$(SRC_PATH)/tokenizer/tokens/token.c					\
+		$(SRC_PATH)/tokenizer/quoting.c							\
+		$(SRC_PATH)/tokenizer/tokenizer.c						\
 		$(SRC_PATH)/tokenizer/tokens/init.c						\
 		$(SRC_PATH)/tokenizer/tokens/delete.c					\
-		$(SRC_PATH)/tokenizer/tokens/types/word.c				\
+		$(SRC_PATH)/tokenizer/tokens/token.c					\
 		$(SRC_PATH)/tokenizer/tokens/types/io_number.c			\
 		$(SRC_PATH)/tokenizer/tokens/types/redirect.c			\
+		$(SRC_PATH)/tokenizer/tokens/types/word.c				\
 		$(SRC_PATH)/signals/catch.c 							\
 		$(SRC_PATH)/signals/handler.c
 

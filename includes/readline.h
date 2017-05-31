@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:08:57 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/26 15:33:24 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/05/31 09:34:15 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	padding_limit(int pos, int len_prompt, int col);
 
 int		readline_handler(int key, t_readline *readline, t_history *history);
 int		add_key(char c, t_readline *readline, t_history *history);
+void	quoting(char **line);
 int 	backward_char(int *pos);
 int		backward_delete_char(t_readline *readline, t_history *history);
 int 	backward_word(t_readline *readline);
