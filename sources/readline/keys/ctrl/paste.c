@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 15:59:33 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 23:21:59 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/02 16:54:42 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int 	paste(t_readline *e, t_history *history)
 {
 	int save_position;
 
-	if (!e || !history || !e->strcpy || !e->temp)
+	if (!e || !e->strcpy || !e->temp)
 		return (0);
 	save_position = e->pos;
 	ft_putstr(e->strcpy);
@@ -89,7 +89,7 @@ int 	paste(t_readline *e, t_history *history)
 		if (!(cursor_no_max_left(e->temp, e->strcpy, save_position)))
 			return (0);
 	e->cut = 0;
-	if (history->ret && history->history_cur)
+	if (history && history->ret && history->history_cur)
 		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 	padding_limit(e->pos, e->prompt.len, e->win.col);
 	return (1);

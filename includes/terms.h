@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:30:52 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/31 13:34:09 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 10:19:54 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void		init_config(t_termios **new, t_termios **origin);
 int			init_config_term(t_termios *new, t_termios *origin);
 void		ft_cfmakeraw(t_termios *conf);
 int			restore_config(t_termios *origin);
-int			my_putchar(int c);
+int			my_putc(int c);
 
 #endif

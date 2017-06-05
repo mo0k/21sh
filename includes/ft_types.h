@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 16:33:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/01 00:51:01 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 10:06:07 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ typedef struct s_prompt
 	size_t		len;
 }				t_prompt;
 
+typedef struct	s_position
+{
+	int			x;
+	int			y;
+}				t_pos;
+
 typedef struct	s_readline
 {
 	char		*line;
@@ -97,7 +103,7 @@ typedef struct	s_readline
 	char		*strcpy;
 	t_prompt	prompt;
 	t_win		win;
-	int 		pos;
+	t_pos 		cursor;
 	enum e_cut	cut;
 }				t_readline;
 

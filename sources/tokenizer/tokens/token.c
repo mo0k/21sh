@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 23:07:01 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/01 00:51:06 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/01 14:23:02 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		create_token(t_list **atoken, char *line, t_types type)
 {
-	//printf("CREATION TOKEN:line:%s|\ntype:%u\n", line, type);
+	printf("CREATION TOKEN:line:%s|\ntype:%s\n", line, get_token_str(type));
 	t_token_elem content;
 
 	if (!atoken || !line)

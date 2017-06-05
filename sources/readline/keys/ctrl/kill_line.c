@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:31:06 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/05/25 23:22:01 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/02 16:54:05 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int 	kill_line(t_readline *readline, t_history *history)
 	char *temp;
 	int len;
 
-	if (!readline || !history)
+	if (!readline)
 		return (0);
 	len = ft_strlen(*readline->temp);
 	if (readline->strcpy)
@@ -34,7 +34,7 @@ int 	kill_line(t_readline *readline, t_history *history)
 		return (1);
 	}
 	free(temp);
-	if (history->ret && history->history_cur)
+	if (history && history->ret && history->history_cur)
 		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 	readline->cut = key_k;
 	return (1);

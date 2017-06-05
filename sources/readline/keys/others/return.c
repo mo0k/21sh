@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/01 00:29:22 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/02 23:08:30 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ int 	k_return(char **line, t_history *history)
 		t_history_elem	*content;
 		t_history_elem	elem;
 		int				state;
-
+	printf("DEBUG | start k_return\n");
 		state = 0;
 		if (!line || !*line || !history)
+		{
+			printf("DEBUG | return (0)\n");
 			return (0);
+		}
 		init_elem_history(&elem, *line, 1, 0);
 		if (!history->history_root)
 			state = 1;
@@ -44,6 +47,7 @@ int 	k_return(char **line, t_history *history)
 			history->in = 0;
 			history->ret = 0;
 		}
+		history->history_cur = new;
 
 
 

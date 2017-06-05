@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 09:32:18 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/31 23:17:44 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/02 22:03:55 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,34 +90,6 @@ static int 	read_stack(char *stack, char **line)
 		i++;
 	}
 	printf("end *stack:%c, %d\n", *stack, *stack);
-	//if (!*stack)
-	//	printf("QUOTING___________OK\n");
-	//else
-	//{
-	//while (*stack)
-	//{
-		//char *quote_line;
-		//char *join;
-		//quote_line = 0;
-		//restore_config(stock_data(NULL)->termios.origin);
-		//ft_addchar(line, '\n');
-		//printf("line:%s\n", *line);
-		//ft_putstr("> ");
-		//if (get_next_line(0, &quote_line))
-		//{
-			//printf("newline:%s\n", quote_line);
-			//if (!(join = ft_strjoin(*line, quote_line)))
-			//	return (0);
-			//free(*line);
-			//*line = join;
-			//fill_stack(stack, quote_line);
-			//free(quote_line);
-
-		//}
-
-		//init_config_term(stock_data(NULL)->termios.new, stock_data(NULL)->termios.origin);
-		//printf("QUOTING___________KO_____do_while\n");
-	//}
 	return (1);
 }
 
@@ -133,26 +105,63 @@ void	quoting(char **line)
 	ft_strclr(stack);
 	fill_stack(stack, *line);
 	printf("DEBUG | APRES fill_stack => stack:%s\n", stack);
-	/*ptr = *line;
-	i = 0;
-	while (i < 4096 && *ptr)
-	{
-		if (*ptr == 34 || *ptr == 39)
-			stack[i++] = *ptr;
-		ptr++;
-	}
-	if (i == 4096)
-		printf("stack full\n");
-	stack[i] = 0;*/
 	read_stack(stack, line);
 	printf("DEBUG | APRES read_stack => stack:%s\n", stack);
+	if (!*stack)
+		return ;
+	int chr;
+	t_readline r;
+	int ret = 2;
+	char *join;
+
+	init_newline(&r);
+	r.temp = &r.line; 
 	while (*stack)
 	{
+		//printf("DEBUG | in while *stack\n");
+		chr = 0;
+		if (ret == 2)
+		{
+			ft_addchar(line, '\n');
+			ft_putstr(PROMPT_NEWLINE);
+		}
+		if (read(0, &chr, sizeof(int)) > 0)
+		{
+			if ((ret = newline_readline_handler(chr, &r)) == 2)
+			{
+				printf("OEL\n");
+				printf("DEBUG | in WHILE => newline:%s\n", r.line);
+				if (!(join = ft_strjoin(*line, r.line)))
+				{
+					free(line);
+					return ;
+				}
+				printf("DEBUG | in WHILE => join:%s\n", join);
+				free(*line);
+				*line = join;
+				printf("DEBUG | in WHILE => line:%s\n", *line);
+				fill_stack(stack + ft_strlen(stack), r.line);
+				printf("DEBUG | in WHILE APRES fill_stack => stack:%s\n", stack);
+				read_stack(stack, line);
+				printf("DEBUG | in WHILE APRES read_line => stack:%s\n", stack);
+				free(r.line);
+				r.line = NULL;
+				r.pos = 0;
+				//return ;
+			}
+		}
+
+
+
+
+	}
+	return ;
 		printf("DEBUG | begin WHILE => stack:%s\n", stack);
 		char *quote_line;
-		char *join;
+		//char *join;
 		quote_line = 0;
 		restore_config(stock_data(NULL)->termios.origin);
+		
 		ft_addchar(line, '\n');
 		printf("DEBUG | in WHILE => line:%s\n", *line);
 		ft_putstr("> ");
@@ -177,5 +186,5 @@ void	quoting(char **line)
 		}
 		init_config_term(stock_data(NULL)->termios.new, stock_data(NULL)->termios.origin);
 	printf("stack:%s\n", stack);
-	}
+	
 }

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:30:58 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/05/25 23:21:54 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/02 16:55:29 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ static	int do_back(t_readline *r)
 
 int 	unix_line_discard(t_readline *readline, t_history *history)
 {
-	if (!readline || !history)
+	if (!readline)
 		return (0);
 	if (!do_back(readline))
 		return (0);
 	do_front(readline);
-	if (history->ret && history->history_cur)
+	if (history && history->ret && history->history_cur)
 		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 	readline->cut = key_u;
 	return (1);

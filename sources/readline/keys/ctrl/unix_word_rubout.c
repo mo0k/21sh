@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:30:52 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/05/25 23:21:53 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/02 16:57:42 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int 	unix_word_rubout(t_readline *readline, t_history *history) //voir paste err
 	char *temp;
 	char *ptr1;
 	char *ptr2;
-	if (!readline || !history)
+	if (!readline)
 		return (0);
 	if (!readline->pos || !*readline->temp)
 	{
@@ -83,7 +83,7 @@ int 	unix_word_rubout(t_readline *readline, t_history *history) //voir paste err
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
 	padding_limit(readline->pos, readline->prompt.len, readline->win.col);
 	readline->cut = key_w;
-	if (history->ret && history->history_cur)
+	if (history && history->ret && history->history_cur)
 		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 	return (1);
 }

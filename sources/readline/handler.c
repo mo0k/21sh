@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:32 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/26 15:34:17 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 09:26:23 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	readline_handler(int key, t_readline *readline, t_history *h)
 		readline->temp = &(((t_history_elem*)(h->history_cur->content))->value);
 	else
 		readline->temp = &readline->line;
+	//printf("DEBUG | &readline->line:\t%p, readline->line:%p\n", &readline->line, readline->line);
+	//printf("DEBUG | readline->temp:\t%p\n", *readline->temp);
 	if (key == META_KEY && do_meta_key(readline, h))
 		return (1);
 	else if(ctrl_keys(key, readline, h))

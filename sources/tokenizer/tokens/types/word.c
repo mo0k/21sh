@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 22:01:58 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/31 00:37:33 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/01 22:52:32 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,15 @@ void 		get_word(t_list **atoken ,char **begin, char *end)
 	int		state;
 
 	if (!atoken || !begin || !*begin || !end)
+	{
+		printf("return ;\n");
 		return ;
+	}
 	state = 0;
 	cur = *begin;
 	while (cur < end)
 	{
-		printf("in while char:%c\n", *cur);
+		printf("in while char:%c\t%d\t%p\t%p\n", *cur, *cur, cur, end);
 		if (state && *cur == 0x20)
 		{
 			printf("avant create_word 1\n");
@@ -57,3 +60,4 @@ void 		get_word(t_list **atoken ,char **begin, char *end)
 	}
 	printf("return (1) end function\n");
 }
+

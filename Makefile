@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/06/01 01:03:23 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/06/02 18:22:14 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ INC_PATH = includes
 INC =	$(INC_PATH)/ft_21sh.h			\
 		$(INC_PATH)/error.h				\
 		$(INC_PATH)/readline.h			\
+		$(INC_PATH)/newline.h			\
 		$(INC_PATH)/keys.h				\
 		$(INC_PATH)/terms.h				\
 		$(INC_PATH)/history.h			\
@@ -40,8 +41,10 @@ SRC =	$(SRC_PATH)/shell/21sh.c								\
 		$(SRC_PATH)/readline/readline.c							\
 		$(SRC_PATH)/readline/add_key.c							\
 		$(SRC_PATH)/readline/quoting.c							\
-		$(SRC_PATH)/readline/termios/init.c						\
+		$(SRC_PATH)/readline/newline/handler.c					\
+		$(SRC_PATH)/readline/newline/init.c						\
 		$(SRC_PATH)/readline/termios/ft_cfmakeraw.c				\
+		$(SRC_PATH)/readline/termios/init.c						\
 		$(SRC_PATH)/readline/termios/my_putchar.c				\
 		$(SRC_PATH)/readline/termios/restore.c					\
 		$(SRC_PATH)/readline/keys/ctrl/backward_char.c			\
@@ -99,7 +102,7 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(OSRC) $(INC)
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses #-g3 -fsanitize=address -fno-omit-frame-pointer
+	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses -g3 -fsanitize=address -fno-omit-frame-pointer
 	@echo "$(OK_COLOR)$@ compiled.$(NO_COLOR)"
 
 $(LIB):

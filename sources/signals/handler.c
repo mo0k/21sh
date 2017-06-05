@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:00:48 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 23:05:31 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/01 23:16:53 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ void				handler_signals(int sig)
 		catch_signals();
 		init_config(&(stock_data(NULL)->termios).new, &(stock_data(NULL)->termios).origin);
 		winsize_changed();
+	}
+	else if (sig == SIGINT)
+	{
+		printf("test\n");
+		//winsize_changed();
 	}
 	else
 	{

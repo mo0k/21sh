@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:08:57 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/31 09:34:15 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 10:07:24 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <keys.h>
 # include <ft_21sh.h>
 
-void	init_line(t_readline *readline);
+void	init_readline(t_readline *readline);
 void	reset_line(char **line, int *pos);
 void	padding_limit(int pos, int len_prompt, int col);
 

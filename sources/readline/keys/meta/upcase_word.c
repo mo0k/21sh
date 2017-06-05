@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 23:21:51 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/02 17:01:49 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	upcase_word(t_readline *readline, t_history *history)
 			*pos += (ptr) - (line + *pos);
 			if ((int)ft_strlen(line) > *pos)
 				tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos) - ((ptr) - (line + *pos))), AFFCNT, &my_putchar);
+			if (history && history->ret && history->history_cur)
+				((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 			return (1);
 		}
 		ptr++;
@@ -54,6 +56,8 @@ int	upcase_word(t_readline *readline, t_history *history)
 		*pos += (ptr) - (line + *pos);
 		if ((int)ft_strlen(line) > *pos)
 			tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos) - ((ptr) - (line + *pos))), AFFCNT, &my_putchar);
+		if (history && history->ret && history->history_cur)
+			((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 	}
 	//mettre en maj depuis le curseur jusqu'a fin du mot
 	//printf("%s\n", );

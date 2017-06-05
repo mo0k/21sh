@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:07:38 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/26 15:17:02 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/02 14:38:40 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,18 @@
 # include <tokenizer.h>
 # include <history.h>
 # include <readline.h>
+# include <newline.h>
 # include <terms.h>
 
 # define CWD 255
 # define PROMPT "21sh"
 # define SYMBOL "_$ "
 # define LEN_SYMBOL 3
+# define PROMPT_NEWLINE "> "
 # define PROMPT_COLOR C_GREEN
 # define SYMBOL_COLOR C_CYAN
 # define C_PROMPT PROMPT_COLOR PROMPT SYMBOL_COLOR SYMBOL C_DFL C_DFL
+# define C_PROMPT_NEWLINE PROMPT_COLOR PROMPT_NEWLINE C_DFL
 
 void		usage(int ac, char **av);
 void		init(t_shell *stock);

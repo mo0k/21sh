@@ -6,18 +6,20 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 23:22:11 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 10:23:18 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-int 	backward_char(int *pos)
+int 	backward_char(t_pos *cursor)
 {
-	if (*pos > 0)
+	if (!cursor)
+		return (0);
+	if (cursor->x > 0)
 	{
-		tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
-		(*pos)--;
+		tputs(tgetstr("le", NULL), AFFCNT, &my_putc);
+		(cursor->x)--;
 	}
 	return (1);
 }
