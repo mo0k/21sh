@@ -25,7 +25,7 @@ static int	do_quoting(char *str, char c)
 		return ((c == '\'') ? -1 : -2);
 }
 /*
-**	Return 
+**	
 **
 */
 int		check_protection(char *str)
