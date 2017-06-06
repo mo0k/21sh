@@ -52,33 +52,4 @@
 
 # define K_RETURN				13
 
-
-//# include <ft_21sh.h>
-/*
-void	keyboard_handler(char *buff, t_readline *readline);
-
-
-void	add_key(char c, t_history *history, t_readline *readline);
-int 	is_alt_keys(char *buff, char *line, int *pos);
-int 	is_arrow_keys(char *buff, t_readline *readline, t_history *history);
-int 	is_home_or_end_keys(char *buff, char *line, int *pos);
-int 	is_dels_keys(char *buff, char **line, int *pos, t_history *history);
-int 	is_ctrl_keys(char *buff, t_readline *readline, t_history *history);
-int 	k_arrow_right(int *pos, char *line);
-int 	k_arrow_left(int *pos);
-int 	k_home(int *pos);
-int 	k_end(char *line, int *pos);
-int 	k_delete(char **line, int *pos, t_history *history);
-int 	k_backspace(char **line, int pos, t_history *history, int len_prompt);
-int 	k_return(char **line, t_history *history);
-int 	k_alt_up(int *pos, char *line);
-int 	k_alt_down(int *pos, char *line);
-int 	k_alt_right(int *pos, char *line);
-int 	k_alt_left(int *pos, char *line);
-int 	k_ctrl_y(t_readline *readline, t_history *history);
-int 	k_ctrl_u(t_readline *readline, t_history *history);
-int 	k_ctrl_k(t_readline *readline, t_history *history);
-int 	k_ctrl_w(t_readline *readline, t_history *history);
-*/
-
 #endif
