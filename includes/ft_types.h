@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 16:33:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 04:11:08 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:56:51 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,6 @@ typedef struct s_prompt
 	size_t		len;
 }				t_prompt;
 
-typedef struct	s_position
-{
-	int			x;
-	int			y;
-}				t_pos;
 
 typedef struct	s_readline
 {
