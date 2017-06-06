@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kill_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:31:06 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/06/02 16:54:05 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:16:39 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int 	kill_line(t_readline *readline, t_history *history)
 		free(readline->strcpy);
 	if (!(readline->strcpy = ft_strsub(*readline->temp, readline->pos, len)))
 		return (1);
-	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 	if (!(temp = ft_strsub(*readline->temp, 0, readline->pos)))
 		return (1);
 	free(*readline->temp);

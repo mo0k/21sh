@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 15:59:33 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/02 16:54:42 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:16:42 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int 	paste(t_readline *e, t_history *history)
 		ft_putstr(*e->temp + e->pos);
 	if (check_go_left(e->temp, e->pos, ft_strlen(*e->temp), e->cut))
 		tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(*e->temp + e->pos))
-					, AFFCNT, &my_putchar);
+					, AFFCNT, &my_putc);
 	e->pos += ft_strlen(e->strcpy);
 	if (save_position == 0)
 	{

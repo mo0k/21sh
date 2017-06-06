@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unix_word_rubout.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:30:52 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/06/02 16:57:42 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:16:45 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int 	unix_word_rubout(t_readline *readline, t_history *history) //voir paste err
 		free(ptr2);
 	}
 	//do_front
-	tputs(tgoto(tgetstr("LE", NULL), 1, readline->pos + (int)ft_strlen(readline->strcpy)), AFFCNT, &my_putchar);
-	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+	tputs(tgoto(tgetstr("LE", NULL), 1, readline->pos + (int)ft_strlen(readline->strcpy)), AFFCNT, &my_putc);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 	padding_limit(readline->pos, readline->prompt.len, readline->win.col);
 	readline->cut = key_w;
 	if (history && history->ret && history->history_cur)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
+#    By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/06/02 18:22:14 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/06/06 16:57:41 by jmoucade         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,12 +40,12 @@ SRC =	$(SRC_PATH)/shell/21sh.c								\
 		$(SRC_PATH)/readline/handler.c							\
 		$(SRC_PATH)/readline/readline.c							\
 		$(SRC_PATH)/readline/add_key.c							\
-		$(SRC_PATH)/readline/quoting.c							\
+		$(SRC_PATH)/readline/protection.c						\
 		$(SRC_PATH)/readline/newline/handler.c					\
 		$(SRC_PATH)/readline/newline/init.c						\
 		$(SRC_PATH)/readline/termios/ft_cfmakeraw.c				\
 		$(SRC_PATH)/readline/termios/init.c						\
-		$(SRC_PATH)/readline/termios/my_putchar.c				\
+		$(SRC_PATH)/readline/termios/my_putc.c					\
 		$(SRC_PATH)/readline/termios/restore.c					\
 		$(SRC_PATH)/readline/keys/ctrl/backward_char.c			\
 		$(SRC_PATH)/readline/keys/ctrl/backward_delete_char.c	\

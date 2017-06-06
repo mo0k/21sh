@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 10:28:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 09:53:16 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:17:12 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	do_move(t_list *h, t_readline *r, int nbr_newline)
 	{
 		//printf("DEBUG | !nbr_newline\n");
 		if (r->pos > 0)
-			tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putchar);
-		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+			tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putc);
+		tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 	}
 	else
 	{
@@ -39,10 +39,10 @@ static int	do_move(t_list *h, t_readline *r, int nbr_newline)
 		while (ptr[i] != '\n')
 			--i;
 		if (i > 0)
-			tputs(tgoto(tgetstr("LE", NULL), 0, i), AFFCNT, &my_putchar);
-		tputs(tgoto(tgetstr("UP", NULL), 0, nbr_newline), AFFCNT, &my_putchar);
-		tputs(tgoto(tgetstr("RI", NULL), 0, r->prompt.len), AFFCNT, &my_putchar);
-		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+			tputs(tgoto(tgetstr("LE", NULL), 0, i), AFFCNT, &my_putc);
+		tputs(tgoto(tgetstr("UP", NULL), 0, nbr_newline), AFFCNT, &my_putc);
+		tputs(tgoto(tgetstr("RI", NULL), 0, r->prompt.len), AFFCNT, &my_putc);
+		tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 	}
 	ft_putstr(((t_history_elem*)((h)->content))->value);
 	r->temp = &((t_history_elem*)((h)->content))->value;
@@ -55,8 +55,8 @@ static int	do_move(t_list *h, t_readline *r, int nbr_newline)
 static int	do_move(t_list *h, t_readline *r)
 {
 	if (r->pos > 0)
-		tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putchar);
-	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+		tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putc);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 	ft_putstr(((t_history_elem*)((h)->content))->value);
 	r->temp = &((t_history_elem*)((h)->content))->value;
 	(r->pos) = ft_strlen(*r->temp);
@@ -75,10 +75,10 @@ static int	do_move_bis(t_list *h, t_readline *r, int nbr_newline)
 	while (ptr[i] != '\n')
 		i++;
 	if (i > 0)
-		tputs(tgoto(tgetstr("LE", NULL), 0, i), AFFCNT, &my_putchar);
-	tputs(tgoto(tgetstr("UP", NULL), 0, nbr_newline), AFFCNT, &my_putchar);
-	tputs(tgoto(tgetstr("RI", NULL), 0, r->prompt.len), AFFCNT, &my_putchar);
-	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+		tputs(tgoto(tgetstr("LE", NULL), 0, i), AFFCNT, &my_putc);
+	tputs(tgoto(tgetstr("UP", NULL), 0, nbr_newline), AFFCNT, &my_putc);
+	tputs(tgoto(tgetstr("RI", NULL), 0, r->prompt.len), AFFCNT, &my_putc);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 		i++;
 	//ft_putstr(((t_history_elem*)((h)->content))->value);
 	//r->temp = &((t_history_elem*)((h)->content))->value;

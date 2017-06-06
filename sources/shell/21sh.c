@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   21sh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:05:08 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/03 20:14:02 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/06 17:24:10 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int	main(int ac, char **av)
 	while (42)
 	{
 		chr = 0;
-		if (r == 2)
+		if (r > 1)
 			prompt(shell.readline.prompt.val);
 		if (read(0, &chr, sizeof(int)) > 0)
 		{
-			if ((r = readline_handler(chr, &shell.readline, &shell.history)) == 2 && shell.readline.line)
+			if ((r = readline_handler(chr, &shell.readline, &shell.history)) == 2)
 			{
 				printf("PAR LA\n");
 				tokenizer(&shell.tokenizer, ((t_history_elem*)(shell.history.history_cur->content))->value);

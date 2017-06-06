@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:32 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 09:26:23 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/06 17:23:58 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static int		ctrl_keys(int key, t_readline *e, t_history *h)
 	int x;
 
 	x = 0;
-	(key == KILL_LINE && !x) ? kill_line(e, h) && (x = 1): 0;
-	(key == UNIX_LINE_DISCARD && !x) ? unix_line_discard(e, h) && (x = 1): 0;
-	(key == UNIX_WORD_RUBOUT && !x) ? unix_word_rubout(e, h) && (x = 1): 0;
-	(key == PASTE && !x) ? paste(e, h) && (x = 1): 0;
+	(key == KILL_LINE && !x) ? kill_line(e, h) && (x = 1) : 0;
+	(key == UNIX_LINE_DISCARD && !x) ? unix_line_discard(e, h) && (x = 1) : 0;
+	(key == UNIX_WORD_RUBOUT && !x) ? unix_word_rubout(e, h) && (x = 1) : 0;
+	(key == PASTE && !x) ? paste(e, h) && (x = 1) : 0;
 	(key == DELETE_CHAR && !x) ? delete_char(e, h) && (x = 1) : 0;
 	(key == BACK_DELETE_CHAR && !x) ? backward_delete_char(e, h) && (x = 1) : 0;
 	(key == BEGIN_OF_LINE && !x) ? beginning_of_line(&e->pos) && (x = 1) : 0;
@@ -43,10 +43,10 @@ static int		do_meta_key(t_readline *r, t_history *h)
 	meta = 0;
 	if (read(0, &meta, sizeof(int)) > 0)
 	{
-		(meta == BACKWARD_WORD && !x) ? backward_word(r) && (x = 1): 0;
-		(meta == CAPITALIZE_WORD && !x) ? capitalize_word(r, h) && (x = 1): 0;
-		(meta == DOWNCASE_WORD && !x) ? downcase_word(r, h) && (x = 1): 0;
-		(meta == FORWARD_WORD && !x) ? forward_word(r) && (x = 1): 0;
+		(meta == BACKWARD_WORD && !x) ? backward_word(r) && (x = 1) : 0;
+		(meta == CAPITALIZE_WORD && !x) ? capitalize_word(r, h) && (x = 1) : 0;
+		(meta == DOWNCASE_WORD && !x) ? downcase_word(r, h) && (x = 1) : 0;
+		(meta == FORWARD_WORD && !x) ? forward_word(r) && (x = 1) : 0;
 		(meta == KILL_WORD && !x) ? kill_word(r, h) && (x = 1) : 0;
 		(meta == UPCASE_WORD && !x) ? upcase_word(r, h) && (x = 1) : 0;
 	}
@@ -58,10 +58,10 @@ static int		others_keys(int key, t_readline *r, t_history *h)
 	int x;
 
 	x = 0;
-	(key == LINE_UP && !x) ? line_up(r) && (x = 1): 0;
-	(key == LINE_DOWN && !x) ? line_down(r) && (x = 1): 0;
-	(key == K_ALT_RIGHT && !x) ? forward_word(r) && (x = 1): 0;
-	(key == K_ALT_RIGHT && !x)	? backward_word(r) && (x = 1): 0;
+	(key == LINE_UP && !x) ? line_up(r) && (x = 1) : 0;
+	(key == LINE_DOWN && !x) ? line_down(r) && (x = 1) : 0;
+	(key == K_ALT_RIGHT && !x) ? forward_word(r) && (x = 1) : 0;
+	(key == K_ALT_RIGHT && !x) ? backward_word(r) && (x = 1) : 0;
 	(key == K_ARROW_RIGHT && !x) ? forward_char(r) && (x = 1) : 0;
 	(key == K_ARROW_LEFT && !x) ? backward_char(&r->pos) && (x = 1) : 0;
 	(key == K_ARROW_UP && !x) ? previous_history(r, h) && (x = 1) : 0;
@@ -94,10 +94,10 @@ int	readline_handler(int key, t_readline *readline, t_history *h)
 	else if (key == K_RETURN)
 	{
 		printf("\n%p:line:%s\tpos:%d\n", *readline->temp ,*readline->temp, readline->pos);
-		k_return(readline->temp, h);
+		int ret = k_return(readline->temp, h);
 		reset_line(&readline->line, &readline->pos);
 		//prompt(readline->prompt.val);
-		return (2);
+		return (ret);
 	}
 	else if (ft_isprint(key) && add_key(key, readline, h))
 		return (1);

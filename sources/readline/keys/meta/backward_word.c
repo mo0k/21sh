@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   backward_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 23:21:52 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:16:47 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ int 	backward_word(t_readline *readline)
 		else if (state && (*ptr == ' ' || *ptr == '\t' || *ptr == '\v'))
 		{
 			shift = (line + *pos) - ptr - 1;
-			tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putchar);
+			tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putc);
 			*pos -= shift;
 			return (1);
 		}
 		ptr--;
 	}
 	shift = (line + *pos) - ptr;
-	tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putchar);
+	tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putc);
 	*pos -= shift;
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forward_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 23:22:03 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/06 01:03:44 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,16 @@ int 	forward_char(t_readline *readline)
 	pos = &readline->pos;
 	if (*pos < (int)ft_strlen(line))
 	{
-		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+		tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 		ft_putstr(line + *pos);
 		(*pos)++;
 		if (*(line + *pos) != 0)
 		{
 			shift = ft_strlen(line + *pos);
-			tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putchar);
+			tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putc);
 		}
 		padding_limit(*pos, readline->prompt.len, readline->win.col);
 	}
 	return (1);
 }
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/02 16:04:03 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:13:45 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static void		addnchar(char **astr, char c, int pos)
 	str = ft_strcat(str, (*astr) + pos);
 	free(*astr);
 	*astr = str;
-	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 	ft_putstr(str+ ++pos);
 	shift = ft_strlen(str+pos);
-	tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putchar);
+	tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putc);
 
 }
 
@@ -37,7 +37,7 @@ int		add_key(char c, t_readline *r, t_history *h)
 {
 		if (!r)
 			return (0);
-		my_putchar(c);
+		my_putc(c);
 		if (h)
 		{
 			if (!h->ret && !r->line)

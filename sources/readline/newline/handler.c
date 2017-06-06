@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:32 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/02 18:20:25 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 19:20:14 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		ctrl_keys(int key, t_readline *e)
 	(key == BEGIN_OF_LINE && !x) ? beginning_of_line(&e->pos) && (x = 1) : 0;
 	(key == END_OF_LINE && !x) ? end_of_line(e) && (x = 1) : 0;
 	(key == FORWARD_CHAR && !x) ? forward_char(e) && (x = 1) : 0;
-	(key == BACKWARD_CHAR && !x) ? backward_char(&e->pos) && (x = 1) : 0;
+	(key == BACKWARD_CHAR && !x) ? backward_char(e) && (x = 1) : 0;
 	return (x);
 }
 
@@ -59,7 +59,7 @@ static int		others_keys(int key, t_readline *r)
 	(key == K_ALT_RIGHT && !x) ? forward_word(r) && (x = 1): 0;
 	(key == K_ALT_RIGHT && !x)	? backward_word(r) && (x = 1): 0;
 	(key == K_ARROW_RIGHT && !x) ? forward_char(r) && (x = 1) : 0;
-	(key == K_ARROW_LEFT && !x) ? backward_char(&r->pos) && (x = 1) : 0;
+	(key == K_ARROW_LEFT && !x) ? backward_char(r) && (x = 1) : 0;
 	(key == K_HOME && !x) ? beginning_of_line(&r->pos) && (x = 1) : 0;
 	(key == K_END && !x) ? end_of_line(r) && (x = 1) : 0;
 	//(key == K_BACKSPACE && !x) ? delete_char(r, 0) && (x = 1) : 0;
@@ -69,6 +69,7 @@ static int		others_keys(int key, t_readline *r)
 
 int				newline_readline_handler(int key, t_readline *readline)
 {
+	//printf("start newline_readline_handler\n");
 	if (!readline)
 		return (0);
 	if (key == META_KEY && do_meta_key(readline))
@@ -80,7 +81,9 @@ int				newline_readline_handler(int key, t_readline *readline)
 	else if (key == K_RETURN)
 	{
 		// A MODIF POUR QUOTING
-		printf("NEWLINE ::::: \n%p:line:%s\tpos:%d\n", *readline->temp ,*readline->temp, readline->pos);
+		//if (!*readline->temp)
+			//ft_addchar(readline->temp, '\n');
+		printf("NEWLINE ::::: %p:line:%s\tpos:%d\n", *readline->temp ,*readline->temp, readline->pos);
 		//k_return(readline->temp, h);
 		//reset_line(&readline->line, &readline->pos);
 		//prompt(readline->prompt.val);

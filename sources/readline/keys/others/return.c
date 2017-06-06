@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   return.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/02 23:08:30 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/06 18:15:58 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
+
+static void	catch_newline(char *value)
+{
+	int i;
+
+	if (!value)
+		return ;
+	i = 0;
+	while (value[i])
+	{
+		if (value[i] == '\n' || value[i] == '\t')
+			value[i] = ' ';
+		i++;
+	}
+
+}
 
 int 	k_return(char **line, t_history *history)
 {
@@ -18,6 +34,7 @@ int 	k_return(char **line, t_history *history)
 		t_history_elem	*content;
 		t_history_elem	elem;
 		int				state;
+		int ret;
 	printf("DEBUG | start k_return\n");
 		state = 0;
 		if (!line || !*line || !history)
@@ -30,7 +47,12 @@ int 	k_return(char **line, t_history *history)
 			state = 1;
 		ft_lstadd_end(&history->history_root, (new = ft_lstnew(&elem, sizeof(t_history_elem))));
 		//CHECK QUOTING BEFORE VALID LINE AFTER HISTORY
-		quoting(&((t_history_elem*)(new->content))->value);
+		if ((ret = check_protection(((t_history_elem*)(new->content))->value)) < 0)
+		{
+			printf("ret:%d", ret);
+			catch_newline(((t_history_elem*)(new->content))->value);
+		}
+		//quoting(&((t_history_elem*)(new->content))->value);
 		//END OF CHECK
 		if (state)
 			history->history_cur = history->history_root;
@@ -77,8 +99,12 @@ int 	k_return(char **line, t_history *history)
 				ft_lstdelfirst(&history->history_cur, &del_history_elem);
 				history->history_cur = history->history_cur->next;
 			}
+			printf("DEBUG | history_cur:%p\n", history->history_cur);
 			history->history_root = NULL;
+			printf("DEBUG | AVANT PRINT STOCK -c\n");
 			print_stock(stock_data(NULL));
+			printf("DEBUG | FIN history -c\n");
+			return (3);
 		}
-		return (1);
+		return (2);
 }

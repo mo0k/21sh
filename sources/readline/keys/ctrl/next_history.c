@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   next_history.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 23:22:02 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:16:40 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int 	next_history(t_readline *r, t_history *h)
 	if (!(h->ret = move_history(r, h, down)))
 	{
 		if (r->pos > 0)
-			tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putchar);
-		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+			tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putc);
+		tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 		if (r->temp == &r->line)
 			ft_putchar(7);
 		r->temp = &r->line;

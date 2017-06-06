@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   backward_delete_char.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:11 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/02 18:17:43 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:16:27 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ int	backward_delete_char(t_readline *readline, t_history *history)
 	pos = &readline->pos;
 	if (*pos <= 0 || !line || !*line)
 		return (0);
-	tputs(tgetstr("le", NULL), AFFCNT, &my_putchar);
-	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+	tputs(tgetstr("le", NULL), AFFCNT, &my_putc);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 	(*pos)--;
 	ft_delchar(line, *pos);
 	if (*line && *(*line + *pos) != 0)
 	{
 		ft_putstr(*line + *pos);
 		shift = ft_strlen(*line + *pos);
-		tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putchar);
+		tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putc);
 	}
 	if (history && history->ret && history->history_cur)
 		((t_history_elem*)(history->history_cur->content))->flag_modif = 1;

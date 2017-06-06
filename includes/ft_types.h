@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_types.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 16:33:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 10:06:07 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/06 04:11:08 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ typedef struct	s_readline
 	char		*strcpy;
 	t_prompt	prompt;
 	t_win		win;
-	t_pos 		cursor;
+	int 		pos;
 	enum e_cut	cut;
 }				t_readline;
 

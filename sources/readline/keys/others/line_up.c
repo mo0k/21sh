@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_up.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 22:32:34 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 23:04:10 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:16:55 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ int 	line_up(t_readline *readline)
 	{
 		if (*pos - (col - len_prompt - 1) > len_prompt)
 		{
-			tputs(tgetstr("up", NULL), AFFCNT, &my_putchar);
+			tputs(tgetstr("up", NULL), AFFCNT, &my_putc);
 			*pos -= col;
 		}
 		else
 		{
 			if ((*pos + len_prompt) % col == 0)
 			{
-				tputs(tgetstr("up", NULL), AFFCNT, &my_putchar);
-				tputs(tgoto(tgetstr("RI", NULL), 1, len_prompt), AFFCNT, &my_putchar);
+				tputs(tgetstr("up", NULL), AFFCNT, &my_putc);
+				tputs(tgoto(tgetstr("RI", NULL), 1, len_prompt), AFFCNT, &my_putc);
 			}
 			else
 			{
-				tputs(tgoto(tgetstr("LE", NULL), 1, *pos - (col - len_prompt)), AFFCNT, &my_putchar);
-				tputs(tgetstr("up", NULL), AFFCNT, &my_putchar);
-				tputs(tgoto(tgetstr("RI", NULL), 1, len_prompt), AFFCNT, &my_putchar);
+				tputs(tgoto(tgetstr("LE", NULL), 1, *pos - (col - len_prompt)), AFFCNT, &my_putc);
+				tputs(tgetstr("up", NULL), AFFCNT, &my_putc);
+				tputs(tgoto(tgetstr("RI", NULL), 1, len_prompt), AFFCNT, &my_putc);
 			}
 			*pos = 0;
 		}

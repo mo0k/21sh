@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forward_word.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/25 23:21:49 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:16:50 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ int 	forward_word(t_readline *readline)
 			state = 1;
 		else if (state && (*ptr == ' ' || *ptr == '\t' || *ptr == '\v'))
 		{
-			tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+			tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 			ft_putstr(line + *pos);
-			tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos) - ((ptr - 1) - (line + *pos))), AFFCNT, &my_putchar);
+			tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos) - ((ptr - 1) - (line + *pos))), AFFCNT, &my_putc);
 			*pos += (ptr - 1) - (line + *pos);
 			return (1);
 		}
 		ptr++;
 	}
-	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 	ft_putstr(line + *pos);
 	*pos += ptr - (line + *pos);
 	padding_limit(*pos, readline->prompt.len, readline->win.col);

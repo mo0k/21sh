@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unix_line_discard.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:30:58 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/06/02 16:55:29 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:16:43 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 static	void do_front(t_readline *r)
 {
 	if (r->pos)
-		tputs(tgoto(tgetstr("LE", NULL), 1, r->pos), AFFCNT, &my_putchar);
-	tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+		tputs(tgoto(tgetstr("LE", NULL), 1, r->pos), AFFCNT, &my_putc);
+	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 	ft_putstr(*r->temp);
 	r->pos = ft_strlen(*r->temp);
 	if (r->pos)
-		tputs(tgoto(tgetstr("LE", NULL), 1, r->pos), AFFCNT, &my_putchar);
+		tputs(tgoto(tgetstr("LE", NULL), 1, r->pos), AFFCNT, &my_putc);
 	r->pos = 0;
 }
 

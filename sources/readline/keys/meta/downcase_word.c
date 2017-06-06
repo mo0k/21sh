@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   downcase_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/02 17:02:39 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/05 15:16:49 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int	downcase_word(t_readline *readline, t_history *history)
 		}
 		else if (state && (*ptr == ' ' || *ptr == '\t' || *ptr == '\v'))
 		{
-			tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+			tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 			ft_putstr(line + *pos);
 			//error
 			*pos += (ptr) - (line + *pos);
 			if ((int)ft_strlen(line) > *pos)
-				tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos) - ((ptr) - (line + *pos))), AFFCNT, &my_putchar);
+				tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos) - ((ptr) - (line + *pos))), AFFCNT, &my_putc);
 			if (history && history->ret && history->history_cur)
 				((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 			return (1);
@@ -50,11 +50,11 @@ int	downcase_word(t_readline *readline, t_history *history)
 	}
 	if (state)
 	{
-		tputs(tgetstr("cd", NULL), AFFCNT, &my_putchar);
+		tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 		ft_putstr(line + *pos);
 		*pos += (ptr) - (line + *pos);
 		if ((int)ft_strlen(line) > *pos)
-			tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos) - ((ptr) - (line + *pos))), AFFCNT, &my_putchar);
+			tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos) - ((ptr) - (line + *pos))), AFFCNT, &my_putc);
 		if (history && history->ret && history->history_cur)
 			((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;
 	}
