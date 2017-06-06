@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:32 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 19:20:14 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:58:03 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static int		ctrl_keys(int key, t_readline *e)
 	(key == UNIX_LINE_DISCARD && !x) ? unix_line_discard(e, 0) && (x = 1): 0;
 	(key == UNIX_WORD_RUBOUT && !x) ? unix_word_rubout(e, 0) && (x = 1): 0;
 	(key == PASTE && !x) ? paste(e, 0) && (x = 1): 0;
-	//(key == DELETE_CHAR && !x) ? delete_char(e, 0) && (x = 1) : 0;
+	(key == DELETE_CHAR && !x) ? delete_char(e, 0) && (x = 1) : 0;
 	(key == BACK_DELETE_CHAR && !x) ? backward_delete_char(e, 0) && (x = 1) : 0;
 	(key == BEGIN_OF_LINE && !x) ? beginning_of_line(&e->pos) && (x = 1) : 0;
 	(key == END_OF_LINE && !x) ? end_of_line(e) && (x = 1) : 0;
 	(key == FORWARD_CHAR && !x) ? forward_char(e) && (x = 1) : 0;
-	(key == BACKWARD_CHAR && !x) ? backward_char(e) && (x = 1) : 0;
+	(key == BACKWARD_CHAR && !x) ? backward_char(&e->pos) && (x = 1) : 0;
 	return (x);
 }
 
@@ -59,10 +59,10 @@ static int		others_keys(int key, t_readline *r)
 	(key == K_ALT_RIGHT && !x) ? forward_word(r) && (x = 1): 0;
 	(key == K_ALT_RIGHT && !x)	? backward_word(r) && (x = 1): 0;
 	(key == K_ARROW_RIGHT && !x) ? forward_char(r) && (x = 1) : 0;
-	(key == K_ARROW_LEFT && !x) ? backward_char(r) && (x = 1) : 0;
+	(key == K_ARROW_LEFT && !x) ? backward_char(&r->pos) && (x = 1) : 0;
 	(key == K_HOME && !x) ? beginning_of_line(&r->pos) && (x = 1) : 0;
 	(key == K_END && !x) ? end_of_line(r) && (x = 1) : 0;
-	//(key == K_BACKSPACE && !x) ? delete_char(r, 0) && (x = 1) : 0;
+	(key == K_BACKSPACE && !x) ? delete_char(r, 0) && (x = 1) : 0;
 	(key == K_DELETE && !x) ? backward_delete_char(r, 0) && (x = 1) : 0;
 	return (x);
 }

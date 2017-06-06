@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 14:39:56 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/06/06 18:15:39 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/06 18:55:47 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	do_quoting(char *str, char c)
 	if (*str == c)
 		return (1);
 	else
-		return (-1);
+		return ((c == '\'') ? -1 : -2);
 }
 /*
 **	Return 
@@ -43,7 +43,7 @@ int		check_protection(char *str)
 		else if (*str == '\"')
 			ret = do_quoting(str, '\"');
 		else if (*str == '\\' && *(str + 1) == 0)
-			ret = -2;
+			ret = -3;
 		printf("ret:%d\n",ret);
 		if (ret < 1)
 			break;
