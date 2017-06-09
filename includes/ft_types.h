@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_types.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 16:33:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 18:56:51 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 11:29:45 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,21 @@ typedef struct	s_delimiter
 	char	 	*end;
 }				t_delimiter;
 
-typedef enum	s_types
+typedef enum	e_types
 {
-				word,
-				less,
-				dless,
-				great,
-				dgreat,
-				lessand,
-				greatand,
-				pipes,
-				separator,
-				io_number
+				WORD,
+				PIPELINE,
+				SEPARATOR_OP,
+				REDIR_OP,
+				IO_NUMBER
 }				t_types;
 
 typedef struct	s_token_elem
 {
 	char		*val;
 	t_types 	type;
-}				t_token_elem;
+}				t_token_elem;\
+
 
 typedef struct s_tokenizer
 {

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+         #
+#    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/11/05 13:11:07 by jmoucade          #+#    #+#              #
-#    Updated: 2017/06/06 16:57:41 by jmoucade         ###   ########.fr        #
+#    Created: 2017/06/07 17:53:51 by mo0ky             #+#    #+#              #
+#    Updated: 2017/06/09 10:20:43 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC =	$(SRC_PATH)/shell/21sh.c								\
 		$(SRC_PATH)/readline/protection.c						\
 		$(SRC_PATH)/readline/newline/handler.c					\
 		$(SRC_PATH)/readline/newline/init.c						\
+		$(SRC_PATH)/readline/newline/newline.c					\
 		$(SRC_PATH)/readline/termios/ft_cfmakeraw.c				\
 		$(SRC_PATH)/readline/termios/init.c						\
 		$(SRC_PATH)/readline/termios/my_putc.c					\
@@ -85,7 +86,7 @@ SRC =	$(SRC_PATH)/shell/21sh.c								\
 		$(SRC_PATH)/tokenizer/tokens/delete.c					\
 		$(SRC_PATH)/tokenizer/tokens/token.c					\
 		$(SRC_PATH)/tokenizer/tokens/types/io_number.c			\
-		$(SRC_PATH)/tokenizer/tokens/types/redirect.c			\
+		$(SRC_PATH)/tokenizer/tokens/types/redir_op.c			\
 		$(SRC_PATH)/tokenizer/tokens/types/word.c				\
 		$(SRC_PATH)/signals/catch.c 							\
 		$(SRC_PATH)/signals/handler.c

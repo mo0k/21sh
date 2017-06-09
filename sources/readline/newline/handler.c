@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:32 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 18:58:03 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/08 14:14:57 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int		others_keys(int key, t_readline *r)
 	return (x);
 }
 
-int				newline_readline_handler(int key, t_readline *readline)
+int				newline_handler(int key, t_readline *readline)
 {
 	//printf("start newline_readline_handler\n");
 	if (!readline)

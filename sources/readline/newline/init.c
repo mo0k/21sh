@@ -25,7 +25,7 @@ void	init_newline(t_readline *readline)
 	init_winsize(&readline->win, tgetnum("li"), tgetnum("co"));
 	printf("DEBUG | END init_newline\n");
 }
-
+/*
 int 	getn_newline(const char *line)
 {
 	char *ptr;
@@ -41,4 +41,4 @@ int 	getn_newline(const char *line)
 		ptr++;
 	}
 	return (i);
-}
+}*/

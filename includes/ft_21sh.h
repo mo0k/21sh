@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:07:38 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/02 14:38:40 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/08 14:15:29 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <signals.h>
 # include <tokenizer.h>
 # include <history.h>
-# include <readline.h>
 # include <newline.h>
+# include <readline.h>
 # include <terms.h>
 
 # define CWD 255

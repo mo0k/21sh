@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 13:03:46 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/01 22:54:11 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/08 17:41:30 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int analyze_block(t_tokenizer *tokenizer, char *line)
 		create_token(&tokenizer->token, i, get_token_type(i));
 		*ptr_begin = (*ptr_end) + 1;
 	}
-	else if (**ptr_end == 34 || **ptr_end == 39)
+	else if (**ptr_end == '\'' || **ptr_end == '\"')
 		get_quoting_word(tokenizer, ptr_begin, ptr_end);
 	else if (**ptr_end == '<' || **ptr_end == '>')
 		get_redirect(tokenizer, line);

@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   protection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 14:39:56 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/06/06 18:55:47 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/08 15:21:59 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-static int	do_quoting(char *str, char c)
+static int	do_quoting(char **astr, char c)
 {
-	if (!str)
+	if (!astr || !*astr)
 		return (0);
-	str++;
-	while (*str && *str != c)
-		str++;
-	if (*str == c)
+	(*astr)++;
+	while (**astr && **astr != c)
+		(*astr)++;
+	if (**astr == c)
 		return (1);
 	else
-		return ((c == '\'') ? -1 : -2);
+		return ((c == '\'') ? quote : quotes);
 }
 /*
 **	
@@ -39,11 +39,14 @@ int		check_protection(char *str)
 	while (*str)
 	{
 		if (*str == '\'')
-			ret = do_quoting(str, '\'');
+			ret = do_quoting(&str, '\'');
 		else if (*str == '\"')
-			ret = do_quoting(str, '\"');
+			ret = do_quoting(&str, '\"');
 		else if (*str == '\\' && *(str + 1) == 0)
-			ret = -3;
+			ret = backslack;
+		else if (*str == '\\')
+			str++;
+
 		printf("ret:%d\n",ret);
 		if (ret < 1)
 			break;
@@ -53,8 +56,8 @@ int		check_protection(char *str)
 	//return (!ret ? 0 : 1)
 	if (ret < 1)
 	{
-		printf("DEBUG | PROBLEME\n");
-		return (0);
+		printf("DEBUG | NEWLINE\n");
+		return (ret);
 	}
 	printf("DEBUG | OK\n");
 	return (1);

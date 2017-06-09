@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   word.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 22:01:58 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 03:18:22 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 12:26:51 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	create_word(t_list **atoken ,char **begin, char *end)
 		return (0);
 	c = *end;
 	*end = 0;
-	create_token(atoken, *begin, word);
+	create_token(atoken, *begin, WORD);
 	*end = c;
 	*begin = end + 1;
 	return (1);

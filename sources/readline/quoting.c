@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   quoting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 09:32:18 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 18:41:17 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/08 15:10:31 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
-
+//NO USE
 static int 	liberate_nstack(char *stack, size_t n)
 {
 	printf("start liberate_nstack\n");

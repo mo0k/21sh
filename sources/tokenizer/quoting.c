@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quoting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 00:56:04 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 03:25:45 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 14:01:02 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ int		get_quoting_word(t_tokenizer *tknizer, char **ptr_begin, char **ptr_end)
 	//printf("%c\t%d\t%p__3\n", **ptr_end,**ptr_end, *ptr_end);
 	if (**ptr_begin != 0)
 	{
-		//(*ptr_end)++;
+		(*ptr_end)++;
 		//printf("%c\t%d\t%p__4\n", **ptr_end,**ptr_end, *ptr_end);
 		c = **ptr_end;
 		**ptr_end = 0;
 		//printf("par la 2\n");
-		if (*ptr_begin + 1 < *ptr_end)
-			create_token(&tknizer->token, *ptr_begin + 1, word);
+		if (*ptr_begin < *ptr_end)
+			create_token(&tknizer->token, *ptr_begin, WORD);
 		//printf("char temp:\t%c\t%d\t%p\n", c, c, &c);
 		**ptr_end = c;
 		//printf("*ptr_end:\t%c\t%d\t%p\n", **ptr_end, **ptr_end, *ptr_end);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:08:57 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 17:52:01 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/07 22:32:14 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 # include <keys.h>
 # include <ft_21sh.h>
+
+typedef enum	e_protect
+{
+	quote = -1,
+	quotes = -2,
+	backslack = -3
+}				t_protect;
 
 void	init_readline(t_readline *readline);
 void	reset_line(char **line, int *pos);

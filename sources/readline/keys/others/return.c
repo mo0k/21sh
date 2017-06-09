@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   return.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 18:15:58 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/08 15:06:52 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
-
+/*
 static void	catch_newline(char *value)
 {
 	int i;
@@ -27,31 +27,35 @@ static void	catch_newline(char *value)
 	}
 
 }
-
+*/
 int 	k_return(char **line, t_history *history)
 {
 		t_list			*new;
 		t_history_elem	*content;
 		t_history_elem	elem;
 		int				state;
-		int ret;
+		t_protect		ret;
 	printf("DEBUG | start k_return\n");
 		state = 0;
 		if (!line || !*line || !history)
 		{
 			printf("DEBUG | return (0)\n");
-			return (0);
+			return (3);
 		}
 		init_elem_history(&elem, *line, 1, 0);
 		if (!history->history_root)
 			state = 1;
 		ft_lstadd_end(&history->history_root, (new = ft_lstnew(&elem, sizeof(t_history_elem))));
 		//CHECK QUOTING BEFORE VALID LINE AFTER HISTORY
-		if ((ret = check_protection(((t_history_elem*)(new->content))->value)) < 0)
+		while ((ret = check_protection(((t_history_elem*)(new->content))->value)) < 0)
 		{
-			printf("ret:%d", ret);
-			catch_newline(((t_history_elem*)(new->content))->value);
+			//afficher prompt && recupere nouvelle ligne pour ajouter
+			// a la value de history et repasser au check_protection
+			printf("line:%s\n", ((t_history_elem*)(new->content))->value);
+			get_newline(&((t_history_elem*)(new->content))->value);
+			printf("ret:%d\n", ret);
 		}
+			//catch_newline(((t_history_elem*)(new->content))->value);
 		//quoting(&((t_history_elem*)(new->content))->value);
 		//END OF CHECK
 		if (state)
