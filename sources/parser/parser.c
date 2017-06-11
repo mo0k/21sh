@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.h                                           :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/11 10:41:26 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/11 11:02:36 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/06/11 11:01:20 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/06/11 11:02:10 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSER_H
-# define PARSER_H
+#include <parser.h>
 
-#include <ft_21sh.h>
-
-int		parser(t_list **atokens);
-
-#endif
+int		parser(t_list **atokens)
+{
+	(void)atokens;
+	return (0);
+}
