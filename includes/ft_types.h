@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 16:33:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 16:59:16 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/11 13:07:31 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct	s_token_elem
 {
 	char		*val;
 	t_types 	type;
-}				t_token_elem;\
+}				t_token_elem;
 
 
 typedef struct s_tokenizer

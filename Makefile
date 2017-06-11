@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/07 17:53:51 by mo0ky             #+#    #+#              #
-#    Updated: 2017/06/09 10:20:43 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/06/11 13:04:35 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ SRC =	$(SRC_PATH)/shell/21sh.c								\
 		$(SRC_PATH)/tokenizer/tokens/types/io_number.c			\
 		$(SRC_PATH)/tokenizer/tokens/types/redir_op.c			\
 		$(SRC_PATH)/tokenizer/tokens/types/word.c				\
+		$(SRC_PATH)/parser/parser.c								\
 		$(SRC_PATH)/signals/catch.c 							\
 		$(SRC_PATH)/signals/handler.c
 
