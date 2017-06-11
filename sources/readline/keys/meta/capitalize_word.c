@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   capitalize_word.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 15:16:48 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/10 10:18:17 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	capitalize_word(t_readline *readline, t_history *history)
 	pos = &readline->pos;
 	first_char = 0;
 	if (!line)
-		return (0);
+		return (1);
 	state = 0;
 	ptr = line + *pos;
 	while (*ptr)
@@ -44,7 +44,8 @@ int	capitalize_word(t_readline *readline, t_history *history)
 		else if (state && (*ptr == ' ' || *ptr == '\t' || *ptr == '\v'))
 		{
 			tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-			ft_putstr(line + *pos);
+			print_line(line + *pos, readline->in_newline);
+			//ft_putstr(line + *pos);
 			//error
 			*pos += (ptr) - (line + *pos);
 			if ((int)ft_strlen(line) > *pos)
@@ -61,7 +62,8 @@ int	capitalize_word(t_readline *readline, t_history *history)
 	if (state)
 	{
 		tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-		ft_putstr(line + *pos);
+		print_line(line + *pos, readline->in_newline);
+		//ft_putstr(line + *pos);
 		*pos += (ptr) - (line + *pos);
 		if ((int)ft_strlen(line) > *pos)
 		{

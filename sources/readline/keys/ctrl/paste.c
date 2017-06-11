@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paste.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 15:59:33 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 15:16:42 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 19:51:34 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,13 @@ int 	paste(t_readline *e, t_history *history)
 	int save_position;
 
 	if (!e || !e->strcpy || !e->temp)
-		return (0);
+		return (1);
 	save_position = e->pos;
-	ft_putstr(e->strcpy);
+	print_line(e->strcpy, e->in_newline);
+	//ft_putstr(e->strcpy);
 	if (*e->temp)
-		ft_putstr(*e->temp + e->pos);
+		print_line(*e->temp + e->pos, e->in_newline);
+		//ft_putstr(*e->temp + e->pos);
 	if (check_go_left(e->temp, e->pos, ft_strlen(*e->temp), e->cut))
 		tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(*e->temp + e->pos))
 					, AFFCNT, &my_putc);
@@ -83,11 +85,11 @@ int 	paste(t_readline *e, t_history *history)
 	if (save_position == 0)
 	{
 		if (!cursor_max_left(e->temp, e->strcpy))
-			return (0);
+			return (1);
 	}
 	else
 		if (!(cursor_no_max_left(e->temp, e->strcpy, save_position)))
-			return (0);
+			return (1);
 	e->cut = 0;
 	if (history && history->ret && history->history_cur)
 		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;

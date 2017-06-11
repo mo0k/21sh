@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_up.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 22:32:34 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 15:16:55 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/10 09:45:37 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int 	line_up(t_readline *readline)
 	int 	len_prompt;
 
 	if (!readline)
-		return 0;
+		return (1);
 	line = *readline->temp;
 	pos = &readline->pos;
 	if (!line)
-		return (0);
+		return (1);
 	len_prompt = readline->prompt.len;
 	col = readline->win.col;
 	(void)line;

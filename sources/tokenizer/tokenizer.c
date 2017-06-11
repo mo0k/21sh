@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 13:03:46 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/08 17:41:30 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/10 17:08:11 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_special_char(char c)
 {
-	if (c == ';' || c == '|' || c == '<' || c == '>' || c == '\'' || c == '\"')
+	if (c == ';' || c == '|' || c == '<' || c == '>')// || c == '\'' || c == '\"')
 		return (1);
 	else
 		return (0);
@@ -41,7 +41,21 @@ static int analyze_block(t_tokenizer *tokenizer, char *line)
 		*ptr_begin = (*ptr_end) + 1;
 	}
 	else if (**ptr_end == '\'' || **ptr_end == '\"')
-		get_quoting_word(tokenizer, ptr_begin, ptr_end);
+	{
+		++(*ptr_end);
+		printf("Gestion des quotes\n");
+		while (**ptr_end != '\'' && **ptr_end != '\"')
+		{
+			printf("increment:%c\t%d\n", **ptr_end, **ptr_end);
+			++(*ptr_end);
+		}
+		printf("*ptr_end:%c\t%d\n", **ptr_end, **ptr_end);
+		//get_quoting_word(tokenizer, ptr_begin, ptr_end);
+	}
+	else if (**ptr_end == '\\')
+	{
+		++(*ptr_end);
+	}
 	else if (**ptr_end == '<' || **ptr_end == '>')
 		get_redirect(tokenizer, line);
 	printf("DEBUG | END analyze_block\n");
@@ -60,7 +74,7 @@ int		tokenizer(t_tokenizer *tokenizer, char *line)
 	printf("line:%s\n", line);
 	while(*tokenizer->delimiter.end)
 	{
-		if (is_special_char(*tokenizer->delimiter.end))
+		if (is_special_char(*tokenizer->delimiter.end) || *tokenizer->delimiter.end == '\'' || *tokenizer->delimiter.end == '\"' || *tokenizer->delimiter.end == '\\')
 		{
 			analyze_block(tokenizer, line);
 		}

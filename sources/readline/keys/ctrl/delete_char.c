@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   delete_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 15:16:36 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 19:51:01 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@ int	delete_char(t_readline *e, t_history *history)
 	int len_line;
 
 	if (!e)
-		return (0);
+		return (1);
 	line = e->temp;
 	pos = e->pos;
 	len_line = ft_strlen(*line);
 	if (e->pos < len_line)
 	{
 		tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-			ft_putstr(*line + pos + 1);
+			//ft_putstr(*line + pos + 1);
+		print_line(*line + pos + 1, e->in_newline);
 		if (e->pos < --len_line )
 			tputs(tgoto(tgetstr("LE", NULL), 1, len_line - pos), AFFCNT, &my_putc);
 		//return (1);

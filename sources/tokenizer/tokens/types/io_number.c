@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 22:01:58 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 11:29:26 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/10 16:43:45 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,34 @@
 
 int		is_io_number(char *ptr_begin, char *ptr_end)
 {
+	printf("DEBUG | BEGIN is_io_number\n");
 	int state;
 
 	state = 0;
 	if (!ptr_begin || !ptr_begin)
 		return (0);
+	printf("DEBUG | 1 char:%d\n", *ptr_end);
+	printf("DEBUG | begin:%p\tend:%p\n", ptr_begin, ptr_end);
 	if (ptr_end > ptr_begin)
 		--ptr_end;
+	printf("DEBUG | 2 char:%d\n", *ptr_end);
+	printf("DEBUG | begin:%p\tend:%p\n", ptr_begin, ptr_end);
 	while (ptr_end >= ptr_begin)
 	{
+		printf("DEBUG | begin:%p\tend:%p\n", ptr_begin, ptr_end);
+		printf("DEBUG | 3 char:%d\n", *ptr_end);
 		if (*ptr_end > 47 && *ptr_end < 58)
 		{
+			printf("DEBUG | decrementation\n");
 			state = 1;
 			--ptr_end;
 		}
-		else if (state && *ptr_end == 32)
+		else if (state && *ptr_end == 32 && ptr_end > ptr_begin && *(ptr_end - 1) != '\\') // ajouter condition for 
 			return (1);
 		else
 			return (0);
 	}
+	printf("DEBUG | END state:%d\n", state);
 	if (state)
 		return (1);
 	else
@@ -48,7 +57,7 @@ static char	*find_io_number(char *ptr_begin, char *ptr_end)
 	begin = ptr_end;
 	while (begin >= ptr_begin)
 	{
-		if (begin == ptr_begin || *begin == ' ')
+		if (begin == ptr_begin || (*begin == ' ' && begin > ptr_begin && *(begin - 1) != '\\'))
 			break;
 		begin--;
 	}

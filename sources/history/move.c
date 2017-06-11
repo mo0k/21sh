@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 10:28:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/08 15:06:18 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/09 19:53:19 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,37 @@
 
 static int	do_move(t_list *h, t_readline *r)
 {
-	char *ptr_end;
-	char *ptr_start;
+	//char *ptr_end;
+	//char *ptr_begin;
 
 	if (r->pos > 0)
 		tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putc);
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-	ptr_start = ((t_history_elem*)((h)->content))->value;
+
+	print_line(((t_history_elem*)((h)->content))->value, r->in_newline);
+
+	/*ptr_begin = ((t_history_elem*)((h)->content))->value;
 	ptr_end = ((t_history_elem*)((h)->content))->value;
 	if (!(ptr_end = ft_strchr(ptr_end, '\n')))
 		ft_putstr(((t_history_elem*)((h)->content))->value);
 	else
 	{
+		print_catch_newline(ptr_begin, ptr_end)
 		*ptr_end = 0;
-		ft_putstr(ptr_start);
+		ft_putstr(ptr_begin);
 		write(1, " ", 1);
 		*ptr_end = '\n';
-		ptr_start = ++ptr_end;
+		ptr_begin = ++ptr_end;
 		while ((ptr_end = ft_strchr(ptr_end, '\n')))
 		{
 			*ptr_end = 0;
-			ft_putstr(ptr_start);
+			ft_putstr(ptr_begin);
 			write(1, " ", 1);
 			*ptr_end = '\n';
-			ptr_start = ++ptr_end;
+			ptr_begin = ++ptr_end;
 		}
-		ft_putstr(ptr_start);
-	}
+		ft_putstr(ptr_begin);
+	}*/
 	r->temp = &((t_history_elem*)((h)->content))->value;
 	(r->pos) = ft_strlen(*r->temp);
 	padding_limit(r->pos, r->prompt.len, r->win.col);

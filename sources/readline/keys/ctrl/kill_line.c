@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kill_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:31:06 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/06/05 15:16:39 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/10 10:18:31 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int 	kill_line(t_readline *readline, t_history *history)
 	int len;
 
 	if (!readline)
-		return (0);
+		return (1);
 	len = ft_strlen(*readline->temp);
 	if (readline->strcpy)
 		free(readline->strcpy);

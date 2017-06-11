@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 14:21:02 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 15:17:00 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 22:09:16 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_newline(t_readline *readline)
 	readline->prompt.val = PROMPT_NEWLINE;
 	readline->prompt.len  = ft_strlen(PROMPT_NEWLINE);
 	init_winsize(&readline->win, tgetnum("li"), tgetnum("co"));
+	readline->in_newline = 0;
 	printf("DEBUG | END init_newline\n");
 }
 /*

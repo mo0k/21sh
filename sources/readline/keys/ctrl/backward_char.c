@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   backward_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 01:06:22 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 15:01:39 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int 	backward_char(int *pos)
 {
 	if (!pos)
-		return (0);
+		return (1);
 	if (*pos > 0)
 	{
 		tputs(tgetstr("le", NULL), AFFCNT, &my_putc);

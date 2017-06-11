@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:32 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 18:57:12 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 23:59:29 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static int		do_meta_key(t_readline *r, t_history *h)
 
 	x = 0;
 	meta = 0;
+	//printf("PAR LA COCO\n");
 	if (read(0, &meta, sizeof(int)) > 0)
 	{
 		(meta == BACKWARD_WORD && !x) ? backward_word(r) && (x = 1) : 0;
@@ -50,6 +51,7 @@ static int		do_meta_key(t_readline *r, t_history *h)
 		(meta == KILL_WORD && !x) ? kill_word(r, h) && (x = 1) : 0;
 		(meta == UPCASE_WORD && !x) ? upcase_word(r, h) && (x = 1) : 0;
 	}
+	//printf("x:%d\n", x);
 	return ((x) ? 1 : 0);
 }
 
@@ -74,17 +76,19 @@ static int		others_keys(int key, t_readline *r, t_history *h)
 	return (x);
 }
 
-int	readline_handler(int key, t_readline *readline, t_history *h)
+int	readline_handler(int key, t_readline *readline, t_history *h, int *new_line)
 {
-	if (!readline || !h)
+		//printf("DEBUG | START readline_handler:%d\n", *new_line);
+	if (!readline)
 		return (0);
-	if ((h->ret || key == PREVIOUS_HISTORY ||
-		(h->ret && key == NEXT_HISTORY)) && h->history_cur)
+	if (h && h->history_cur && (h->ret || key == PREVIOUS_HISTORY ||
+		(h->ret && key == NEXT_HISTORY)))
 		readline->temp = &(((t_history_elem*)(h->history_cur->content))->value);
 	else
 		readline->temp = &readline->line;
 	//printf("DEBUG | &readline->line:\t%p, readline->line:%p\n", &readline->line, readline->line);
 	//printf("DEBUG | readline->temp:\t%p\n", *readline->temp);
+	//printf("key:%d\n", key);
 	if (key == META_KEY && do_meta_key(readline, h))
 		return (1);
 	else if(ctrl_keys(key, readline, h))
@@ -93,11 +97,22 @@ int	readline_handler(int key, t_readline *readline, t_history *h)
 		return (1);
 	else if (key == K_RETURN)
 	{
-		printf("\n%p:line:%s\tpos:%d\n", *readline->temp ,*readline->temp, readline->pos);
-		int ret = k_return(readline->temp, h);
-		reset_line(&readline->line, &readline->pos);
-		//prompt(readline->prompt.val);
-		return (ret);
+		//printf("DEBUG | K_RETURN\n");
+		//printf("DEBUG | *newline:%d\n", *new_line);
+		if (!*new_line)
+		{
+			//printf("DEBUG | !newline:%d\n", *new_line);
+			//printf("\n%p:line:%s\tpos:%d\n", *readline->temp ,*readline->temp, readline->pos);
+			int ret = k_return(readline->temp, h, new_line);
+			reset_line(&readline->line, &readline->pos);
+			//prompt(readline->prompt.val);
+			return (ret);
+		}
+		else
+		{
+			printf("DEBUG | return end handler newline\n");
+			return (2);
+		}
 	}
 	else if (ft_isprint(key) && add_key(key, readline, h))
 		return (1);

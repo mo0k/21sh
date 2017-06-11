@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 16:33:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 11:29:45 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/09 16:59:16 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct	s_readline
 	t_win		win;
 	int 		pos;
 	enum e_cut	cut;
+	int			in_newline;
 }				t_readline;
 
 typedef struct	s_shell

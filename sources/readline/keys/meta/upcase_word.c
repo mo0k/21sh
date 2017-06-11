@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   upcase_word.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 15:16:52 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/10 00:02:12 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	upcase_word(t_readline *readline, t_history *history)
  	char *line;
 	int *pos;
 
-	if (!readline || !history)
-		return (0);
+	if (!readline)
+		return (1);
 	line = *readline->temp;
 	pos = &readline->pos;
 	if (!line)
-		return (0);
+		return (1);
 	state = 0;
 	ptr = line + *pos;
 	while (*ptr)
@@ -37,7 +37,8 @@ int	upcase_word(t_readline *readline, t_history *history)
 		else if (state && (*ptr == ' ' || *ptr == '\t' || *ptr == '\v'))
 		{
 			tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-			ft_putstr(line + *pos);
+			print_line(line + *pos, readline->in_newline);
+			//ft_putstr(line + *pos);
 			//error
 			*pos += (ptr) - (line + *pos);
 			if ((int)ft_strlen(line) > *pos)
@@ -52,7 +53,8 @@ int	upcase_word(t_readline *readline, t_history *history)
 	if (state)
 	{
 		tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-		ft_putstr(line + *pos);
+		print_line(line + *pos, readline->in_newline);
+		//ft_putstr(line + *pos);
 		*pos += (ptr) - (line + *pos);
 		if ((int)ft_strlen(line) > *pos)
 			tputs(tgoto(tgetstr("LE", NULL), 1, ft_strlen(line + *pos) - ((ptr) - (line + *pos))), AFFCNT, &my_putc);

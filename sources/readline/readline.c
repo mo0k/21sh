@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:44:06 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 15:12:52 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 22:07:16 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_readline(t_readline *readline)
 	readline->prompt.val = getcwd(NULL, CWD);
 	readline->prompt.len  = ft_strlen(readline->prompt.val) + LEN_SYMBOL;
 	init_winsize(&readline->win, tgetnum("li"), tgetnum("co"));
+	readline->in_newline = 0;
 }
 
 void	reset_line(char **line, int *pos)
@@ -35,6 +36,41 @@ void	reset_line(char **line, int *pos)
 	*line = NULL;
 	*pos = 0;
 	printf("DEBUG | end return reset_line\n");
+}
+
+static void		print_catch_newline(char *begin, char *end)
+{
+	if (!begin || !end)
+		return ;
+	*end = 0;
+	ft_putstr(begin);
+	write(1, " ", 1);
+	*end = '\n';
+	begin = ++end;
+	while ((end = ft_strchr(end, '\n')))
+	{
+		*end = 0;
+		ft_putstr(begin);
+		write(1, " ", 1);
+		*end = '\n';
+		begin = ++end;
+	}
+	ft_putstr(begin);
+}
+
+void	print_line(char *line, int in_newline)
+{
+	char *ptr_end;
+	char *ptr_begin;
+
+	if (!line)
+		return ;
+	ptr_begin = line;
+	ptr_end = line;
+	if (!in_newline && !(ptr_end = ft_strchr(line, '\n')))
+		ft_putstr(line);
+	else
+		print_catch_newline(ptr_begin, ptr_end);
 }
 
 void	padding_limit(int pos, int len_prompt, int col)

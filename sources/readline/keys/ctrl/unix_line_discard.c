@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unix_line_discard.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:30:58 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/06/05 15:16:43 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 19:51:47 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static	void do_front(t_readline *r)
 	if (r->pos)
 		tputs(tgoto(tgetstr("LE", NULL), 1, r->pos), AFFCNT, &my_putc);
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-	ft_putstr(*r->temp);
+	print_line(*r->temp, r->in_newline);
+//	ft_putstr(*r->temp);
 	r->pos = ft_strlen(*r->temp);
 	if (r->pos)
 		tputs(tgoto(tgetstr("LE", NULL), 1, r->pos), AFFCNT, &my_putc);
@@ -47,9 +48,9 @@ static	int do_back(t_readline *r)
 int 	unix_line_discard(t_readline *readline, t_history *history)
 {
 	if (!readline)
-		return (0);
+		return (1);
 	if (!do_back(readline))
-		return (0);
+		return (1);
 	do_front(readline);
 	if (history && history->ret && history->history_cur)
 		((t_history_elem*)((history->history_cur)->content))->flag_modif = 1;

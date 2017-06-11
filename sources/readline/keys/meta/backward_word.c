@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   backward_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 15:16:47 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 15:00:20 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int 	backward_word(t_readline *readline)
 	int shift;
 //A CHECK !line
 	if (!readline)
-		return (0);
+		return (1);
 	line = *readline->temp;
 	pos = &readline->pos;
 	state = 0;
 	if (!*pos || !line)
-		return (0);
+		return (1);
 	ptr = line + *pos - 1;
 	while (ptr != line)
 	{	

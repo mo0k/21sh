@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 00:56:04 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 14:01:02 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/10 10:42:04 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		get_quoting_word(t_tokenizer *tknizer, char **ptr_begin, char **ptr_end)
 		**ptr_end = c;
 		//printf("*ptr_end:\t%c\t%d\t%p\n", **ptr_end, **ptr_end, *ptr_end);
 	}
-	*ptr_begin = *ptr_end + 1;
+	*ptr_begin = *ptr_end;
 	//printf("*begin:\t%c\t%d\t%p\t%s\n", **ptr_begin, **ptr_begin,*ptr_begin,  *ptr_begin);
 	return (1);
 }

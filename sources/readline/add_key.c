@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   add_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/05 15:13:45 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/09 23:03:02 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
 
-static void		addnchar(char **astr, char c, int pos)
+static void		ft_addnchar(char **astr, char c, int pos)
 {
 	char	*str;
-	int		shift;
+	//int		shift;
 
 	if (!astr || !*astr || pos < 0)
 		return ;
@@ -26,9 +26,20 @@ static void		addnchar(char **astr, char c, int pos)
 	str = ft_strcat(str, (*astr) + pos);
 	free(*astr);
 	*astr = str;
+}
+
+static void		addnchar(t_readline *readline, char c)
+{
+	//char	*str;
+	int		shift;
+	int 	*pos;
+
+	pos = &readline->pos;
+	ft_addnchar(readline->temp, c, readline->pos);
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-	ft_putstr(str+ ++pos);
-	shift = ft_strlen(str+pos);
+	print_line(*readline->temp + readline->pos + 1, readline->in_newline);
+	//ft_putstr(str+ ++pos);
+	shift = ft_strlen(*readline->temp + readline->pos + 1);
 	tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putc);
 
 }
@@ -50,7 +61,7 @@ int		add_key(char c, t_readline *r, t_history *h)
 				if (h->history_cur && h->ret)
 					((t_history_elem*)(h->history_cur->content))->flag_modif = 1;
 				(r->pos == (int)ft_strlen(*r->temp)) ?
-				ft_addchar(r->temp, c) : addnchar(r->temp, c, r->pos);
+				ft_addchar(r->temp, c) : addnchar(r, c);
 			}
 		}
 		else
@@ -63,7 +74,7 @@ int		add_key(char c, t_readline *r, t_history *h)
 			else
 			{
 				(r->pos == (int)ft_strlen(*r->temp)) ?
-				ft_addchar(r->temp, c) : addnchar(r->temp, c, r->pos);
+				ft_addchar(r->temp, c) : addnchar(r, c);
 			}
 		}
 		r->pos++;

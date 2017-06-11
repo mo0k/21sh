@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unix_word_rubout.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/17 03:30:52 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/06/05 15:16:45 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/10 10:06:13 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int 	unix_word_rubout(t_readline *readline, t_history *history) //voir paste err
 	if (!readline->pos || !*readline->temp)
 	{
 		ft_putchar(7);
-		return (0);
+		return (1);
 	}
 	if (readline->strcpy)
  	{
@@ -55,25 +55,25 @@ int 	unix_word_rubout(t_readline *readline, t_history *history) //voir paste err
 	if (!(readline->pos -= (int)ft_strlen(readline->strcpy)))
 	{
 		if (!(temp = ft_strdup(*readline->temp + (int)ft_strlen(readline->strcpy))))
-			return (0);
+			return (1);
 		free(*readline->temp);
 		*readline->temp = temp;
 	}
 	else
 	{
 		if (!(ptr1 = ft_strsub(*readline->temp, 0, readline->pos)))
-			return (0);
+			return (1);
 		if (!(ptr2 = ft_strdup(*readline->temp + readline->pos + (int)ft_strlen(readline->strcpy))))
 		{
 			free(ptr1);
-			return (0);
+			return (1);
 		}
 		free(*readline->temp);
 		if (!(*readline->temp = ft_strjoin(ptr1, ptr2)))
 		{
 			free(ptr1);
 			free(ptr2);
-			return (0);
+			return (1);
 		}
 		free(ptr1);
 		free(ptr2);

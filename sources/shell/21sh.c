@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:05:08 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 14:25:24 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/11 10:50:20 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	main(int ac, char **av)
 	//
 	//ft_lstiter(shell.history, &print_history_elem);
 	//
+	printf("DEBUG | 1 in_newline:%d\n", shell.readline.in_newline);
 	while (42)
 	{
 		chr = 0;
@@ -65,11 +66,17 @@ int	main(int ac, char **av)
 			prompt(shell.readline.prompt.val);
 		if (read(0, &chr, sizeof(int)) > 0)
 		{
-			if ((r = readline_handler(chr, &shell.readline, &shell.history)) == 2)
+			if ((r = readline_handler(chr, &shell.readline, &shell.history, &shell.readline.in_newline)) == 2)
 			{
 				printf("PAR LA\n");
-				if (tokenizer(&shell.tokenizer, ((t_history_elem*)(shell.history.history_cur->content))->value);
-					parser(shell.tokenizer.tokens);
+				if (tokenizer(&shell.tokenizer, ((t_history_elem*)(shell.history.history_cur->content))->value))
+				{
+					printf("OK go PARSER\n");
+					if (parser(shell.tokenizer.tokens))
+					{
+						
+					}
+				}
 					//si tokenizer return 1 start parsing
 				delete_tokens(&shell.tokenizer.token);
 			}
