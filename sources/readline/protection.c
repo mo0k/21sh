@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/06 14:39:56 by jmoucade          #+#    #+#             */
-/*   Updated: 2017/06/08 15:21:59 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/12 10:24:45 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 static int	do_quoting(char **astr, char c)
 {
+	char *ptr;
+
 	if (!astr || !*astr)
 		return (0);
+	ptr = *astr;
 	(*astr)++;
-	while (**astr && **astr != c)
+	while (**astr && (**astr != c || (*astr > ptr && **astr == '\"' && *(*astr - 1) == '\\')))
 		(*astr)++;
 	if (**astr == c)
 		return (1);
 	else
-		return ((c == '\'') ? quote : quotes);
+	return ((c == '\'') ? quote : quotes);
 }
 /*
 **	
