@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 16:33:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/11 13:07:31 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 14:29:31 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,97 +15,110 @@
 
 typedef unsigned int t_uint;
 
-typedef struct	s_delimiter
+typedef struct		s_delimiter
 {
-	char		*begin;
-	char	 	*end;
-}				t_delimiter;
+	char			*begin;
+	char	 		*end;
+}					t_delimiter;
 
-typedef enum	e_types
+typedef enum		e_types
 {
-				WORD,
-				PIPELINE,
-				SEPARATOR_OP,
-				REDIR_OP,
-				IO_NUMBER
-}				t_types;
+					WORD,
+					PIPELINE,
+					SEPARATOR_OP,
+					REDIR_OP,
+					IO_NUMBER
+}					t_types;
 
-typedef struct	s_token_elem
+typedef struct		s_token
 {
-	char		*val;
-	t_types 	type;
-}				t_token_elem;
+	char			*val;
+	t_types 		type;
+	int				flag_inhibitor;
+}					t_token;
 
-
-typedef struct s_tokenizer
+typedef struct 		s_tokenizer
 {
-	t_list		*token;
-	t_delimiter	delimiter;
-}				t_tokenizer;
+	t_list			*token;
+	t_delimiter		delimiter;
+}					t_tokenizer;
 
-typedef struct	s_history_elem
+typedef struct		s_history_elem
 {
-	char		*value;
-	char		*save;
-	int			flag_new;
-	int			flag_modif;
-}				t_history_elem;
+	char			*val;
+	char			*save;
+	int				flag_new;
+	int				flag_modif;
+}					t_history_elem;
 
-typedef struct	s_history
+typedef struct		s_history
 {
-	t_list		*history_root;
-	t_list		*history_cur;
-	int 		ret;
-	int 		in;
-}				t_history;
+	t_list			*history_root;
+	t_list			*history_cur;
+	int 			ret;
+	int 			in;
+}					t_history;
 
-typedef struct	termios t_termios;
+typedef struct		termios t_termios;
 
-typedef struct	s_term
+typedef struct		s_term
 {
-	t_termios	*new;
-	t_termios	*origin;
-}				t_term;
+	t_termios		*new;
+	t_termios		*origin;
+}					t_term;
 
-enum			e_cut
+enum				e_cut
 {
-				key_u = 1,
-				key_k,
-				key_w
+					key_u = 1,
+					key_k,
+					key_w
 };
 
-typedef struct s_win
+typedef struct 		s_win
 {
-	t_uint		col;
-	t_uint		row;
-}				t_win;
+	t_uint			col;
+	t_uint			row;
+}					t_win;
 
-typedef struct s_prompt
+typedef struct 		s_prompt
 {
-	char		*val;
-	size_t		len;
-}				t_prompt;
+	char			*val;
+	size_t			len;
+}					t_prompt;
 
 
-typedef struct	s_readline
+typedef struct		s_readline
 {
-	char		*line;
-	char		**temp;
-	char		*strcpy;
-	t_prompt	prompt;
-	t_win		win;
-	int 		pos;
-	enum e_cut	cut;
-	int			in_newline;
-}				t_readline;
+	char			*line;
+	char			**temp;
+	char			*strcpy;
+	t_prompt		prompt;
+	t_win			win;
+	int 			pos;
+	enum e_cut		cut;
+	int				in_newline;
+}					t_readline;
 
-typedef struct	s_shell
+typedef struct		s_parameter
 {
-	t_readline	readline;
-	t_term		termios;
-	t_history	history;
-	t_tokenizer	tokenizer;
-}				t_shell;
+	char			*key;
+	char			*val;
+}					t_param;
+
+typedef struct		s_parameters
+{
+	t_list			*environment;
+	t_list			*temporary;
+}					t_params;
+
+typedef struct		s_shell
+{
+	t_readline		readline;
+	t_term			termios;
+	t_history		history;
+	t_tokenizer		tokenizer;
+	t_params		parameters;
+}					t_shell;
 
 
 #endif 

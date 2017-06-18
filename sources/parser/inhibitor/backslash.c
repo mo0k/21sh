@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete.c                                           :+:      :+:    :+:   */
+/*   backslash.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 21:34:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/17 22:53:34 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/06/11 11:01:20 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/06/17 23:44:43 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenizer.h"
+#include <parser.h>
 
-void	delete_token(void* content, size_t size)
+void		remove_backslash(char **astr, char **aptr)
 {
-	(void) size;
-	if (!content)
+	if (!astr || !*astr || !aptr || !*aptr)
 		return ;
-	free(((t_token*)(content))->val);
-	((t_token*)(content))->val = NULL;
-	free(content);
-	content = NULL;
+	(*astr)++;
+	//printf("4 association **aptr = **astr =>  '%c'='%c'\n", **aptr, **astr);
+	if (**astr != '\n')
+	{
+		**aptr = **astr;
+		(*aptr)++;
+	}
+	//(*astr)++;
+	
 }

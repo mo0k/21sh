@@ -6,7 +6,7 @@
 #    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/07 17:53:51 by mo0ky             #+#    #+#              #
-#    Updated: 2017/06/11 13:04:35 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/06/17 22:49:33 by mo0ky            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,13 @@ CFLAGS = -Wall -Wextra -Werror
 INC_PATH = includes
 
 INC =	$(INC_PATH)/ft_21sh.h			\
+		$(INC_PATH)/builtins.h			\
 		$(INC_PATH)/error.h				\
+		$(INC_PATH)/ft_types.h			\
 		$(INC_PATH)/readline.h			\
 		$(INC_PATH)/newline.h			\
+		$(INC_PATH)/parameters.h		\
+		$(INC_PATH)/parser.h			\
 		$(INC_PATH)/keys.h				\
 		$(INC_PATH)/terms.h				\
 		$(INC_PATH)/history.h			\
@@ -89,6 +93,17 @@ SRC =	$(SRC_PATH)/shell/21sh.c								\
 		$(SRC_PATH)/tokenizer/tokens/types/redir_op.c			\
 		$(SRC_PATH)/tokenizer/tokens/types/word.c				\
 		$(SRC_PATH)/parser/parser.c								\
+		$(SRC_PATH)/parser/heredoc.c							\
+		$(SRC_PATH)/parser/inhibitor/inhibitor.c				\
+		$(SRC_PATH)/parser/inhibitor/quoting.c					\
+		$(SRC_PATH)/parser/inhibitor/backslash.c				\
+		$(SRC_PATH)/parser/expension/expension.c				\
+		$(SRC_PATH)/parser/expension/parameter.c				\
+		$(SRC_PATH)/parser/expension/tilde.c					\
+		$(SRC_PATH)/parameters/env.c							\
+		$(SRC_PATH)/parameters/init.c							\
+		$(SRC_PATH)/parameters/param.c							\
+		$(SRC_PATH)/builtins/getenv.c							\
 		$(SRC_PATH)/signals/catch.c 							\
 		$(SRC_PATH)/signals/handler.c
 
@@ -104,7 +119,7 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(OSRC) $(INC)
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses -g3 -fsanitize=address -fno-omit-frame-pointer
+	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses #-g3 -fsanitize=address -fno-omit-frame-pointer
 	@echo "$(OK_COLOR)$@ compiled.$(NO_COLOR)"
 
 $(LIB):

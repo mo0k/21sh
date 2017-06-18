@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/07 00:52:06 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 14:27:13 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/11 20:19:18 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void		ft_shell_error(char *error)
 
 	ft_bzero(error_message, 100);
 	ft_strcpy(error_message, "21sh: ");
-	ft_strncat(error_message, error, 89);
+	ft_strncat(error_message, error, 94);
 	ft_putendl_fd(error_message, 2);
 }

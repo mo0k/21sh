@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_config.c                                      :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 18:30:40 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/05/31 18:43:09 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/14 18:13:27 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int			init_config_term(t_termios *new, t_termios *origin)
 	char	*name;
 	int 	ret;
 
+	if (!new || !origin)
+		exit(EXIT_FAILURE);
 	(!getenv("TERM")) ? ft_fatal(ERR_GETENV) : (name = getenv("TERM"));
 	if ((ret = tgetent(NULL, name)) == -1)
 		ft_fatal(ERR_TGETENT_NOFOUND);
@@ -34,6 +36,8 @@ int			init_config_term(t_termios *new, t_termios *origin)
 
 void		init_config(t_termios **new, t_termios **origin)
 {
+	if (!new || !*new || !origin || !*origin)
+		exit(EXIT_FAILURE);
 	if (!(*new = (t_termios*)malloc(sizeof(t_termios))))
 		exit(EXIT_FAILURE);
 	if (!(*origin = (t_termios*)malloc(sizeof(t_termios))))

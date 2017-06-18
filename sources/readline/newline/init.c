@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 14:21:02 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 22:09:16 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 13:55:08 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	init_newline(t_readline *readline)
 {
+	if (!readline)
+		exit(EXIT_FAILURE);
 	printf("DEBUG | BEGIN init_newline\n");
 	readline->line = 0;
 	readline->temp = 0;
@@ -23,7 +25,7 @@ void	init_newline(t_readline *readline)
 	readline->prompt.val = PROMPT_NEWLINE;
 	readline->prompt.len  = ft_strlen(PROMPT_NEWLINE);
 	init_winsize(&readline->win, tgetnum("li"), tgetnum("co"));
-	readline->in_newline = 0;
+	readline->in_newline = 1;
 	printf("DEBUG | END init_newline\n");
 }
 /*

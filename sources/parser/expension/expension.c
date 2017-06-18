@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete.c                                           :+:      :+:    :+:   */
+/*   expension.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 21:34:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/17 22:53:34 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/06/17 21:47:57 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/06/17 21:48:37 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenizer.h"
+#include <parser.h>
 
-void	delete_token(void* content, size_t size)
+void		expension(char **value, t_params *params)
 {
-	(void) size;
-	if (!content)
+	if (!value || !*value)
 		return ;
-	free(((t_token*)(content))->val);
-	((t_token*)(content))->val = NULL;
-	free(content);
-	content = NULL;
+	tilde_expension(value, params);
+	param_expension(value, params);
 }

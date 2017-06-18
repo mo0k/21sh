@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete.c                                           :+:      :+:    :+:   */
+/*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 21:34:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/17 22:53:34 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/06/17 16:17:05 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/06/17 16:27:19 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenizer.h"
+#ifndef BUILTINS_H
+# define BUILTINS_H
 
-void	delete_token(void* content, size_t size)
-{
-	(void) size;
-	if (!content)
-		return ;
-	free(((t_token*)(content))->val);
-	((t_token*)(content))->val = NULL;
-	free(content);
-	content = NULL;
-}
+# include <ft_21sh.h>
+
+char		*ft_getenv(t_list *env, char *key);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:05:08 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/11 13:07:06 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 13:57:32 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int 	ft_delchar(char **str, int pos)
 	return (1);
 }
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **env)
 {
 	(void)ac;
 	(void)av;
@@ -51,7 +51,7 @@ int	main(int ac, char **av)
 	int			r;
 
 	r = 2;
-	init(&shell);
+	init(&shell, env);
 	catch_signals();
 	stock_data(&shell);
 	print_stock(&shell);
@@ -66,13 +66,14 @@ int	main(int ac, char **av)
 			prompt(shell.readline.prompt.val);
 		if (read(0, &chr, sizeof(int)) > 0)
 		{
-			if ((r = readline_handler(chr, &shell.readline, &shell.history, &shell.readline.in_newline)) == 2)
+			if ((r = readline_handler(chr, &shell.readline, &shell.history)) == 2)
 			{
 				printf("PAR LA\n");
-				if (tokenizer(&shell.tokenizer, ((t_history_elem*)(shell.history.history_cur->content))->value))
+				if (tokenizer(&shell.tokenizer, ((t_history_elem*)(shell.history.history_cur->content))->val))
 				{
 					printf("OK go PARSER\n");
-					if (parser(&shell.tokenizer.token))
+					
+					if (parser(&shell.tokenizer.token, &shell.parameters))
 					{
 						printf("OK PARSER\n");
 					}

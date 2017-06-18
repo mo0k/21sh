@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 10:28:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 19:53:19 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/17 22:52:03 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	do_move(t_list *h, t_readline *r)
 		tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putc);
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 
-	print_line(((t_history_elem*)((h)->content))->value, r->in_newline);
+	print_line(((t_history_elem*)((h)->content))->val, r->in_newline);
 
 	/*ptr_begin = ((t_history_elem*)((h)->content))->value;
 	ptr_end = ((t_history_elem*)((h)->content))->value;
@@ -45,7 +45,7 @@ static int	do_move(t_list *h, t_readline *r)
 		}
 		ft_putstr(ptr_begin);
 	}*/
-	r->temp = &((t_history_elem*)((h)->content))->value;
+	r->temp = &((t_history_elem*)((h)->content))->val;
 	(r->pos) = ft_strlen(*r->temp);
 	padding_limit(r->pos, r->prompt.len, r->win.col);
  	return (1);

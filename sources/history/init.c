@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 10:28:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/06 01:01:47 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/06/14 22:46:01 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ static void	catch_tab(char *value)
 
 void	init_history(t_history *history)
 {
+	if (!history)
+		exit(EXIT_FAILURE);
 	history->history_root = NULL;
 	load_history(&history->history_root);
 	history->history_cur = history->history_root;
@@ -44,8 +46,8 @@ void	init_elem_history(t_history_elem *e, char *val, int f_new, int f_modif)
 		printf("return init_e]init_elem_history\n");
 		return ;
 	}
-	e->value = ft_strdup(val);
-	catch_tab(e->value);
+	e->val = ft_strdup(val);
+	catch_tab(e->val);
 	e->save = ft_strdup(val);
 	e->flag_new = f_new;
 	e->flag_modif = f_modif;

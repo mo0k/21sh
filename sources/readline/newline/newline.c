@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 18:43:40 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 23:56:11 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 14:02:43 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		get_newline(char **line, t_readline *r)
 	retrun (1);
 }
 */
-int 	get_newline(char **line, t_history *h, int *in_newline)
+int 	get_newline(char **line, t_history *h)//, int *in_newline)
 {
 	printf("DEBUG | BEGIN get_newline\n");
 	int chr;
@@ -63,9 +63,9 @@ int 	get_newline(char **line, t_history *h, int *in_newline)
 	char *join;
 	t_history_elem	*content;
 
-	if (!line || !in_newline)
+	if (!line)//|| !in_newline)
 		return (0);
-	*in_newline = 1;
+	//*in_newline = 1;
 	ret = 2;
 	init_newline(&r);
 	r.temp = &r.line;
@@ -79,15 +79,15 @@ int 	get_newline(char **line, t_history *h, int *in_newline)
 		}
 		if (read(0, &chr, sizeof(int)) > 0)
 		{
-			if ((ret = readline_handler(chr, &r, 0, in_newline)) == 2)
+			if ((ret = readline_handler(chr, &r, 0)) == 2)
 			{
 				if (!*r.temp)
 					ft_addchar(r.temp, '\n');
 				printf("OEL\n");
-				printf("DEBUG | in WHILE => newline:%s, in_newline:%d\n", *r.temp, *in_newline);
+				printf("DEBUG | in WHILE => newline:%s, in_newline:%d\n", *r.temp, r.in_newline);
 				if (!(join = ft_strjoin(*line, *r.temp)))
 				{
-					*in_newline = 0;
+					//*in_newline = 0;
 					//a check free
 					free(r.line);
 					r.line = NULL;
@@ -101,7 +101,7 @@ int 	get_newline(char **line, t_history *h, int *in_newline)
 				free(r.line);
 				r.line = NULL;
 				r.pos = 0;
-				*in_newline = 0;
+				//*in_newline = 0;
 				r.temp = &r.line;
 				if (h && h->ret)
 				{
@@ -110,8 +110,8 @@ int 	get_newline(char **line, t_history *h, int *in_newline)
 					if (content->flag_modif == 1)
 					{
 						content->flag_modif = 0;
-						free(content->value);
-						content->value = ft_strdup(content->save);
+						free(content->val);
+						content->val = ft_strdup(content->save);
 					}
 					h->in = 0;
 					h->ret = 0;

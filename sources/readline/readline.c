@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:44:06 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 22:07:16 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 14:09:28 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,17 @@ void	print_line(char *line, int in_newline)
 		return ;
 	ptr_begin = line;
 	ptr_end = line;
-	if (!in_newline && !(ptr_end = ft_strchr(line, '\n')))
+	//printf("print_line:in_newline:%d\taddr \\n%s\n", in_newline, (ptr_end = ft_strchr(line, '\n')));
+	if ((!in_newline && !(ptr_end = ft_strchr(line, '\n'))) || in_newline)
+	{
+	//	printf("print normal\n");
 		ft_putstr(line);
+	}
 	else
+	{
+	//	printf("print catch newline\n");
 		print_catch_newline(ptr_begin, ptr_end);
+	}
 }
 
 void	padding_limit(int pos, int len_prompt, int col)

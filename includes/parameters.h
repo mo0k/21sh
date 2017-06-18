@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   delete.c                                           :+:      :+:    :+:   */
+/*   parameters.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 21:34:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/17 22:53:34 by mo0ky            ###   ########.fr       */
+/*   Created: 2017/06/14 18:02:46 by mo0ky             #+#    #+#             */
+/*   Updated: 2017/06/14 23:13:52 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tokenizer.h"
+#ifndef PARAMETERS_H
+# define PARAMETERS_H
 
-void	delete_token(void* content, size_t size)
-{
-	(void) size;
-	if (!content)
-		return ;
-	free(((t_token*)(content))->val);
-	((t_token*)(content))->val = NULL;
-	free(content);
-	content = NULL;
-}
+# include <libft.h>
+# include <ft_types.h>
+
+void	init_parameters(t_params *parameters, char **environment);
+t_list	*import_env(char **env);
+char	**export_env(t_list *env);
+char	*get_param(t_list *param, char *key);
+void 	print_param_all(t_list *param);
+void	print_param(t_list *param);
+
+#endif

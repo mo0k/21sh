@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:07:38 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/11 13:06:58 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/17 16:27:34 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <ft_types.h>
 # include <error.h>
 # include <signals.h>
+# include <parameters.h>
+# include <builtins.h>
 # include <tokenizer.h>
 # include <parser.h>
 # include <history.h>
@@ -39,7 +41,7 @@
 # define C_PROMPT_NEWLINE PROMPT_COLOR PROMPT_NEWLINE C_DFL
 
 void		usage(int ac, char **av);
-void		init(t_shell *stock);
+void		init(t_shell *stock, char **env);
 t_shell		*stock_data(t_shell *elem);
 void		print_stock(t_shell *stock);
 

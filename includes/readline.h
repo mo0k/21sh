@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:08:57 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 20:40:52 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 13:58:57 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	reset_line(char **line, int *pos);
 void	print_line(char *line, int in_newline);
 void	padding_limit(int pos, int len_prompt, int col);
 
-int		readline_handler(int key, t_readline *readline, t_history *h, int *in_newline);
+int		readline_handler(int key, t_readline *readline, t_history *h);//, int *in_newline);
 int		add_key(char c, t_readline *readline, t_history *history);
 void	quoting(char **line);
 int		check_protection(char *str);
@@ -54,7 +54,7 @@ int		search_history(void);
 int 	unix_line_discard(t_readline *readline, t_history *history);
 int 	unix_word_rubout(t_readline *readline, t_history *history);
 int		upcase_word(t_readline *readline, t_history *history);
-int 	k_return(char **line, t_history *history, int *in_newline);
+int 	k_return(char **line, t_history *history);//, int *in_newline);
 
 
 #endif

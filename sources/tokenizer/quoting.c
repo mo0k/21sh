@@ -38,6 +38,8 @@ int		get_quoting_word(t_tokenizer *tknizer, char **ptr_begin, char **ptr_end)
 	}
 	while (ptr_end && *ptr_end && **ptr_end && **ptr_end != c)
 	{
+		//ajouter condition pour "\""
+
 		//printf("%c\t%d\t%p__2\n", **ptr_end,**ptr_end, *ptr_end);
 		(*ptr_end)++;
 	}

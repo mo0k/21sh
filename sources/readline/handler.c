@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 14:21:32 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 23:59:29 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 14:00:44 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ static int		others_keys(int key, t_readline *r, t_history *h)
 	return (x);
 }
 
-int	readline_handler(int key, t_readline *readline, t_history *h, int *new_line)
+int	readline_handler(int key, t_readline *readline, t_history *h)//, int *new_line)
 {
 		//printf("DEBUG | START readline_handler:%d\n", *new_line);
 	if (!readline)
 		return (0);
 	if (h && h->history_cur && (h->ret || key == PREVIOUS_HISTORY ||
 		(h->ret && key == NEXT_HISTORY)))
-		readline->temp = &(((t_history_elem*)(h->history_cur->content))->value);
+		readline->temp = &(((t_history_elem*)(h->history_cur->content))->val);
 	else
 		readline->temp = &readline->line;
 	//printf("DEBUG | &readline->line:\t%p, readline->line:%p\n", &readline->line, readline->line);
@@ -99,11 +99,11 @@ int	readline_handler(int key, t_readline *readline, t_history *h, int *new_line)
 	{
 		//printf("DEBUG | K_RETURN\n");
 		//printf("DEBUG | *newline:%d\n", *new_line);
-		if (!*new_line)
+		if (!readline->in_newline)
 		{
 			//printf("DEBUG | !newline:%d\n", *new_line);
 			//printf("\n%p:line:%s\tpos:%d\n", *readline->temp ,*readline->temp, readline->pos);
-			int ret = k_return(readline->temp, h, new_line);
+			int ret = k_return(readline->temp, h);//, new_line);
 			reset_line(&readline->line, &readline->pos);
 			//prompt(readline->prompt.val);
 			return (ret);
