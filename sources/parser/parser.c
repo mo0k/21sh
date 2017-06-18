@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 11:01:20 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/18 17:21:44 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 22:31:15 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int check_syntax(t_list *tokens)
 
 int		parser(t_list **atokens, t_params *params)
 {
+	(void)params;
 	t_list *tokens;
 
 	if (!atokens || !*atokens)

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 22:16:22 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/18 17:20:48 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 17:46:07 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char		*do_heredoc(char *delimiter)
 		return (NULL);
 	init_newline(&r);
 	join = NULL;
-	r.in_newline = 1;
+	//r.in_newline = 1;
 	r.temp = &r.line;
 	ret = 2;
 	while (42)
@@ -38,10 +38,10 @@ static char		*do_heredoc(char *delimiter)
 		{
 			if ((ret = readline_handler(chr, &r, 0)) == 2)
 			{
-				printf("delimiter:%s\tr.line:%s\n", delimiter, r.line);
+				//printf("delimiter:%s\tr.line:%s\n", delimiter, r.line);
 				if (!ft_strcmp(r.line, delimiter))
 				{
-					printf("return char *join\n");
+				//	printf("return char *join\n");
 					free(r.line);
 					r.line = NULL;
 					free(r.strcpy);

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 22:51:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/17 17:21:02 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 22:27:08 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,13 @@ void	remove_dquote(char **astr, char **aptr)
 			(*astr) += 2;
 		}
 		else if (**astr == '\\' && *(*astr + 1) && *(*astr + 1) == '\\')// && (ptr == str || (str > ptr && *(str - 1) != '\\')))
+		{
+			//printf("2 association **aptr = **astr =>  '%c'='%c'\n", **aptr, *(*astr + 1));
+			**aptr = *(*astr + 1);
+			++(*aptr);
+			(*astr) += 2;
+		}
+		else if (**astr == '\\' && *(*astr + 1) && *(*astr + 1) == '$')// && (ptr == str || (str > ptr && *(str - 1) != '\\')))
 		{
 			//printf("2 association **aptr = **astr =>  '%c'='%c'\n", **aptr, *(*astr + 1));
 			**aptr = *(*astr + 1);

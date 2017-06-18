@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 18:43:40 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/18 14:02:43 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/18 17:40:43 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int 	get_newline(char **line, t_history *h)//, int *in_newline)
 					free(r.line);
 					r.line = NULL;
 					r.pos = 0;
+					free(r.strcpy);
+					r.strcpy = NULL;
 					r.temp = &r.line;
 					return (0);
 				}
