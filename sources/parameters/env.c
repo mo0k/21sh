@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/14 20:11:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/14 22:49:42 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 09:51:34 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_list			*import_env(char **env)
 	return (lst_env);
 }
 
-char			**export_env(t_list *env)
+char    **export_env(t_list *env)
 {
 	int			len;
 	char		**new_env;

@@ -6,7 +6,7 @@
 /*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:05:08 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/18 13:57:32 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 09:49:09 by mo0ky            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,12 @@ int	main(int ac, char **av, char **env)
 				if (tokenizer(&shell.tokenizer, ((t_history_elem*)(shell.history.history_cur->content))->val))
 				{
 					printf("OK go PARSER\n");
-					
+					//si tokenizer return 1 start parsing
 					if (parser(&shell.tokenizer.token, &shell.parameters))
 					{
 						printf("OK PARSER\n");
 					}
 				}
-					//si tokenizer return 1 start parsing
 				delete_tokens(&shell.tokenizer.token);
 			}
 		}
