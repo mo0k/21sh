@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   kill_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/10 10:09:40 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 15:54:54 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ int	kill_word(t_readline *readline, t_history *history)
 		free(ptr2);
 	}
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-	print_line(*aptr + pos, readline->in_newline);
-	//ft_putstr(*aptr + pos);
+	//print_line(*aptr + pos, readline->in_newline);
+	ft_putstr(*aptr + pos);
 	if (pos < (int)ft_strlen(*aptr))
 		tputs(tgoto(tgetstr("LE", NULL), 1, (int)ft_strlen(*aptr + pos)), AFFCNT, &my_putc);
 	if (history && history->ret && history->history_cur)

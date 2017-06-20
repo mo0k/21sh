@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   add_key.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:56 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 23:03:02 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 16:00:00 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ static void		addnchar(t_readline *readline, char c)
 	pos = &readline->pos;
 	ft_addnchar(readline->temp, c, readline->pos);
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-	print_line(*readline->temp + readline->pos + 1, readline->in_newline);
+	//print_line(*readline->temp + readline->pos + 1, readline->in_newline);
 	//ft_putstr(str+ ++pos);
+	ft_putstr(*readline->temp + readline->pos + 1);
 	shift = ft_strlen(*readline->temp + readline->pos + 1);
 	tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putc);
 

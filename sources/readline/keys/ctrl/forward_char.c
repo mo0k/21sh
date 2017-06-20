@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   forward_char.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 19:51:10 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 15:52:51 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int 	forward_char(t_readline *readline)
 	if (*pos < (int)ft_strlen(line))
 	{
 		tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
-		//ft_putstr(line + *pos);
-		print_line(line + *pos, readline->in_newline);
+		ft_putstr(line + *pos);
+		//print_line(line + *pos, readline->in_newline);
 		(*pos)++;
 		if (*(line + *pos) != 0)
 		{

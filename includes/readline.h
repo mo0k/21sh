@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:08:57 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/18 13:58:57 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 15:56:04 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef enum	e_protect
 
 void	init_readline(t_readline *readline);
 void	reset_line(char **line, int *pos);
-void	print_line(char *line, int in_newline);
+//void	print_line(char *line, int in_newline);
 void	padding_limit(int pos, int len_prompt, int col);
 
 int		readline_handler(int key, t_readline *readline, t_history *h);//, int *in_newline);

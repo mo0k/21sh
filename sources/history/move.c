@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/30 10:28:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/17 22:52:03 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 16:15:24 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ static int	do_move(t_list *h, t_readline *r)
 		tputs(tgoto(tgetstr("LE", NULL), 0, r->pos), AFFCNT, &my_putc);
 	tputs(tgetstr("cd", NULL), AFFCNT, &my_putc);
 
-	print_line(((t_history_elem*)((h)->content))->val, r->in_newline);
+	//
+	//print_line(((t_history_elem*)((h)->content))->val, r->in_newline);
+	ft_putstr(((t_history_elem*)((h)->content))->val);
 
 	/*ptr_begin = ((t_history_elem*)((h)->content))->value;
 	ptr_end = ((t_history_elem*)((h)->content))->value;

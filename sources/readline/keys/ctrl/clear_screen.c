@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clear_screen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 19:50:55 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 15:58:22 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	do_clear(t_readline *readline)
 		return (1);
 	tputs(tgetstr("cl", NULL), AFFCNT, &my_putc);
 	prompt(readline->prompt.val);
-	print_line(*readline->temp, readline->in_newline);
-	//ft_putstr(*readline->temp);
+	ft_putstr(*readline->temp);
 	if ((int)ft_strlen(*readline->temp) > readline->pos)
 	{
 		shift = (int)ft_strlen(*readline->temp) - readline->pos;

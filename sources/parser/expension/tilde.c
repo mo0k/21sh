@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tilde.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 11:01:20 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/17 21:52:37 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 13:43:05 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void		tilde_expension(char **value, t_params *params)
 		if (!prefix)
 		{
 			printf("go getenv HOME\n");
-			printf("%s\n", ft_getenv(params->environment, "HOME"));
+			printf("%s\n", get_param(params->environment, "HOME"));
 			*addr_slash = c;
-			do_tilde_expension(value, ft_getenv(params->environment, "HOME"), addr_slash);
+			do_tilde_expension(value, get_param(params->environment, "HOME"), addr_slash);
 		}
 		else
 		{

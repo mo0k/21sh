@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+         #
+#    By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/06/07 17:53:51 by mo0ky             #+#    #+#              #
-#    Updated: 2017/06/17 22:49:33 by mo0ky            ###   ########.fr        #
+#    Updated: 2017/06/19 15:37:13 by jmoucade         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,6 @@ SRC =	$(SRC_PATH)/shell/21sh.c								\
 		$(SRC_PATH)/parameters/env.c							\
 		$(SRC_PATH)/parameters/init.c							\
 		$(SRC_PATH)/parameters/param.c							\
-		$(SRC_PATH)/builtins/getenv.c							\
 		$(SRC_PATH)/signals/catch.c 							\
 		$(SRC_PATH)/signals/handler.c
 
@@ -119,7 +118,7 @@ all: $(NAME)
 
 $(NAME): $(LIB) $(OSRC) $(INC)
 	@echo "Compiling..."
-	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses #-g3 -fsanitize=address -fno-omit-frame-pointer
+	@$(CC) $(CFLAGS) $(OSRC) -o $@ -L $(LIB_PATH) -lft -lncurses -g3 -fsanitize=address -fno-omit-frame-pointer
 	@echo "$(OK_COLOR)$@ compiled.$(NO_COLOR)"
 
 $(LIB):

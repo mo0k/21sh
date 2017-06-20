@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   21sh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:05:08 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/19 09:49:09 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 16:18:10 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_21sh.h>
+
+static void	catch_newline_and_tab(char *value)
+{
+	int i;
+
+	if (!value)
+		return ;
+	i = 0;
+	while (value[i])
+	{
+		if (value[i] == '\t' || value[i] == '\n')
+			value[i] = ' ';
+		i++;
+	}
+
+}
 
 static void		*ft_ec_malloc(unsigned int size)
 {
@@ -78,6 +94,7 @@ int	main(int ac, char **av, char **env)
 						printf("OK PARSER\n");
 					}
 				}
+				catch_newline_and_tab(((t_history_elem*)(shell.history.history_cur->content))->val);
 				delete_tokens(&shell.tokenizer.token);
 			}
 		}

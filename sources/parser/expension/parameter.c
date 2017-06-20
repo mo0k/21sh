@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parameter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 17:09:14 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/18 22:30:49 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 15:40:44 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void		param_expension(char **value, t_params *params)
 		printf("in while char:%c\t%d\t%p\t%d\n", *ptr, *ptr, ptr, state);
 		if (*ptr == '\\')
 		{
-			//ptr++;
-			ptr += 2;
+			ptr++;
+			//ptr += 2;
 			//printf("cas:\\ ptr++\n");
 		}
 		else if (state != -2 && *ptr == 34)
@@ -130,8 +130,9 @@ void		param_expension(char **value, t_params *params)
 				do_param_expension(value, &ptr, params);
 				state = 1;
 			}
+			ptr++;
 		}
-		else //(*ptr)
-			++ptr;
+		//else //(*ptr)
+		++ptr;
 	}
 }

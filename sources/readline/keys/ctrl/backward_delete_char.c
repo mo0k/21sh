@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   backward_delete_char.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:11 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 19:50:37 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 15:57:30 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ int	backward_delete_char(t_readline *readline, t_history *history)
 	ft_delchar(line, *pos);
 	if (*line && *(*line + *pos) != 0)
 	{
-		//ft_putstr(*line + *pos);
-		print_line(*line + *pos, readline->in_newline);
+		ft_putstr(*line + *pos);
 		shift = ft_strlen(*line + *pos);
 		tputs(tgoto(tgetstr("LE", NULL), 1, shift), AFFCNT, &my_putc);
 	}

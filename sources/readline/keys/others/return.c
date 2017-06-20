@@ -3,31 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   return.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 01:11:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/18 14:04:11 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 16:09:13 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <readline.h>
-/*
-static void	catch_newline(char *val)
-{
-	int i;
 
-	if (!val)
-		return ;
-	i = 0;
-	while (val[i])
-	{
-		if (val[i] == '\n' || val[i] == '\t')
-			val[i] = ' ';
-		i++;
-	}
-
-}
-*/
 int 	k_return(char **line, t_history *history)//, int *in_newline)
 {
 		t_list			*new;

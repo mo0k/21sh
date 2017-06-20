@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:44:06 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/18 14:09:28 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 16:05:53 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	reset_line(char **line, int *pos)
 	*pos = 0;
 	printf("DEBUG | end return reset_line\n");
 }
-
+/*
 static void		print_catch_newline(char *begin, char *end)
 {
 	if (!begin || !end)
@@ -56,8 +56,8 @@ static void		print_catch_newline(char *begin, char *end)
 		begin = ++end;
 	}
 	ft_putstr(begin);
-}
-
+}*/
+/*
 void	print_line(char *line, int in_newline)
 {
 	char *ptr_end;
@@ -70,16 +70,16 @@ void	print_line(char *line, int in_newline)
 	//printf("print_line:in_newline:%d\taddr \\n%s\n", in_newline, (ptr_end = ft_strchr(line, '\n')));
 	if ((!in_newline && !(ptr_end = ft_strchr(line, '\n'))) || in_newline)
 	{
-	//	printf("print normal\n");
+		printf("print normal\n");
 		ft_putstr(line);
 	}
 	else
 	{
-	//	printf("print catch newline\n");
+		printf("print catch newline\n");
 		print_catch_newline(ptr_begin, ptr_end);
 	}
 }
-
+*/
 void	padding_limit(int pos, int len_prompt, int col)
 {
 	 if ((pos + len_prompt) % col == 0)

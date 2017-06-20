@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   next_history.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 14:29:47 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/09 19:51:21 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/06/19 15:53:02 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int 	next_history(t_readline *r, t_history *h)
 		if (r->temp == &r->line)
 			ft_putchar(7);
 		r->temp = &r->line;
-		print_line(*r->temp, r->in_newline);
-		//ft_putstr(*r->temp);
+		//print_line(*r->temp, r->in_newline);
+		ft_putstr(*r->temp);
 		r->pos = ft_strlen(*r->temp);
 		padding_limit(r->pos, r->prompt.len, r->win.col);
 	}
