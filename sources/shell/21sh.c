@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 18:05:08 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/19 16:18:10 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/07/03 10:49:41 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,14 @@ int	main(int ac, char **av, char **env)
 		{
 			if ((r = readline_handler(chr, &shell.readline, &shell.history)) == 2)
 			{
-				printf("PAR LA\n");
 				if (tokenizer(&shell.tokenizer, ((t_history_elem*)(shell.history.history_cur->content))->val))
 				{
-					printf("OK go PARSER\n");
+					printf("GO PARSER\n");
 					//si tokenizer return 1 start parsing
 					if (parser(&shell.tokenizer.token, &shell.parameters))
 					{
 						printf("OK PARSER\n");
+						printf("GO create ast");
 					}
 				}
 				catch_newline_and_tab(((t_history_elem*)(shell.history.history_cur->content))->val);

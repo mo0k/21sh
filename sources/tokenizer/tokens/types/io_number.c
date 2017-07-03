@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   io_number.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mo0ky <mo0ky@student.42.fr>                +#+  +:+       +#+        */
+/*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 22:01:58 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/10 16:43:45 by mo0ky            ###   ########.fr       */
+/*   Updated: 2017/07/03 12:50:46 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		is_io_number(char *ptr_begin, char *ptr_end)
 	{
 		printf("DEBUG | begin:%p\tend:%p\n", ptr_begin, ptr_end);
 		printf("DEBUG | 3 char:%d\n", *ptr_end);
-		if (*ptr_end > 47 && *ptr_end < 58)
+		if (*ptr_end >= 0 && *ptr_end <= 9)
 		{
 			printf("DEBUG | decrementation\n");
 			state = 1;

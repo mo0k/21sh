@@ -6,7 +6,7 @@
 /*   By: jmoucade <jmoucade@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 16:33:44 by mo0ky             #+#    #+#             */
-/*   Updated: 2017/06/19 16:05:40 by jmoucade         ###   ########.fr       */
+/*   Updated: 2017/07/03 13:01:37 by jmoucade         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ typedef struct		s_delimiter
 	char	 		*end;
 }					t_delimiter;
 
-typedef enum		e_types
+typedef enum		e_token_types
 {
 					WORD,
 					PIPELINE,
-					SEPARATOR_OP,
+					CTRL_OP,
 					REDIR_OP,
 					IO_NUMBER
-}					t_types;
+}					t_token_types;
 
 typedef struct		s_token
 {
 	char			*val;
-	t_types 		type;
+	t_token_types	type;
 	int				flag_inhibitor;
 }					t_token;
 
